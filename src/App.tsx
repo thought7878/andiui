@@ -1,15 +1,21 @@
 import React from "react";
 import "./App.css";
+import Button, { ButtonSize, ButtonType } from "./components/Button/button";
 
 function App() {
 	return (
 		<div className="App">
-			<div>hello,aui</div>
-			<h2>hello,aui</h2>
-			<h3>hello,aui</h3>
-			<h4>hello,aui</h4>
-			<h5>hello,aui</h5>
-			<code>var a=1;</code>
+			<Button disabled>my button</Button>
+			<Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+				my button
+			</Button>
+			<Button
+				btnType={ButtonType.Link}
+				href="https://zh-hans.reactjs.org/docs/react-component.html#defaultprops"
+				disabled
+			>
+				reactjs
+			</Button>
 		</div>
 	);
 }
