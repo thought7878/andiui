@@ -5,16 +5,42 @@ import Button, { ButtonSize, ButtonType } from "./components/Button/button";
 function App() {
 	return (
 		<div className="App">
-			<Button disabled>my button</Button>
-			<Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
-				my button
-			</Button>
+			<div>
+				<Button btnType={ButtonType.Default} size={ButtonSize.Smaill}>
+					Default Smaill
+				</Button>
+				<Button btnType={ButtonType.Default}>Default</Button>
+				<Button btnType={ButtonType.Default} size={ButtonSize.Large}>
+					Default Large
+				</Button>
+			</div>
+			<div>
+				<Button btnType={ButtonType.Primary} size={ButtonSize.Smaill}>
+					Primary Smaill
+				</Button>
+				<Button btnType={ButtonType.Primary}>Primary</Button>
+				<Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+					Primary Large
+				</Button>
+			</div>
+
+			<div>
+				<Button btnType={ButtonType.Danger} size={ButtonSize.Smaill}>
+					Danger Smaill
+				</Button>
+				<Button btnType={ButtonType.Danger}>Danger</Button>
+				<Button btnType={ButtonType.Danger} size={ButtonSize.Large}>
+					Danger Large
+				</Button>
+			</div>
+
+			<Button disabled>Default disabled</Button>
 			<Button
 				btnType={ButtonType.Link}
 				href="https://zh-hans.reactjs.org/docs/react-component.html#defaultprops"
 				disabled
 			>
-				reactjs
+				Link
 			</Button>
 		</div>
 	);
