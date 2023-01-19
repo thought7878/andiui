@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { MenuContext } from "./menu";
 
 //
-interface MenuItemProps {
+export interface MenuItemProps {
 	index: number;
 	className?: string;
 	style?: React.CSSProperties;
@@ -37,5 +37,6 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
 MenuItem.defaultProps = {
 	disabled: false,
 };
+MenuItem.displayName = "MenuItem";
 
 export default MenuItem;

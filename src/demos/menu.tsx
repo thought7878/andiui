@@ -17,13 +17,14 @@ const MenuDemo = () => {
 					<MenuItem index={4} disabled>
 						菜单4
 					</MenuItem>
+					{/* <li>菜单5</li> */}
 				</Menu>
 			</div>
 			<div style={{ padding: 20 }}>
 				<Menu
 					defaultIndex={0}
 					onSelect={(index) => {
-						console.log(index);
+						// console.log(index);
 					}}
 					direction="vertical"
 				>
