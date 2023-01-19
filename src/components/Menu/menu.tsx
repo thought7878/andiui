@@ -52,18 +52,20 @@ const Menu: React.FC<MenuProps> = (props) => {
 			console.error("Warning: Menu has a child which is not MenuItem");
 		});
 	};
-	let items = React.Children.map(children, (child, index) => {
+	let newChildren = React.Children.map(children, (child, index) => {
 		const childElement = child as React.FunctionComponentElement<MenuItemProps>;
 		const { displayName } = childElement.type;
 		if (displayName === "MenuItem") {
-			return child;
+			return React.cloneElement(childElement, { index });
 		}
 		console.error("Warning: Menu has a child which is not MenuItem");
 	});
 	//
 	return (
 		<ul className={classes} style={style} data-testid="test-menu-id">
-			<MenuContext.Provider value={passedContext}>{items}</MenuContext.Provider>
+			<MenuContext.Provider value={passedContext}>
+				{newChildren}
+			</MenuContext.Provider>
 		</ul>
 	);
 };

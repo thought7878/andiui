@@ -8,15 +8,14 @@ const MenuDemo = () => {
 				<Menu
 					defaultIndex={0}
 					onSelect={(index) => {
-						console.log(index);
+						console.log("index:", index);
 					}}
 				>
-					<MenuItem index={0}>菜单1</MenuItem>
-					<MenuItem index={1}>菜单2</MenuItem>
-					<MenuItem index={2}>菜单3</MenuItem>
-					<MenuItem index={4} disabled>
-						菜单4
-					</MenuItem>
+					{/* <li>菜单0</li> */}
+					<MenuItem>菜单1</MenuItem>
+					<MenuItem>菜单2</MenuItem>
+					<MenuItem>菜单3</MenuItem>
+					<MenuItem disabled>菜单4</MenuItem>
 					{/* <li>菜单5</li> */}
 				</Menu>
 			</div>
@@ -28,12 +27,10 @@ const MenuDemo = () => {
 					}}
 					direction="vertical"
 				>
-					<MenuItem index={0}>菜单1</MenuItem>
-					<MenuItem index={1}>菜单2</MenuItem>
-					<MenuItem index={2}>菜单3</MenuItem>
-					<MenuItem index={4} disabled>
-						菜单4
-					</MenuItem>
+					<MenuItem>菜单1</MenuItem>
+					<MenuItem>菜单2</MenuItem>
+					<MenuItem>菜单3</MenuItem>
+					<MenuItem disabled>菜单4</MenuItem>
 				</Menu>
 			</div>
 		</div>
