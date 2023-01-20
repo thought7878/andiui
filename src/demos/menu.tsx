@@ -18,7 +18,7 @@ const MenuDemo = () => {
 					</Submenu>
 				</Menu>
 			</div>
-			<div style={{ padding: 20 }}>
+			<div style={{ padding: 20, display: "inline-block" }}>
 				<Menu
 					defaultIndex="0"
 					onSelect={(index) => {

@@ -61,6 +61,7 @@
 		//transition: $menu-transition;
 		.menu-item {
 			padding: $menu-item-padding-y $menu-item-padding-x;
+			border-bottom: $menu-item-active-border-width solid transparent;
 			cursor: pointer;
 			transition: $menu-transition;
 			color: $body-color;
@@ -82,7 +83,7 @@
 		position: absolute;
 		background: $white;
 		z-index: 100;
-		top: calc(100% + 8px);
+		top: calc(100% + 3px);
 		left: 0;
 		border: $menu-border-width solid $menu-border-color;
 		box-shadow: $submenu-box-shadow;
