@@ -39,12 +39,13 @@ const Menu: React.FC<MenuProps> = (props) => {
 	//
 	const classes = classNames("aui-menu", className, {
 		"menu-vertical": direction === "vertical",
+		"menu-horizontal": direction !== "vertical",
 	});
-	//
+	//1.去掉非 MenuItem/Submenu，报错提示；2.可以省略 MenuItem 的index
 	let newChildren = React.Children.map(children, (child, index) => {
 		const childElement = child as React.FunctionComponentElement<MenuItemProps>;
 		const { displayName } = childElement.type;
-		if (displayName === "MenuItem") {
+		if (displayName === "MenuItem" || displayName === "Submenu") {
 			return React.cloneElement(childElement, { index });
 		}
 		console.error("Warning: Menu has a child which is not MenuItem");

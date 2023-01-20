@@ -1,5 +1,6 @@
 import Menu from "../components/Menu/menu";
 import MenuItem from "../components/Menu/menuItem";
+import Submenu from "../components/Menu/submenu";
 
 const MenuDemo = () => {
 	return (
@@ -11,12 +12,15 @@ const MenuDemo = () => {
 						console.log("index:", index);
 					}}
 				>
-					{/* <li>菜单0</li> */}
 					<MenuItem>菜单1</MenuItem>
 					<MenuItem>菜单2</MenuItem>
 					<MenuItem>菜单3</MenuItem>
 					<MenuItem disabled>菜单4</MenuItem>
-					{/* <li>菜单5</li> */}
+					<Submenu title="菜单4">
+						<MenuItem>菜单1</MenuItem>
+						<MenuItem>菜单2</MenuItem>
+						<MenuItem>菜单3</MenuItem>
+					</Submenu>
 				</Menu>
 			</div>
 			<div style={{ padding: 20 }}>
@@ -31,6 +35,11 @@ const MenuDemo = () => {
 					<MenuItem>菜单2</MenuItem>
 					<MenuItem>菜单3</MenuItem>
 					<MenuItem disabled>菜单4</MenuItem>
+					<Submenu title="菜单5">
+						<MenuItem>菜单1</MenuItem>
+						<MenuItem>菜单2</MenuItem>
+						<MenuItem>菜单3</MenuItem>
+					</Submenu>
 				</Menu>
 			</div>
 		</div>
