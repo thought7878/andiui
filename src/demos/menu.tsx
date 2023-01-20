@@ -6,12 +6,7 @@ const MenuDemo = () => {
 	return (
 		<div>
 			<div style={{ padding: 20 }}>
-				<Menu
-					defaultIndex={0}
-					onSelect={(index) => {
-						console.log("index:", index);
-					}}
-				>
+				<Menu defaultIndex="0" onSelect={(index) => {}}>
 					<MenuItem>菜单1</MenuItem>
 					<MenuItem>菜单2</MenuItem>
 					<MenuItem>菜单3</MenuItem>
@@ -25,7 +20,7 @@ const MenuDemo = () => {
 			</div>
 			<div style={{ padding: 20 }}>
 				<Menu
-					defaultIndex={0}
+					defaultIndex="0"
 					onSelect={(index) => {
 						// console.log(index);
 					}}

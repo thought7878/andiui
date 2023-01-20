@@ -4,7 +4,7 @@ import { MenuContext } from "./menu";
 import { MenuItemProps } from "./menuItem";
 
 interface SubmenuProps {
-	index?: number;
+	index?: string;
 	title: string;
 	className?: string;
 	children?: React.ReactNode;
@@ -23,12 +23,12 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 	});
 
 	//1.去掉非 MenuItem，报错提示；2.可以省略 MenuItem 的index
-	let newChildren = React.Children.map(children, (child, index) => {
+	let newChildren = React.Children.map(children, (child, i) => {
 		const childElement = child as React.FunctionComponentElement<MenuItemProps>;
 		const { displayName } = childElement.type;
 		if (displayName === "MenuItem") {
-			// return React.cloneElement(childElement, { index });
-			return childElement;
+			return React.cloneElement(childElement, { index: `${index}-${i}` });
+			// return childElement;
 		}
 		console.error("Warning: Menu has a child which is not MenuItem");
 	});
