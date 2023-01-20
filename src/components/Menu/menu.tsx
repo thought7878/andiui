@@ -8,6 +8,7 @@ type MenuDirection = "horizontal" | "vertical";
 interface IMenuContext {
 	activeIndex: number;
 	onCLick?: HandleSelect;
+	direction?: string;
 }
 export interface MenuProps {
 	className?: string;
@@ -28,6 +29,7 @@ const Menu: React.FC<MenuProps> = (props) => {
 	const passedContext: IMenuContext = {
 		activeIndex: activeIndex ? activeIndex : 0,
 		onCLick: handleItemClick,
+		direction: direction,
 	};
 	//点击item，修改activeIndex，调用用户的onSelect
 	function handleItemClick(index: number) {

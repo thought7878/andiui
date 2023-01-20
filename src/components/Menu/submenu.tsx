@@ -21,6 +21,7 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 	const submenuClasses = classNames("aui-submenu", className, {
 		"menu-opened": openMenu,
 	});
+
 	//1.去掉非 MenuItem，报错提示；2.可以省略 MenuItem 的index
 	let newChildren = React.Children.map(children, (child, index) => {
 		const childElement = child as React.FunctionComponentElement<MenuItemProps>;
@@ -31,17 +32,39 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 		}
 		console.error("Warning: Menu has a child which is not MenuItem");
 	});
-	//点击显示子菜单
-	function handleClick(e: React.MouseEvent) {
-		e.preventDefault();
-		setOpenMenu(!openMenu);
-		console.log("clicked");
-	}
+
+	// 横向时，构建{enter/leave事件：处理函数}
+	const mouseEnterLeaveEvent =
+		context.direction === "horizontal"
+			? {
+					//横向，鼠标进入，显示子菜单
+					onMouseEnter: (e: React.MouseEvent) => {
+						e.preventDefault();
+						setOpenMenu(true);
+					},
+					//横向，鼠标离开，隐藏子菜单
+					onMouseLeave: (e: React.MouseEvent) => {
+						e.preventDefault();
+						setOpenMenu(false);
+					},
+			  }
+			: {};
+	// 纵向时，构建{click事件：处理函数}
+	const clickEvent =
+		context.direction !== "horizontal"
+			? {
+					//纵向，点击显示子菜单
+					onClick: (e: React.MouseEvent) => {
+						e.preventDefault();
+						setOpenMenu(!openMenu);
+					},
+			  }
+			: {};
 
 	//
 	return (
-		<li className={classes}>
-			<div className="submenu-title" onClick={handleClick}>
+		<li className={classes} {...mouseEnterLeaveEvent}>
+			<div className="submenu-title" {...clickEvent}>
 				{title}
 			</div>
 			<ul className={submenuClasses}>{newChildren}</ul>
