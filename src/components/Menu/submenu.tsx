@@ -8,12 +8,13 @@ interface SubmenuProps {
 	title: string;
 	className?: string;
 	children?: React.ReactNode;
+	extended?: boolean;
 }
 
 const Submenu: React.FC<SubmenuProps> = (props) => {
-	const { index, title, className, children } = props;
+	const { index, title, className, children, extended } = props;
 	const context = useContext(MenuContext);
-	const [openMenu, setOpenMenu] = useState(false);
+	const [openMenu, setOpenMenu] = useState(extended);
 	//
 	const classes = classNames("menu-item submenu-item", className, {
 		"is-active": index === context.activeIndex,
@@ -73,5 +74,8 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 };
 
 Submenu.displayName = "Submenu";
+Submenu.defaultProps = {
+	extended: false,
+};
 
 export default Submenu;
