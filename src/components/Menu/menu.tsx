@@ -41,17 +41,6 @@ const Menu: React.FC<MenuProps> = (props) => {
 		"menu-vertical": direction === "vertical",
 	});
 	//
-	const renderChildren = () => {
-		return React.Children.map(children, (child, index) => {
-			const childElement =
-				child as React.FunctionComponentElement<MenuItemProps>;
-			const { displayName } = childElement.type;
-			if (displayName === "MenuItem") {
-				return child;
-			}
-			console.error("Warning: Menu has a child which is not MenuItem");
-		});
-	};
 	let newChildren = React.Children.map(children, (child, index) => {
 		const childElement = child as React.FunctionComponentElement<MenuItemProps>;
 		const { displayName } = childElement.type;
