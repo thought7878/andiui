@@ -1,5 +1,7 @@
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classNames from "classnames";
 import React, { useContext, useState } from "react";
+import Icon from "../Icon/icon";
 import { MenuContext } from "./menu";
 import { MenuItemProps } from "./menuItem";
 
@@ -18,6 +20,8 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 	//
 	const classes = classNames("menu-item submenu-item", className, {
 		"is-active": index === context.activeIndex,
+		"is-opened": openMenu,
+		"is-vertical": context.direction === "vertical",
 	});
 	const submenuClasses = classNames("aui-submenu", className, {
 		"menu-opened": openMenu,
@@ -29,7 +33,6 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 		const { displayName } = childElement.type;
 		if (displayName === "MenuItem") {
 			return React.cloneElement(childElement, { index: `${index}-${i}` });
-			// return childElement;
 		}
 		console.error("Warning: Menu has a child which is not MenuItem");
 	});
@@ -67,6 +70,7 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 		<li className={classes} {...mouseEnterLeaveEvent}>
 			<div className="submenu-title" {...clickEvent}>
 				{title}
+				<Icon icon={solid("angle-down")} className="arrow-icon"></Icon>
 			</div>
 			<ul className={submenuClasses}>{newChildren}</ul>
 		</li>

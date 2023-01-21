@@ -1,5 +1,3 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import Icon from "../components/Icon/icon";
 import Menu from "../components/Menu/menu";
 import MenuItem from "../components/Menu/menuItem";
 import Submenu from "../components/Menu/submenu";
@@ -7,9 +5,7 @@ import Submenu from "../components/Menu/submenu";
 const MenuDemo = () => {
 	return (
 		<div>
-			<Icon icon={solid("arrow-down")} theme="success" size="10x"></Icon>
-
-			<div style={{ padding: 20 }}>
+			<div className="menu-horizontal-container">
 				<Menu defaultIndex="0" onSelect={(index) => {}}>
 					<MenuItem>菜单1</MenuItem>
 					<MenuItem>菜单2</MenuItem>
@@ -22,7 +18,7 @@ const MenuDemo = () => {
 					</Submenu>
 				</Menu>
 			</div>
-			<div style={{ padding: 20, display: "inline-block" }}>
+			<div className="menu-vertical-container">
 				<Menu
 					defaultIndex="0"
 					onSelect={(index) => {
