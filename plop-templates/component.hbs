@@ -1,0 +1,13 @@
+import React from 'react';
+export type {{name}}Props = {
+  component: string;
+};
+const {{name}}: React.FC<{{name}}Props> = ({component}) => {
+  return <div className="container">{component}</div>;
+};
+
+{{name}}.defaultProps = {
+  component: '',
+};
+
+export default {{name}};
