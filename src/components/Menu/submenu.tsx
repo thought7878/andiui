@@ -5,6 +5,7 @@ import React, { useContext, useState } from "react";
 import Icon from "../Icon/icon";
 import { MenuContext } from "./menu";
 import { MenuItemProps } from "./menuItem";
+import Transition from "../Transition/transition";
 
 interface SubmenuProps {
 	index?: string;
@@ -73,6 +74,9 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 				{title}
 				<Icon icon={solid("angle-down")} className="arrow-icon"></Icon>
 			</div>
+			{/* <Transition in={openMenu} animation="zoom-in-top">
+				<ul className={submenuClasses}>{newChildren}</ul>
+			</Transition> */}
 			<CSSTransition
 				in={openMenu}
 				timeout={300}
