@@ -55,11 +55,13 @@
 		}
 	}
 	.aui-submenu {
-		display: none;
+		// display: none;
+		// opacity: 0;
 		list-style: none;
 		padding-left: 0;
 		white-space: nowrap;
-		//transition: $menu-transition;
+		// transition: opacity 0.5s ease-in;
+		// transition: $menu-transition;
 		.menu-item {
 			padding: $menu-item-padding-y $menu-item-padding-x;
 			border-bottom: $menu-item-active-border-width solid transparent;
@@ -73,7 +75,8 @@
 		}
 	}
 	.aui-submenu.menu-opened {
-		display: block;
+		// display: block;
+		// opacity: 1;
 	}
 }
 .menu-horizontal {
@@ -84,7 +87,7 @@
 		position: absolute;
 		background: $white;
 		z-index: 100;
-		top: calc(100% + 3px);
+		top: calc(100% + 2px);
 		left: 0;
 		border: $menu-border-width solid $menu-border-color;
 		box-shadow: $submenu-box-shadow;

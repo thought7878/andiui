@@ -1,4 +1,5 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import React, { useContext, useState } from "react";
 import Icon from "../Icon/icon";
@@ -72,7 +73,14 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 				{title}
 				<Icon icon={solid("angle-down")} className="arrow-icon"></Icon>
 			</div>
-			<ul className={submenuClasses}>{newChildren}</ul>
+			<CSSTransition
+				in={openMenu}
+				timeout={300}
+				classNames="zoom-in-top"
+				unmountOnExit
+			>
+				<ul className={submenuClasses}>{newChildren}</ul>
+			</CSSTransition>
 		</li>
 	);
 };
