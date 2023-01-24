@@ -45,6 +45,7 @@ const Input: React.FC<InputProps> = (props) => {
 	} = props;
 	//style
 	const classes = classNames("aui-input-wrapper", {
+		className: className,
 		[`input-size-${inputSize}`]: inputSize,
 		"is-disabled": disabled,
 		"input-group": prepend || append,
