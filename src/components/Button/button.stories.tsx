@@ -1,20 +1,37 @@
-// Button.stories.ts|tsx
-
 import React from "react";
-// import "./_button.scss";
 
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Button, { ButtonType } from "./button";
+import Button, { ButtonSize, ButtonType } from "./button";
 
 export default {
-	/* 👇 The title prop is optional.
-	 * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
-	 * to learn how to generate automatic titles
-	 */
 	title: "Button",
 	component: Button,
+	argTypes: {
+		handleClick: { action: "handleClick" },
+		backgroundColor: { control: "color" },
+	},
 } as ComponentMeta<typeof Button>;
-export const Primary: ComponentStory<typeof Button> = () => (
+
+//👇 We create a “template” of how args map to rendering
+const Template: ComponentStory<typeof Button> = (args) => (
+	<Button {...args}>Button</Button>
+	// <Button {...args} />
+);
+
+//👇 Each story then reuses that template
+export const Default = Template.bind({});
+Default.args = { size: ButtonSize.Large };
+
+export const Primary = Template.bind({});
+Primary.args = { ...Default.args, btnType: ButtonType.Primary };
+
+export const Danger = Template.bind({});
+Danger.args = { ...Default.args, btnType: ButtonType.Danger };
+
+export const Link = Template.bind({});
+Link.args = { ...Default.args, btnType: ButtonType.Link };
+
+/* export const Primary: ComponentStory<typeof Button> = () => (
 	<Button btnType={ButtonType.Primary}>Button</Button>
 );
 // Primary.storyName = "I am the primary";
@@ -24,4 +41,4 @@ export const Danger: ComponentStory<typeof Button> = () => (
 
 export const Default: ComponentStory<typeof Button> = () => (
 	<Button btnType={ButtonType.Default}>Button</Button>
-);
+); */

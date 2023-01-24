@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import "../../styles/index.scss";
 
 export enum ButtonSize {
 	Large = "lg",

@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
-import Button, { ButtonSize, ButtonType } from "./components/Button/button";
-import MenuDemo from "./demos/menu";
+import ButtonDemos from "./demos/button";
+import InputDemo from "./demos/input";
 
 function App() {
 	return (
 		<div className="App">
-			<MenuDemo></MenuDemo>
+			{/* <ButtonDemos></ButtonDemos> */}
+			<InputDemo></InputDemo>
 		</div>
 	);
 }
