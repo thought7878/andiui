@@ -29,8 +29,6 @@ const AutoCompleteDemo = () => {
 				return res.json();
 			})
 			.then(({ items }) => {
-				console.log(items);
-
 				return items.slice(0, 10).map((item: { login: any }) => {
 					return { value: item.login, ...item };
 				});

@@ -1,5 +1,13 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
+import classNames from "classnames";
+import React, {
+	ChangeEvent,
+	KeyboardEvent,
+	ReactElement,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import useDebounce from "../../hooks/useDebounce";
 import Icon from "../Icon/icon";
 import Input, { InputProps } from "../Input/input";
@@ -27,10 +35,13 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	const [inputValue, setInputValue] = useState(value);
 	const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [highlightIndex, setHighlightIndex] = useState(-1);
 	const debouncedInputValue = useDebounce(inputValue, 500);
+	let shouldSearch = useRef(false);
+
 	//
 	useEffect(() => {
-		if (debouncedInputValue) {
+		if (debouncedInputValue && shouldSearch.current) {
 			const results = fetchSuggestions(debouncedInputValue as string);
 			if (results instanceof Promise) {
 				setIsLoading(true);
@@ -42,17 +53,51 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				setSuggestions(results);
 			}
 		}
+		//TODO: why here?
+		setHighlightIndex(-1);
 	}, [debouncedInputValue]);
 
 	//
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.trim();
 		setInputValue(value);
+		shouldSearch.current = true;
 	};
+	//
+	function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+		switch (e.code) {
+			case "ArrowDown":
+				if (highlightIndex < suggestions.length - 1) {
+					setHighlightIndex(highlightIndex + 1);
+				}
+				console.log("ArrowDown");
+
+				break;
+			case "ArrowUp":
+				if (highlightIndex > 0) {
+					setHighlightIndex(highlightIndex - 1);
+				}
+				console.log("ArrowUp");
+				break;
+			case "Enter":
+				if (suggestions[highlightIndex]) {
+					handleClick(suggestions[highlightIndex]);
+				}
+				// setHighlightIndex(-1);
+				break;
+			case "Escape":
+				setSuggestions([]);
+				break;
+			default:
+				break;
+		}
+	}
+
 	//
 	function handleClick(suggestion: DataSourceType) {
 		setInputValue(suggestion.value);
 		setSuggestions([]);
+		shouldSearch.current = false;
 	}
 
 	// render li option
@@ -61,16 +106,25 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	}
 	// render suggestions
 	function renderSuggestions() {
-		return suggestions.map((suggestion, index) => (
-			<li
-				key={index}
-				onClick={() => {
-					handleClick(suggestion);
-				}}
-			>
-				{_renderOption(suggestion)}
-			</li>
-		));
+		let lis = suggestions.map((suggestion, index) => {
+			// classes
+			let suggestionClasses = classNames("suggestion-item", {
+				"suggestion-highlight": index === highlightIndex,
+			});
+			//
+			return (
+				<li
+					key={index}
+					className={suggestionClasses}
+					onClick={() => {
+						handleClick(suggestion);
+					}}
+				>
+					{_renderOption(suggestion)}
+				</li>
+			);
+		});
+		return <ul>{lis}</ul>;
 	}
 	//
 	function renderLoadingIcon() {
@@ -84,7 +138,12 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	//
 	return (
 		<div className="aui-auto-complete">
-			<Input value={inputValue} onChange={handleChange} {...otherProps} />
+			<Input
+				value={inputValue}
+				onChange={handleChange}
+				onKeyDown={handleKeyDown}
+				{...otherProps}
+			/>
 			{isLoading && renderLoadingIcon()}
 			{suggestions.length > 0 && renderSuggestions()}
 		</div>
