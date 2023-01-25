@@ -20,8 +20,21 @@ const AutoCompleteDemo = () => {
 		{ value: "kuzma", number: 0 },
 	];
 
+	type PromiseData = { items?: object[] };
+
 	function fetchSuggestions(keyword: string) {
-		return lakers.filter((item) => item.value.includes(keyword));
+		// return lakers.filter((item) => item.value.includes(keyword));
+		return fetch(`https://api.github.com/search/users?q=${keyword}`)
+			.then((res) => {
+				return res.json();
+			})
+			.then(({ items }) => {
+				console.log(items);
+
+				return items.slice(0, 10).map((item: { login: any }) => {
+					return { value: item.login, ...item };
+				});
+			});
 	}
 	function renderOption(item: DataSourceType<LakerPlayerProps>) {
 		return (
@@ -33,7 +46,7 @@ const AutoCompleteDemo = () => {
 	}
 
 	return (
-		<div>
+		<div style={{ width: "200px" }}>
 			<AutoComplete
 				fetchSuggestions={fetchSuggestions}
 				renderOption={renderOption}
