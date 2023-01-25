@@ -1,15 +1,26 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, ReactElement, useState } from "react";
 import Input, { InputProps } from "../Input/input";
 
+//
+interface DataSourceObject {
+	value: string; //suggestion string
+}
+export type DataSourceType<T = {}> = Partial<T & DataSourceObject>;
+
+//
 export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
-	fetchSuggestions: (keyword: string) => string[];
-	onSelect?: (item: string) => void;
+	fetchSuggestions: (keyword: string) => DataSourceType[];
+	/**选中suggestion的回调函数 */
+	onSelect?: (item: DataSourceType) => void;
+	/**自定义option列表   */
+	renderOption?: (item: DataSourceType) => ReactElement;
 }
 
 const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
-	const { fetchSuggestions, onSelect, value, ...otherProps } = props;
+	const { fetchSuggestions, onSelect, value, renderOption, ...otherProps } =
+		props;
 	const [inputValue, setInputValue] = useState(value);
-	const [suggestions, setSuggestions] = useState<string[]>([]);
+	const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
 
 	//
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,9 +31,14 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	};
 
 	//
-	function handleClick(suggestion: string) {
-		setInputValue(suggestion);
+	function handleClick(suggestion: DataSourceType) {
+		setInputValue(suggestion.value);
 		setSuggestions([]);
+	}
+
+	// render li option
+	function _renderOption(item: DataSourceType) {
+		return renderOption ? renderOption(item) : item.value;
 	}
 
 	// render suggestions
@@ -34,7 +50,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 					handleClick(suggestion);
 				}}
 			>
-				{suggestion}
+				{_renderOption(suggestion)}
 			</li>
 		));
 	}

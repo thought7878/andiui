@@ -1,6 +1,6 @@
 import React from "react";
 
-// import "../styles/index.scss";
+import "../styles/index.scss";
 
 import { Header } from "./Header";
 import "./page.css";
