@@ -1,5 +1,6 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
+import useDebounce from "../../hooks/useDebounce";
 import Icon from "../Icon/icon";
 import Input, { InputProps } from "../Input/input";
 
@@ -26,11 +27,11 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	const [inputValue, setInputValue] = useState(value);
 	const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
-
+	const debouncedInputValue = useDebounce(inputValue, 500);
 	//
 	useEffect(() => {
-		if (inputValue) {
-			const results = fetchSuggestions(inputValue as string);
+		if (debouncedInputValue) {
+			const results = fetchSuggestions(debouncedInputValue as string);
 			if (results instanceof Promise) {
 				setIsLoading(true);
 				results.then((data) => {
@@ -41,7 +42,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				setSuggestions(results);
 			}
 		}
-	}, [inputValue]);
+	}, [debouncedInputValue]);
 
 	//
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
