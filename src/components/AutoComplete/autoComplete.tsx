@@ -152,8 +152,10 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				onKeyDown={handleKeyDown}
 				{...otherProps}
 			/>
-			{isLoading && renderLoadingIcon()}
-			{suggestions.length > 0 && renderSuggestions()}
+			<>
+				{isLoading && renderLoadingIcon()}
+				{suggestions.length > 0 && renderSuggestions()}
+			</>
 		</div>
 	);
 };

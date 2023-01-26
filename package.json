@@ -27,9 +27,9 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "storybook": "start-storybook -p 6006 -s public",
-        "build-storybook": "build-storybook -s public",
-        "plop": "plop"
+        "plop": "plop",
+        "dumi": "cross-env APP_ROOT=dumi dumi dev",
+        "dumi-build": "cross-env APP_ROOT=dumi dumi build"
     },
     "eslintConfig": {
         "extends": [
@@ -60,20 +60,11 @@
         ]
     },
     "devDependencies": {
-        "@storybook/addon-actions": "^6.5.15",
-        "@storybook/addon-essentials": "^6.5.15",
-        "@storybook/addon-interactions": "^6.5.15",
-        "@storybook/addon-links": "^6.5.15",
-        "@storybook/builder-webpack5": "^6.5.15",
-        "@storybook/manager-webpack5": "^6.5.15",
-        "@storybook/node-logger": "^6.5.15",
-        "@storybook/preset-create-react-app": "^4.1.2",
-        "@storybook/preset-scss": "^1.0.3",
-        "@storybook/react": "^6.5.15",
-        "@storybook/testing-library": "^0.0.13",
         "@types/react-transition-group": "^4.4.5",
         "babel-plugin-named-exports-order": "^0.0.2",
+        "cross-env": "^7.0.3",
         "css-loader": "^5.2.6",
+        "dumi": "^2.1.4",
         "plop": "^3.1.1",
         "prop-types": "^15.8.1",
         "sass": "^1.57.1",
