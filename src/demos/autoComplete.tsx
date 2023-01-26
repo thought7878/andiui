@@ -47,7 +47,7 @@ const AutoCompleteDemo = () => {
 		<div style={{ width: "200px" }}>
 			<AutoComplete
 				fetchSuggestions={fetchSuggestions}
-				renderOption={renderOption}
+				// renderOption={renderOption}
 			/>
 		</div>
 	);

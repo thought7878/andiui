@@ -109,7 +109,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		let lis = suggestions.map((suggestion, index) => {
 			// classes
 			let suggestionClasses = classNames("suggestion-item", {
-				"suggestion-highlight": index === highlightIndex,
+				"is-active": index === highlightIndex,
 			});
 			//
 			return (
@@ -124,14 +124,14 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				</li>
 			);
 		});
-		return <ul>{lis}</ul>;
+		return <ul className="aui-suggestion-list">{lis}</ul>;
 	}
 	//
 	function renderLoadingIcon() {
 		return (
-			<ul>
+			<div className="suggstions-loading-icon">
 				<Icon icon={solid("spinner")} spin />
-			</ul>
+			</div>
 		);
 	}
 
