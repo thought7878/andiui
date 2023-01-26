@@ -8,6 +8,7 @@ import React, {
 	useRef,
 	useState,
 } from "react";
+import useClickOutside from "../../hooks/useClickOutside";
 import useDebounce from "../../hooks/useDebounce";
 import Icon from "../Icon/icon";
 import Input, { InputProps } from "../Input/input";
@@ -38,6 +39,13 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	const [highlightIndex, setHighlightIndex] = useState(-1);
 	const debouncedInputValue = useDebounce(inputValue, 500);
 	let shouldSearch = useRef(false);
+	const autoCompleteRef = useRef<HTMLDivElement>(null);
+
+	// 鼠标点击组件之外，关闭suggestion list
+	useClickOutside(autoCompleteRef, (event: MouseEvent) => {
+		setSuggestions([]);
+		setHighlightIndex(-1);
+	});
 
 	//
 	useEffect(() => {
@@ -55,7 +63,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		}
 		//TODO: why here?
 		setHighlightIndex(-1);
-	}, [debouncedInputValue]);
+	}, [debouncedInputValue, fetchSuggestions]);
 
 	//
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -137,7 +145,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
 	//
 	return (
-		<div className="aui-auto-complete">
+		<div className="aui-auto-complete" ref={autoCompleteRef}>
 			<Input
 				value={inputValue}
 				onChange={handleChange}
