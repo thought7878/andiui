@@ -47,9 +47,10 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		setHighlightIndex(-1);
 	});
 
-	//
+	//获取suggestions
 	useEffect(() => {
 		if (debouncedInputValue && shouldSearch.current) {
+			setSuggestions([]);
 			const results = fetchSuggestions(debouncedInputValue as string);
 			if (results instanceof Promise) {
 				setIsLoading(true);
@@ -61,7 +62,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				setSuggestions(results);
 			}
 		}
-		//TODO: why here?
+		//TODO: 放在这里合适吗？
 		setHighlightIndex(-1);
 	}, [debouncedInputValue, fetchSuggestions]);
 
@@ -132,12 +133,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				</li>
 			);
 		});
-		return (
-			<ul className="aui-suggestion-list">
-				{isLoading && renderLoadingIcon()}
-				{lis}
-			</ul>
-		);
+		return <ul className="aui-suggestion-list">{lis}</ul>;
 	}
 	//
 	function renderLoadingIcon() {
@@ -158,7 +154,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				{...otherProps}
 			/>
 			<>
-				{/* {isLoading && renderLoadingIcon()} */}
+				{isLoading && renderLoadingIcon()}
 				{suggestions.length > 0 && renderSuggestions()}
 			</>
 		</div>
