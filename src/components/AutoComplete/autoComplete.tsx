@@ -132,7 +132,12 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				</li>
 			);
 		});
-		return <ul className="aui-suggestion-list">{lis}</ul>;
+		return (
+			<ul className="aui-suggestion-list">
+				{isLoading && renderLoadingIcon()}
+				{lis}
+			</ul>
+		);
 	}
 	//
 	function renderLoadingIcon() {
@@ -153,7 +158,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				{...otherProps}
 			/>
 			<>
-				{isLoading && renderLoadingIcon()}
+				{/* {isLoading && renderLoadingIcon()} */}
 				{suggestions.length > 0 && renderSuggestions()}
 			</>
 		</div>
