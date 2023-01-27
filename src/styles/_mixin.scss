@@ -63,6 +63,22 @@
 		transform-origin: $origin;
 	}
 }
+@mixin show-hide-animation() {
+	.aui-show-hide-enter {
+		opacity: 0;
+	}
+	.aui-show-hide-enter-active {
+		opacity: 1;
+		transition: opacity 200ms;
+	}
+	.aui-show-hide-exit {
+		opacity: 1;
+	}
+	.aui-show-hide-exit-active {
+		opacity: 0;
+		transition: opacity 200ms;
+	}
+}
 
 @mixin border-right-radius($raduis) {
 	border-top-right-radius: $raduis;

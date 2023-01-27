@@ -8,6 +8,7 @@ import React, {
 	useRef,
 	useState,
 } from "react";
+import { CSSTransition } from "react-transition-group";
 import useClickOutside from "../../hooks/useClickOutside";
 import useDebounce from "../../hooks/useDebounce";
 import Icon from "../Icon/icon";
@@ -153,10 +154,24 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				onKeyDown={handleKeyDown}
 				{...otherProps}
 			/>
-			<>
-				{isLoading && renderLoadingIcon()}
-				{suggestions.length > 0 && renderSuggestions()}
-			</>
+			<CSSTransition
+				in={isLoading}
+				timeout={200}
+				classNames="aui-show-hide"
+				unmountOnExit
+			>
+				{renderLoadingIcon}
+			</CSSTransition>
+			<CSSTransition
+				in={suggestions.length > 0}
+				timeout={200}
+				classNames="aui-show-hide"
+				unmountOnExit
+			>
+				{renderSuggestions}
+			</CSSTransition>
+			{/* {isLoading && renderLoadingIcon()} */}
+			{/* {suggestions.length > 0 && renderSuggestions()} */}
 		</div>
 	);
 };

@@ -2,10 +2,14 @@
 	position: relative;
 }
 .suggstions-loading-icon {
+	width: 100%;
 	display: flex;
-	// align-items: center;
 	justify-content: center;
 	min-height: 75px;
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 0;
+	z-index: 99;
 }
 .aui-suggestion-list {
 	list-style: none;
