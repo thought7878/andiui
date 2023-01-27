@@ -170,8 +170,6 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 			>
 				{renderSuggestions}
 			</CSSTransition>
-			{/* {isLoading && renderLoadingIcon()} */}
-			{/* {suggestions.length > 0 && renderSuggestions()} */}
 		</div>
 	);
 };
