@@ -125,7 +125,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 			return (
 				<li
 					key={index}
-					className={suggestionClasses}
+					className={`${suggestionClasses} px-4 py-2 cursor-pointer text-gray-900`}
 					onClick={() => {
 						handleClick(suggestion);
 					}}
@@ -134,12 +134,16 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				</li>
 			);
 		});
-		return <ul className="aui-suggestion-list">{lis}</ul>;
+		return (
+			<ul className="aui-suggestion-list list-none pl-0 whitespace-nowrap absolute left-0 bg-white z-[100] w-full shadow-lg border rounded-lg border-gray-200 border-solid">
+				{lis}
+			</ul>
+		);
 	}
 	//
 	function renderLoadingIcon() {
 		return (
-			<div className="suggstions-loading-icon">
+			<div className="suggstions-loading-icon flex justify-center w-full absolute left-0 z-[99] min-h-[75px] top ">
 				<Icon icon={solid("spinner")} spin />
 			</div>
 		);
@@ -147,7 +151,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
 	//
 	return (
-		<div className="aui-auto-complete" ref={autoCompleteRef}>
+		<div className="aui-auto-complete relative" ref={autoCompleteRef}>
 			<Input
 				value={inputValue}
 				onChange={handleChange}
