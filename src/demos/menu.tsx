@@ -1,4 +1,4 @@
-import Menu from "../components/Menu/menu";
+import Menu from "../components/Menu";
 import MenuItem from "../components/Menu/menuItem";
 import Submenu from "../components/Menu/submenu";
 

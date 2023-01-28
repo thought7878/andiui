@@ -11,8 +11,8 @@ import React, {
 import { CSSTransition } from "react-transition-group";
 import useClickOutside from "../../hooks/useClickOutside";
 import useDebounce from "../../hooks/useDebounce";
-import Icon from "../Icon/icon";
-import Input, { InputProps } from "../Input/input";
+import Icon from "../Icon";
+import Input, { InputProps } from "../Input";
 
 //
 interface DataSourceObject {

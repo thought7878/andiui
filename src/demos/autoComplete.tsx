@@ -1,6 +1,4 @@
-import AutoComplete, {
-	DataSourceType,
-} from "../components/AutoComplete/autoComplete";
+import AutoComplete, { DataSourceType } from "../components/AutoComplete";
 
 interface LakerPlayerProps {
 	value: string;

@@ -1,5 +1,5 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import Input from "../components/Input/input";
+import Input from "../components/Input";
 
 const InputDemo = () => {
 	return (

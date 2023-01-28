@@ -2,10 +2,10 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import React, { useContext, useState } from "react";
-import Icon from "../Icon/icon";
-import { MenuContext } from "./menu";
+import Icon from "../Icon";
+import { MenuContext } from ".";
 import { MenuItemProps } from "./menuItem";
-import Transition from "../Transition/transition";
+import Transition from "../Transition";
 
 interface SubmenuProps {
 	index?: string;

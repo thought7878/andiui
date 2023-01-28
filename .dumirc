@@ -2,5 +2,16 @@ export default {
 	chainWebpack(memo) {
 		memo.plugins.delete("copy");
 	},
-	resolve: {},
+	resolve: {
+		atomDirs: [{ type: "component", dir: "src/components" }],
+	},
+	alias: {
+		// aui: require.resolve("../../../src/components"),
+	},
+	themeConfig: {
+		name: "aui",
+	},
+	// alias: {
+	// 	aui: require.resolve("/src/components"),
+	// },
 };
