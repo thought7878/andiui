@@ -9,7 +9,7 @@ function App() {
 	return (
 		<div className="App">
 			{/* <ButtonDemos></ButtonDemos> */}
-			{/* <InputDemo></InputDemo> */}
+			<InputDemo></InputDemo>
 			<AutoCompleteDemo></AutoCompleteDemo>
 			{/* <MenuDemo></MenuDemo> */}
 		</div>
