@@ -2,6 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import classNames from "classnames";
 import React from "react";
 import Icon from "../Icon";
+import "./index.css";
 
 type InputSize = "lg" | "sm";
 
@@ -54,18 +55,14 @@ const Input: React.FC<InputProps> = (props) => {
 	});
 
 	return (
-		<div className={`${classes} flex w-full relative`} style={style}>
+		<div className={`${classes} `} style={style}>
 			{prepend && <div className="aui-input-group-prepend">{prepend}</div>}
 			{icon && (
-				<div className="icon-wrapper absolute h-full w-[35px] justify-center right-0 top-0 flex items-center">
+				<div className="icon-wrapper ">
 					<Icon icon={icon} title={`title-${icon}`} />
 				</div>
 			)}
-			<input
-				className="aui-input-inner w-full px-3 py-1.5 text-base font-normal text-gray-900 bg-white bg-clip-padding border border-solid border-gray-200 rounded-lg "
-				disabled={disabled}
-				{...otherProps}
-			/>
+			<input className="aui-input-inner " disabled={disabled} {...otherProps} />
 			{append && <div className="aui-input-group-append">{append}</div>}
 		</div>
 	);

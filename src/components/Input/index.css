@@ -1,0 +1,114 @@
+/*  */
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+	"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+	"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+	"Liberation Mono", "Courier New", monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+/*  */
+$input-padding-y: @apply py-1.5;
+$input-padding-x: @apply px-3;
+$input-box-shadow: @apply shadow-lg;
+$input-transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out !default;
+$input-font-family: $font-family-base;
+$input-font-size: @apply text-base;
+/* $input-line-height: @apply ; */
+$font-weight-normal: @apply font-normal;
+$input-group-addon-color: @apply text-gray-700;
+$input-group-addon-bg: @apply text-gray-200;
+$input-border-width: @apply border;
+$input-border-radius: @apply rounded-lg;
+$input-group-addon-border-color: @apply border-gray-900;
+
+/* sm */
+$input-padding-y-sm: @apply py-1;
+$input-padding-x-sm: @apply px-1.5;
+$input-font-size-sm: @apply text-sm;
+$input-border-radius-sm: @apply rounded-sm;
+
+/* lg  */
+$input-padding-y-lg: @apply px-2;
+$input-padding-x-lg: @apply px-4;
+$input-font-size-lg: @apply text-lg;
+
+/* focus */
+$input-focus-color: @apply text-green-600;
+$input-focus-bg: @apply text-green-600;
+$input-focus-border-color: @apply text-green-600;
+$input-focus-box-shadow: @apply shadow-green-300;
+
+/* disabled */
+$input-disabled-bg: @apply bg-blue-600;
+$input-disabled-border-color: @apply border-gray-200;
+
+$input-placeholder-color: @apply text-gray-400;
+
+.aui-input-wrapper {
+	@apply relative flex w-full;
+
+	.icon-wrapper {
+		@apply absolute right-0 top-0 flex h-full w-[35px] 
+        items-center justify-center text-gray-200;
+		/* color: ; */
+		svg {
+			@apply text-gray-400;
+		}
+	}
+}
+.icon-wrapper + .aui-input-inner {
+	padding-right: 35px;
+}
+.aui-input-inner {
+	@apply w-full rounded-lg border border-solid border-gray-200
+     bg-white bg-clip-padding px-3 py-1.5
+      text-base font-normal text-gray-900 shadow-sm;
+	@apply placeholder:text-gray-400;
+	/* TODO: shadow 需要在完善 */
+	@apply focus:border-green-300 focus:shadow-green-200;
+	/* font-family: $input-font-family; */
+	@apply disabled:bg-gray-200;
+
+	transition: $input-transition;
+
+	&:focus {
+		outline: 0;
+	}
+
+	&:disabled,
+	&[readonly] {
+		/* background-color: $input-disabled-bg; */
+		/* border-color: $input-disabled-border-color; */
+	}
+}
+.aui-input-group-prepend,
+.aui-input-group-append {
+	@apply mb-0 flex items-center
+     rounded-lg border border-solid border-gray-200
+     bg-gray-200 px-3 py-1.5 text-center
+     text-base font-normal text-gray-500;
+
+	white-space: nowrap;
+}
+.aui-input-group-append + .btn {
+	padding: 0;
+	border: 0;
+}
+.input-group > .aui-input-group-prepend,
+.input-group.input-group-append > .aui-input-inner {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.input-group > .aui-input-group-append,
+.input-group.input-group-prepend > .aui-input-inner {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.input-size-sm .aui-input-inner {
+	@apply rounded-md px-2 py-1 text-sm;
+}
+
+.input-size-lg .aui-input-inner {
+	@apply px-4 py-2 text-lg;
+}
