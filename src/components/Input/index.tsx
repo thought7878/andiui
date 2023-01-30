@@ -63,11 +63,11 @@ const Input: React.FC<InputProps> = (props) => {
 				</div>
 			)}
 			<input
-				className="aui-input-inner w-full rounded-lg border border-solid border-gray-200 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-900 shadow-sm  placeholder:text-gray-400 hover:border-inputFocusColor focus:border-inputFocusColor focus:shadow-input disabled:bg-gray-200"
+				className="aui-input-inner input-transition w-full rounded-lg border border-solid border-gray-200 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-900 shadow-sm placeholder:text-gray-400  hover:border-inputFocusColor focus:border-inputFocusColor focus:shadow-input focus:outline-0 disabled:bg-gray-200"
 				disabled={disabled}
 				{...otherProps}
 			/>
-			{append && <div className="aui-input-group-append">{append}</div>}
+			{append && <div className="aui-input-group-append ">{append}</div>}
 		</div>
 	);
 };

@@ -12,12 +12,13 @@ module.exports = {
 
 		extend: {
 			colors: {
-				primary: "#22c55e",
-				inputFocusColor: "#bef264",
+				primary: "#22c55e", //green-500
+				inputFocusColor: "#86efac", //green-300
 			},
 			boxShadow: {
-				input: "0 0 0 2px #bbf7d0",
+				input: "0 0 0 2px #86efac",
 			},
+			// transition
 		},
 	},
 	plugins: [],
