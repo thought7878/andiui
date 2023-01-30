@@ -43,72 +43,82 @@ $input-disabled-border-color: @apply border-gray-200;
 
 $input-placeholder-color: @apply text-gray-400;
 
-.aui-input-wrapper {
-	@apply relative flex w-full;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-	.icon-wrapper {
-		@apply absolute right-0 top-0 flex h-full w-[35px] 
-        items-center justify-center text-gray-200;
-		/* color: ; */
-		svg {
-			@apply text-gray-400;
+@layer components {
+	.aui-input-wrapper {
+		/* @apply relative flex w-full; */
+
+		/* background-color: theme("colors.green.600"); */
+
+		.icon-wrapper {
+			/* @apply absolute right-0 top-0 flex h-full w-[35px] 
+        items-center justify-center text-gray-200; */
+			/* color: ; */
+			svg {
+				@apply text-gray-400;
+			}
 		}
 	}
-}
-.icon-wrapper + .aui-input-inner {
-	padding-right: 35px;
-}
-.aui-input-inner {
-	@apply w-full rounded-lg border border-solid border-gray-200
+	.icon-wrapper + .aui-input-inner {
+		padding-right: 35px;
+	}
+	.aui-input-inner {
+		/* @apply w-full rounded-lg border border-solid border-gray-200
      bg-white bg-clip-padding px-3 py-1.5
       text-base font-normal text-gray-900 shadow-sm;
-	@apply placeholder:text-gray-400;
-	/* TODO: shadow 需要在完善 */
-	@apply focus:border-green-300 focus:shadow-green-200;
-	/* font-family: $input-font-family; */
-	@apply disabled:bg-gray-200;
+		@apply placeholder:text-gray-400;
+		@apply hover:border-inputFocusColor
+         focus:border-inputFocusColor
+         focus:shadow-input; */
+		/* focus:shadow-green-200; */
+		/* @apply disabled:bg-gray-200; */
 
-	transition: $input-transition;
+		transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
-	&:focus {
-		outline: 0;
+		&:focus {
+			outline: 0;
+			/* box-shadow: 0 0 0 2px #bbf7d0; */
+		}
+
+		&:disabled,
+		&[readonly] {
+			/* background-color: $input-disabled-bg; */
+			/* border-color: $input-disabled-border-color; */
+		}
 	}
-
-	&:disabled,
-	&[readonly] {
-		/* background-color: $input-disabled-bg; */
-		/* border-color: $input-disabled-border-color; */
-	}
-}
-.aui-input-group-prepend,
-.aui-input-group-append {
-	@apply mb-0 flex items-center
+	.aui-input-group-prepend,
+	.aui-input-group-append {
+		@apply mb-0 flex items-center
      rounded-lg border border-solid border-gray-200
      bg-gray-200 px-3 py-1.5 text-center
      text-base font-normal text-gray-500;
 
-	white-space: nowrap;
-}
-.aui-input-group-append + .btn {
-	padding: 0;
-	border: 0;
-}
-.input-group > .aui-input-group-prepend,
-.input-group.input-group-append > .aui-input-inner {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
+		white-space: nowrap;
+	}
+	.aui-input-group-append + .btn {
+		padding: 0;
+		border: 0;
+	}
+	.input-group > .aui-input-group-prepend,
+	.input-group.input-group-append > .aui-input-inner {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
 
-.input-group > .aui-input-group-append,
-.input-group.input-group-prepend > .aui-input-inner {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
+	.input-group > .aui-input-group-append,
+	.input-group.input-group-prepend > .aui-input-inner {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
 
-.input-size-sm .aui-input-inner {
-	@apply rounded-md px-2 py-1 text-sm;
-}
+	.input-size-sm .aui-input-inner {
+		@apply rounded-md px-2 py-1 text-sm;
+	}
 
-.input-size-lg .aui-input-inner {
-	@apply px-4 py-2 text-lg;
+	.input-size-lg .aui-input-inner {
+		@apply px-4 py-2 text-lg;
+	}
 }

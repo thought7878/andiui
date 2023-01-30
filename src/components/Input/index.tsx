@@ -55,14 +55,18 @@ const Input: React.FC<InputProps> = (props) => {
 	});
 
 	return (
-		<div className={`${classes} `} style={style}>
+		<div className={`relative flex w-full ${classes}`} style={style}>
 			{prepend && <div className="aui-input-group-prepend">{prepend}</div>}
 			{icon && (
-				<div className="icon-wrapper ">
+				<div className="icon-wrapper absolute right-0 top-0 flex h-full w-[35px] items-center justify-center text-gray-200">
 					<Icon icon={icon} title={`title-${icon}`} />
 				</div>
 			)}
-			<input className="aui-input-inner " disabled={disabled} {...otherProps} />
+			<input
+				className="aui-input-inner w-full rounded-lg border border-solid border-gray-200 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-900 shadow-sm  placeholder:text-gray-400 hover:border-inputFocusColor focus:border-inputFocusColor focus:shadow-input disabled:bg-gray-200"
+				disabled={disabled}
+				{...otherProps}
+			/>
 			{append && <div className="aui-input-group-append">{append}</div>}
 		</div>
 	);

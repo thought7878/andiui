@@ -1,4 +1,4 @@
-import AutoComplete, { DataSourceType } from "../components/AutoComplete";
+import AutoComplete from "../components/AutoComplete";
 
 interface LakerPlayerProps {
 	value: string;
@@ -32,14 +32,14 @@ const AutoCompleteDemo = () => {
 				});
 			});
 	}
-	function renderOption(item: DataSourceType<LakerPlayerProps>) {
+	/* 	function renderOption(item: DataSourceType<LakerPlayerProps>) {
 		return (
 			<>
 				<h2>Name:{item.value}</h2>
 				<p>Numeber:{item.number}</p>
 			</>
 		);
-	}
+	} */
 
 	return (
 		<div style={{ width: "200px" }}>

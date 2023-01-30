@@ -9,7 +9,16 @@ module.exports = {
 		/* colors: {
 			primary: "#a3e635",
 		}, */
-		extend: {},
+
+		extend: {
+			colors: {
+				primary: "#22c55e",
+				inputFocusColor: "#bef264",
+			},
+			boxShadow: {
+				input: "0 0 0 2px #bbf7d0",
+			},
+		},
 	},
 	plugins: [],
 };
