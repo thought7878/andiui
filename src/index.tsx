@@ -19,6 +19,7 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
+export { default as Alert } from "./components/Alert";
 export { default as AutoComplete } from "./components/AutoComplete";
 export { default as Button } from "./components/Button";
 export { default as Icon } from "./components/Icon";

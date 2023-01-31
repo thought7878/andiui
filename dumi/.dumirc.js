@@ -3,6 +3,7 @@ const path = require("path");
 export default {
 	chainWebpack(memo) {
 		memo.plugins.delete("copy");
+		console.log("dumi*****************");
 	},
 	extraPostCSSPlugins: [
 		"postcss-import",
@@ -25,7 +26,5 @@ export default {
 		name: "aui",
 	},
 	
-	alias: {
-		aui: require.resolve("/src/components"),
-	}, */
+	 */
 };
