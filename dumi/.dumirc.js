@@ -14,7 +14,7 @@ export default {
 	],
 
 	resolve: {
-		atomDirs: [{ type: "component", dir: "../src" }],
+		// atomDirs: [{ type: "component", dir: "../src" }],
 	},
 	alias: {
 		// aui: "../src",
