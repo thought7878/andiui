@@ -21,6 +21,9 @@ const InputDemo = () => {
 			</div>
 			<div style={{ padding: 20 }}>
 				<Input placeholder="icon download" icon={solid("download")} />
+				{/* <FontAwesomeIcon icon={["fa", "coffee"]} /> */}
+				{/* <FontAwesomeIcon icon="coffee" /> */}
+				{/* <FontAwesomeIcon icon={faCoffee} /> */}
 			</div>
 			<div style={{ padding: 20 }}>
 				<Input placeholder="prepend" type={"email"} prepend="prepend" />
