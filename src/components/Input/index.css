@@ -1,56 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-	.input-transition {
-		@apply transition-all duration-300 ease-in-out;
-	}
-	.aui-input-wrapper {
-		.icon-wrapper {
-			svg {
-				@apply text-gray-400;
-			}
+.input-transition {
+	@apply transition-all duration-300 ease-in-out;
+}
+.aui-input-wrapper {
+	.icon-wrapper {
+		svg {
+			@apply text-gray-400;
 		}
 	}
-	.icon-wrapper + .aui-input-inner {
-		padding-right: 35px;
+}
+.icon-wrapper + .aui-input-inner {
+	padding-right: 35px;
+}
+.aui-input-inner {
+	&:disabled,
+	&[readonly] {
+		/* background-color: $input-disabled-bg; */
+		/* border-color: $input-disabled-border-color; */
 	}
-	.aui-input-inner {
-		&:disabled,
-		&[readonly] {
-			/* background-color: $input-disabled-bg; */
-			/* border-color: $input-disabled-border-color; */
-		}
-	}
-	.aui-input-group-prepend,
-	.aui-input-group-append {
-		@apply mb-0 flex items-center
-     whitespace-nowrap rounded-lg border border-solid
+}
+.aui-input-group-prepend,
+.aui-input-group-append {
+	@apply mb-0 flex items-center
+     whitespace-nowrap rounded-md border border-solid
      border-auiLight-divider bg-auiLight-divider px-3 py-1.5
      text-center text-base font-normal text-auiLight-primary;
-	}
-	.aui-input-group-append + .btn {
-		padding: 0;
-		border: 0;
-	}
-	.input-group > .aui-input-group-prepend,
-	.input-group.input-group-append > .aui-input-inner {
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-	}
+}
+.aui-input-group-append + .btn {
+	padding: 0;
+	border: 0;
+}
+.input-group > .aui-input-group-prepend,
+.input-group.input-group-append > .aui-input-inner {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
 
-	.input-group > .aui-input-group-append,
-	.input-group.input-group-prepend > .aui-input-inner {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-	}
+.input-group > .aui-input-group-append,
+.input-group.input-group-prepend > .aui-input-inner {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
 
-	.input-size-sm .aui-input-inner {
-		@apply rounded-md px-2 py-1 text-sm;
-	}
+.input-size-sm .aui-input-inner {
+	@apply rounded-md px-2 py-1 text-sm;
+}
 
-	.input-size-lg .aui-input-inner {
-		@apply px-4 py-2 text-lg;
-	}
+.input-size-lg .aui-input-inner {
+	@apply px-4 py-2 text-lg;
 }

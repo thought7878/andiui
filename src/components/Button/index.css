@@ -1,0 +1,65 @@
+.btn {
+	@apply relative inline-block cursor-pointer 
+        whitespace-nowrap rounded-md border border-solid 
+        border-transparent px-3 
+        py-1.5 text-center align-middle text-base font-normal 
+        transition-all duration-300 ease-in-out;
+	@apply transition-all duration-300 ease-in-out;
+	@apply focus:enabled:shadow-button;
+
+	&.disabled,
+	&[disabled] {
+		@apply cursor-not-allowed opacity-70 shadow-none;
+		> * {
+			pointer-events: none;
+		}
+	}
+}
+
+.btn-lg {
+	@apply rounded-lg px-4 py-2 text-lg;
+}
+.btn-sm {
+	@apply rounded-sm px-2 py-1 text-sm;
+}
+
+.btn-primary {
+	@apply bg-green-500 text-white hover:border-green-400 
+        hover:bg-green-400  focus:border-green-400 focus:bg-green-400
+        disabled:border-auiLight-disable disabled:bg-auiLight-disable;
+
+	/* &.focus {
+			background: $hover-background;
+			border-color: $hover-border;
+			color: $hover-color;
+		} */
+	/* &.disabled {
+			background: $background;
+			border-color: $border;
+			color: $color;
+		} */
+}
+.btn-danger {
+	@apply bg-red-500 text-white hover:border-red-400 
+        hover:bg-red-400 focus:border-red-400  focus:bg-red-400
+        disabled:border-auiLight-disable disabled:bg-auiLight-disable;
+	@apply focus:enabled:shadow-red-400;
+}
+.btn-default {
+	@apply border-auiLight-disable bg-white 
+    hover:enabled:border-green-500 hover:enabled:bg-green-500 hover:enabled:text-white;
+}
+.btn-link {
+	@apply cursor-not-allowed font-normal no-underline shadow-none hover:text-green-500 hover:underline disabled:text-auiLight-disable;
+
+	/* &:focus,
+		&.focus {
+			text-decoration: $link-hover-decoration;
+			box-shadow: none;
+		}
+		&:disabled,
+		&.disabled {
+			color: $btn-link-disabled-color;
+			pointer-events: none;
+		} */
+}

@@ -1,6 +1,7 @@
-import React from "react";
 import classNames from "classnames";
-import "../../styles/index.scss";
+import React from "react";
+// import "../../styles/index.scss";
+import "./index.css";
 
 export enum ButtonSize {
 	Large = "lg",
@@ -34,11 +35,15 @@ const Button: React.FC<ButtonProps> = (props) => {
 	const { btnType, className, disabled, size, children, href, ...otherProps } =
 		props;
 	//btn,btn-lg,btn-primary
-	const classes = classNames("btn", className, {
-		[`btn-${btnType}`]: btnType,
-		[`btn-${size}`]: size,
-		disabled: btnType === ButtonType.Link && disabled,
-	});
+	const classes = classNames(
+		"btn",
+		{
+			[`btn-${btnType}`]: btnType,
+			[`btn-${size}`]: size,
+			disabled: btnType === ButtonType.Link && disabled,
+		},
+		className
+	);
 	//return a
 	if (btnType === ButtonType.Link && href) {
 		return (

@@ -63,7 +63,7 @@ const Input: React.FC<InputProps> = (props) => {
 				</div>
 			)}
 			<input
-				className="aui-input-inner input-transition w-full rounded-lg border border-solid border-auiLight-border bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm placeholder:text-auiLight-secondary  focus:outline-0 hover:enabled:border-hope-500 focus:enabled:border-hope-500 focus:enabled:shadow-input disabled:cursor-not-allowed disabled:bg-auiLight-disable"
+				className="aui-input-inner input-transition w-full rounded-md border border-solid border-auiLight-border bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm placeholder:text-auiLight-secondary  focus:outline-0 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-input disabled:cursor-not-allowed disabled:bg-auiLight-disable"
 				disabled={disabled}
 				{...otherProps}
 			/>
