@@ -1,63 +1,61 @@
-import Button, { ButtonSize, ButtonType } from "../components/Button";
+import Button from "../components/Button";
 
 const ButtonDemos = () => {
 	return (
 		<div>
 			<div>
 				<Button
-					btnType={ButtonType.Primary}
+					btnType="primary"
 					onClick={() => {
 						alert("onClick");
 					}}
-					size={ButtonSize.Smaill}
+					size="sm"
 				>
 					Primary Smaill
 				</Button>
-				<Button btnType={ButtonType.Primary}>Primary</Button>
-				<Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
-					Primary Large
+				<Button btnType="primary">Primary</Button>
+				<Button className="px-28 py-8" btnType="primary" size="lg">
+					Customize Primary Large Button
 				</Button>
 			</div>
 
 			<div>
-				<Button btnType={ButtonType.Default} size={ButtonSize.Smaill}>
+				<Button btnType="default" size="sm">
 					Default Smaill
 				</Button>
-				<Button btnType={ButtonType.Default}>Default</Button>
-				<Button btnType={ButtonType.Default} size={ButtonSize.Large}>
-					Default Large
-				</Button>
+				<Button>Default</Button>
+				<Button size="lg">Default Large</Button>
 			</div>
 
 			<div>
-				<Button btnType={ButtonType.Danger} size={ButtonSize.Smaill}>
+				<Button btnType="danger" size="sm">
 					Danger Smaill
 				</Button>
-				<Button btnType={ButtonType.Danger}>Danger</Button>
-				<Button btnType={ButtonType.Danger} size={ButtonSize.Large}>
+				<Button btnType="danger">Danger</Button>
+				<Button btnType="danger" size="lg">
 					Danger Large
 				</Button>
 			</div>
 
 			<div>
-				<Button disabled size={ButtonSize.Smaill}>
+				<Button disabled size="sm">
 					Disabled Smaill
 				</Button>
 				<Button disabled>Disabled</Button>
-				<Button disabled size={ButtonSize.Large}>
+				<Button disabled size="lg">
 					Disabled Large
 				</Button>
 			</div>
 
 			<div>
 				<Button
-					btnType={ButtonType.Link}
+					btnType="link"
 					href="https://zh-hans.reactjs.org/docs/react-component.html#defaultprops"
 				>
 					Link
 				</Button>
 				<Button
-					btnType={ButtonType.Link}
+					btnType="link"
 					href="https://zh-hans.reactjs.org/docs/react-component.html#defaultprops"
 					disabled
 				>
