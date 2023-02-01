@@ -4,18 +4,18 @@
 
 @layer components {
 	.alert-wrap {
-		@apply rounded-lg  py-5 px-6 text-base;
+		@apply rounded-lg  py-5 px-6 text-base text-white;
 		&.primary {
-			@apply bg-blue-100  text-blue-700;
+			@apply bg-primary;
 		}
 		&.success {
-			@apply bg-green-100  text-green-700;
+			@apply bg-success;
 		}
 		&.danger {
-			@apply bg-red-100  text-red-700;
+			@apply bg-danger;
 		}
 		&.warning {
-			@apply bg-yellow-100 text-yellow-700;
+			@apply bg-warning;
 		}
 	}
 }

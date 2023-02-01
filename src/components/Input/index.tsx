@@ -55,19 +55,19 @@ const Input: React.FC<InputProps> = (props) => {
 	});
 
 	return (
-		<div className={`relative flex w-full ${classes}`} style={style}>
+		<div className={` relative flex w-full ${classes}`} style={style}>
 			{prepend && <div className="aui-input-group-prepend">{prepend}</div>}
 			{icon && (
-				<div className="icon-wrapper absolute right-0 top-0 flex h-full w-[35px] items-center justify-center text-gray-200">
+				<div className="icon-wrapper  absolute right-0 top-0 flex h-full w-[35px] items-center justify-center text-auiLight-secondary">
 					<Icon icon={icon} title={`title-${icon}`} />
 				</div>
 			)}
 			<input
-				className="aui-input-inner input-transition w-full rounded-lg border border-solid border-gray-200 bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-gray-900 shadow-sm placeholder:text-gray-400  hover:border-inputFocusColor focus:border-inputFocusColor focus:shadow-input focus:outline-0 disabled:bg-gray-200"
+				className="aui-input-inner input-transition w-full rounded-lg border border-solid border-auiLight-border bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm placeholder:text-auiLight-secondary  focus:outline-0 hover:enabled:border-hope-500 focus:enabled:border-hope-500 focus:enabled:shadow-input disabled:cursor-not-allowed disabled:bg-auiLight-disable"
 				disabled={disabled}
 				{...otherProps}
 			/>
-			{append && <div className="aui-input-group-append ">{append}</div>}
+			{append && <div className="aui-input-group-append">{append}</div>}
 		</div>
 	);
 };

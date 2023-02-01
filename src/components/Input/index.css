@@ -27,8 +27,8 @@
 	.aui-input-group-append {
 		@apply mb-0 flex items-center
      whitespace-nowrap rounded-lg border border-solid
-     border-gray-200 bg-gray-200 px-3 py-1.5
-     text-center text-base font-normal text-gray-500;
+     border-auiLight-divider bg-auiLight-divider px-3 py-1.5
+     text-center text-base font-normal text-auiLight-primary;
 	}
 	.aui-input-group-append + .btn {
 		padding: 0;
