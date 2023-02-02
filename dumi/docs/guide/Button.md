@@ -85,6 +85,41 @@ export default () => <div>
 <Button btnType="link" disabled>Hello dumi!</Button>
 </div>;
 ```
+## icon
+
+```tsx
+import  {Button}  from 'aui';
+import { BiDownload } from "react-icons/bi";
+
+export default () => <div className="m-5 flex items-center space-x-5">
+				<Button leftIcon={<BiDownload size="18px" />} btnType="primary">
+					show code
+				</Button>
+				<Button rightIcon={<BiDownload size="18px" />}>left button</Button>
+				<Button leftIcon={<BiDownload size="18px" />} btnType="danger">
+					left button
+				</Button>
+			</div>;
+```
+## 只有icon
+
+```tsx
+import  {Button}  from 'aui';
+import { BiDownload } from "react-icons/bi";
+
+export default () => <div className="m-5 flex items-center space-x-5">
+                <Button size="sm" >
+					<BiDownload size="18px" />
+				</Button>
+				<Button btnType="primary">
+					<BiDownload size="18px" />
+				</Button>
+				
+				<Button btnType="danger" size="lg">
+					<BiDownload size="18px" />
+				</Button>
+			</div>;
+```
 
 
 

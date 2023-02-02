@@ -1,61 +1,43 @@
 import { FC } from "react";
 import { FaSpinner } from "react-icons/fa";
+// import { ImSpinner3 } from "react-icons/im";
+import classNames from "classnames";
+import { CgSpinner } from "react-icons/cg";
 import Icon from "../Icon";
 
 interface SpinnerProps {
-	size?:
-		| "2xs"
-		| "xs"
-		| "sm"
-		| "lg"
-		| "xl"
-		| "2xl"
-		| "1x"
-		| "2x"
-		| "3x"
-		| "4x"
-		| "5x"
-		| "6x"
-		| "7x"
-		| "8x"
-		| "9x"
-		| "10x";
-	className?: string;
-	type?: "spinner" | "circle-notch";
+	size?: "sm" | "md" | "lg";
+	type?: "ring" | "dot";
+	color?: string;
+	style?: React.CSSProperties; //Can overwrite size and color,  style={ { verticalAlign: 'middle' } }
+	className?: string; //自定义size的值
 }
 
 const Spinner: FC<SpinnerProps> = (props) => {
-	const { size, type, className } = props;
+	const { size, type, className, ...otherProps } = props;
+
+	//handle size
+	let _size: string;
+	if (size && size === "lg") {
+		_size = `1.125rem`;
+	} else if (size && size === "sm") {
+		_size = `0.875rem`;
+	} else if (size && size === "md") {
+		_size = `1rem`;
+	}
+	//handle class
+	const classes = classNames("animate-spin text-green-600", className);
 
 	// render icon by 'type'
 	function renderIcon() {
-		if (type === "circle-notch") {
-			return (
-				<Icon size={size} className="text-green-600">
-					<FaSpinner />
-				</Icon>
-				// <Icon
-				// 	size={size}
-				// 	className="text-green-600"
-				// 	icon={solid("circle-notch")}
-				// 	spin
-				// />
-			);
-		}
-		//
 		return (
-			<Icon size={size} className="text-green-600">
-				<FaSpinner />
+			<Icon size={_size} className={classes} {...otherProps}>
+				{type === "dot" ? <FaSpinner /> : <CgSpinner />}
 			</Icon>
 		);
 	}
 
-	return <div className="inline-block">{renderIcon()}</div>;
-};
-
-Spinner.defaultProps = {
-	size: "lg",
-	type: "spinner",
+	return <div className="inline-block ">{renderIcon()}</div>;
 };
 
 export default Spinner;

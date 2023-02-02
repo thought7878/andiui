@@ -5,6 +5,9 @@ const ButtonDemos = () => {
 	return (
 		<div>
 			<div className="m-5 flex items-center space-x-5">
+				<Button btnType="primary">
+					<BiDownload size="18px" />
+				</Button>
 				<Button leftIcon={<BiDownload size="18px" />} btnType="primary">
 					show code
 				</Button>

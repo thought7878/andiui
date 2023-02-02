@@ -12,14 +12,20 @@ export type ThemeProps =
 	| "dark";
 
 export interface IconProps extends IconBaseProps {
-	theme?: ThemeProps;
+	// theme?: ThemeProps;
+	// TODO unfinished
 	icon?: React.ReactElement;
+	color?: string;
+	size?: string; //2em/20px/2rem
+	className?: string;
+	style?: React.CSSProperties; //Can overwrite size and color,  style={ { verticalAlign: 'middle' } }
+	title?: string; //Icon description for accessibility
 }
 
 const Icon: React.FC<IconProps> = (props) => {
-	const { className, icon, color, children, theme, ...restProps } = props;
+	const { icon, children, className, ...restProps } = props;
 	const classes = classNames("aui-icon", className, {
-		[`icon-${theme}`]: theme,
+		// [`icon-${theme}`]: theme,
 	});
 
 	//如果有icon显示icon；没有icon&有children，显示
@@ -30,7 +36,7 @@ const Icon: React.FC<IconProps> = (props) => {
 
 	//
 	return (
-		<IconContext.Provider value={{ color: color, className: classes }}>
+		<IconContext.Provider value={{ className: classes, ...restProps }}>
 			<div className="inline-block">{_children}</div>
 		</IconContext.Provider>
 	);
