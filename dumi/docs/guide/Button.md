@@ -120,6 +120,24 @@ export default () => <div className="m-5 flex items-center space-x-5">
 				</Button>
 			</div>;
 ```
+## loading
+
+```tsx
+import  {Button}  from 'aui';
+
+export default () => <div className="m-5 flex items-center space-x-5">
+                <Button size="lg" loading >
+					加载中...
+				</Button>
+                 <Button size="lg" loading btnType="primary" >
+					加载中...
+				</Button>
+                 <Button size="lg" loading btnType="danger" >
+					加载中...
+				</Button>
+			
+			</div>;
+```
 
 
 

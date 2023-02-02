@@ -26,7 +26,7 @@ const Spinner: FC<SpinnerProps> = (props) => {
 		_size = `1rem`;
 	}
 	//handle class
-	const classes = classNames("animate-spin text-green-600", className);
+	const classes = classNames("animate-spin", className);
 
 	// render icon by 'type'
 	function renderIcon() {
@@ -37,7 +37,7 @@ const Spinner: FC<SpinnerProps> = (props) => {
 		);
 	}
 
-	return <div className="inline-block ">{renderIcon()}</div>;
+	return <>{renderIcon()}</>;
 };
 
 export default Spinner;

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import Icon from "../Icon";
+import Spinner from "../Spinner";
 import "./index.css";
 
 interface BaseButtonProps {
@@ -8,6 +9,7 @@ interface BaseButtonProps {
 	disabled?: boolean;
 	size?: "lg" | "md" | "sm";
 	btnType?: "primary" | "default" | "danger" | "link";
+	loading?: boolean;
 	children: React.ReactNode;
 	href?: string;
 	rightIcon?: React.ReactElement;
@@ -26,6 +28,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 	const {
 		btnType,
 		className,
+		loading,
 		leftIcon,
 		rightIcon,
 		disabled,
@@ -40,7 +43,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 		{
 			[`btn-${btnType}`]: btnType,
 			[`btn-${size}`]: size,
-			disabled: btnType === "link" && disabled,
+			disabled: (btnType === "link" && disabled) || loading,
 		},
 		className
 	);
@@ -57,6 +60,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 		<div className="inline-block">
 			<button className={classes} disabled={disabled} {...otherProps}>
 				{leftIcon && <Icon icon={leftIcon} className="mr-1" />}
+				{loading && <Spinner className="mr-1" />}
 				{children}
 				{rightIcon && <Icon icon={rightIcon} className="ml-1" />}
 			</button>
