@@ -4,15 +4,12 @@ demo:
   cols: 2
 ---
 
-## 异步     
+## 异步
 
 `inputSize`
 
 ```tsx
-import  {Transition}  from 'aui';
+import { Transition } from "aui";
 
-export default () =>  (
-        <Transition
-        />
-	);
+export default () => <Transition />;
 ```

@@ -23,7 +23,7 @@ export interface IconProps extends IconBaseProps {
 }
 
 const Icon: React.FC<IconProps> = (props) => {
-	const { icon, children, className, ...restProps } = props;
+	const { icon, children, className, style, ...restProps } = props;
 	const classes = classNames("aui-icon", className, {
 		// [`icon-${theme}`]: theme,
 	});
@@ -36,7 +36,7 @@ const Icon: React.FC<IconProps> = (props) => {
 
 	//
 	return (
-		<IconContext.Provider value={{ className: classes, ...restProps }}>
+		<IconContext.Provider value={{ className: classes, style, ...restProps }}>
 			<div className="inline-block">{_children}</div>
 		</IconContext.Provider>
 	);

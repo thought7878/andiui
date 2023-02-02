@@ -4,14 +4,14 @@ demo:
   cols: 2
 ---
 
-## 方向     
+## 方向
 
 `inputSize`
 
 ### 横向
 
 ```tsx
-import  {Menu,MenuItem,Submenu}  from 'aui';
+import { Menu, MenuItem, Submenu } from "aui";
 
 const MenuDemo = () => {
 	return (
@@ -34,12 +34,12 @@ const MenuDemo = () => {
 };
 
 export default MenuDemo;
-
 ```
+
 ### 纵向
 
 ```tsx
-import  {Menu,MenuItem,Submenu}  from 'aui';
+import { Menu, MenuItem, Submenu } from "aui";
 
 const MenuDemo = () => {
 	return (
@@ -68,5 +68,4 @@ const MenuDemo = () => {
 };
 
 export default MenuDemo;
-
 ```

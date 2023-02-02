@@ -1,8 +1,7 @@
-import { FC } from "react";
-import { FaSpinner } from "react-icons/fa";
-// import { ImSpinner3 } from "react-icons/im";
 import classNames from "classnames";
+import { FC } from "react";
 import { CgSpinner } from "react-icons/cg";
+import { FaSpinner } from "react-icons/fa";
 import Icon from "../Icon";
 
 interface SpinnerProps {
