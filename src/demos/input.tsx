@@ -1,4 +1,4 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { BiDownload } from "react-icons/bi";
 import Input from "../components/Input";
 
 const InputDemo = () => {
@@ -20,7 +20,7 @@ const InputDemo = () => {
 				<Input placeholder="disabled" disabled />
 			</div>
 			<div style={{ padding: 20 }}>
-				<Input placeholder="icon download" icon={solid("download")} />
+				<Input placeholder="icon download" icon={<BiDownload size="18px" />} />
 				{/* <FontAwesomeIcon icon={["fa", "coffee"]} /> */}
 				{/* <FontAwesomeIcon icon="coffee" /> */}
 				{/* <FontAwesomeIcon icon={faCoffee} /> */}

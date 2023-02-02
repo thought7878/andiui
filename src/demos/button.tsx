@@ -1,9 +1,33 @@
+import { BiDownload } from "react-icons/bi";
 import Button from "../components/Button";
 
 const ButtonDemos = () => {
 	return (
 		<div>
-			<div>
+			<div className="m-5 flex items-center space-x-5">
+				<Button leftIcon={<BiDownload size="18px" />} btnType="primary">
+					show code
+				</Button>
+				<Button rightIcon={<BiDownload size="18px" />} btnType="primary">
+					show code
+				</Button>
+				<Button
+					leftIcon={<BiDownload size="18px" />}
+					rightIcon={<BiDownload size="18px" />}
+					btnType="primary"
+				>
+					show code
+				</Button>
+				<Button leftIcon={<BiDownload size="18px" />}>left button</Button>
+				<Button rightIcon={<BiDownload size="18px" />}>left button</Button>
+				<Button leftIcon={<BiDownload size="18px" />} btnType="danger">
+					left button
+				</Button>
+				<Button rightIcon={<BiDownload size="18px" />} btnType="danger">
+					left button
+				</Button>
+			</div>
+			<div className="m-5 flex items-center space-x-5">
 				<Button
 					btnType="primary"
 					onClick={() => {
@@ -19,7 +43,7 @@ const ButtonDemos = () => {
 				</Button>
 			</div>
 
-			<div>
+			<div className="m-5 flex items-center space-x-5">
 				<Button btnType="default" size="sm">
 					Default Smaill
 				</Button>
@@ -27,7 +51,7 @@ const ButtonDemos = () => {
 				<Button size="lg">Default Large</Button>
 			</div>
 
-			<div>
+			<div className="m-5 flex items-center space-x-5">
 				<Button btnType="danger" size="sm">
 					Danger Smaill
 				</Button>
@@ -37,7 +61,7 @@ const ButtonDemos = () => {
 				</Button>
 			</div>
 
-			<div>
+			<div className="m-5 flex items-center space-x-5">
 				<Button disabled size="sm">
 					Disabled Smaill
 				</Button>
@@ -47,7 +71,7 @@ const ButtonDemos = () => {
 				</Button>
 			</div>
 
-			<div>
+			<div className="m-5 flex items-center space-x-5">
 				<Button
 					btnType="link"
 					href="https://zh-hans.reactjs.org/docs/react-component.html#defaultprops"

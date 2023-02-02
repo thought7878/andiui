@@ -1,5 +1,5 @@
 .btn {
-	@apply relative inline-block cursor-pointer 
+	@apply relative  flex cursor-pointer  items-center justify-center
         whitespace-nowrap rounded-md 
         border border-solid border-transparent 
         px-3 py-1.5 

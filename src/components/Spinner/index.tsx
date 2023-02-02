@@ -1,5 +1,5 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FC } from "react";
+import { FaSpinner } from "react-icons/fa";
 import Icon from "../Icon";
 
 interface SpinnerProps {
@@ -31,22 +31,22 @@ const Spinner: FC<SpinnerProps> = (props) => {
 	function renderIcon() {
 		if (type === "circle-notch") {
 			return (
-				<Icon
-					size={size}
-					className="text-green-600"
-					icon={solid("circle-notch")}
-					spin
-				/>
+				<Icon size={size} className="text-green-600">
+					<FaSpinner />
+				</Icon>
+				// <Icon
+				// 	size={size}
+				// 	className="text-green-600"
+				// 	icon={solid("circle-notch")}
+				// 	spin
+				// />
 			);
 		}
 		//
 		return (
-			<Icon
-				size={size}
-				className="text-green-600"
-				icon={solid("spinner")}
-				spin
-			/>
+			<Icon size={size} className="text-green-600">
+				<FaSpinner />
+			</Icon>
 		);
 	}
 

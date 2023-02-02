@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import Icon from "../Icon";
 import "./index.css";
 
 interface BaseButtonProps {
@@ -9,6 +10,9 @@ interface BaseButtonProps {
 	btnType?: "primary" | "default" | "danger" | "link";
 	children: React.ReactNode;
 	href?: string;
+	rightIcon?: React.ReactElement;
+	leftIcon?: React.ReactElement;
+	// icon?: IconProp;
 }
 //
 type NativeButtonProps = BaseButtonProps &
@@ -19,8 +23,17 @@ export type ButtonProps = Partial<NativeButtonProps & NativeAnchorProps>;
 
 //
 const Button: React.FC<ButtonProps> = (props) => {
-	const { btnType, className, disabled, size, children, href, ...otherProps } =
-		props;
+	const {
+		btnType,
+		className,
+		leftIcon,
+		rightIcon,
+		disabled,
+		size,
+		children,
+		href,
+		...otherProps
+	} = props;
 	//btn,btn-lg,btn-primary
 	const classes = classNames(
 		"btn",
@@ -41,9 +54,13 @@ const Button: React.FC<ButtonProps> = (props) => {
 	}
 	//return button
 	return (
-		<button className={classes} disabled={disabled} {...otherProps}>
-			{children}
-		</button>
+		<div className="inline-block">
+			<button className={classes} disabled={disabled} {...otherProps}>
+				{leftIcon && <Icon icon={leftIcon} className="mr-1" />}
+				{children}
+				{rightIcon && <Icon icon={rightIcon} className="ml-1" />}
+			</button>
+		</div>
 	);
 };
 //

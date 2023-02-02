@@ -1,11 +1,10 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { CSSTransition } from "react-transition-group";
 import classNames from "classnames";
 import React, { useContext, useState } from "react";
-import Icon from "../Icon";
+import { FaAngleDown } from "react-icons/fa";
+import { CSSTransition } from "react-transition-group";
 import { MenuContext } from ".";
+import Icon from "../Icon";
 import { MenuItemProps } from "./menuItem";
-import Transition from "../Transition";
 
 interface SubmenuProps {
 	index?: string;
@@ -72,7 +71,10 @@ const Submenu: React.FC<SubmenuProps> = (props) => {
 		<li className={classes} {...mouseEnterLeaveEvent}>
 			<div className="submenu-title" {...clickEvent}>
 				{title}
-				<Icon icon={solid("angle-down")} className="arrow-icon"></Icon>
+				{/* <Icon icon={solid("angle-down")} className="arrow-icon"></Icon> */}
+				<Icon className="arrow-icon">
+					<FaAngleDown />
+				</Icon>
 			</div>
 			{/* <Transition in={openMenu} animation="zoom-in-top">
 				<ul className={submenuClasses}>{newChildren}</ul>

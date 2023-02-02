@@ -1,4 +1,3 @@
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classNames from "classnames";
 import React, {
 	ChangeEvent,
@@ -8,6 +7,7 @@ import React, {
 	useRef,
 	useState,
 } from "react";
+import { FaSpinner } from "react-icons/fa";
 import { CSSTransition } from "react-transition-group";
 import useClickOutside from "../../hooks/useClickOutside";
 import useDebounce from "../../hooks/useDebounce";
@@ -144,7 +144,9 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	function renderLoadingIcon() {
 		return (
 			<div className="suggstions-loading-icon top absolute left-0 z-[99] flex min-h-[75px] w-full justify-center ">
-				<Icon icon={solid("spinner")} spin />
+				<Icon>
+					<FaSpinner />
+				</Icon>
 			</div>
 		);
 	}
