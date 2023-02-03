@@ -62,10 +62,11 @@ export default () => (
 
 ```tsx
 import { Input } from "aui";
+import { BiDownload } from "react-icons/bi";
 
 export default () => (
 	<div style={{ width: 300 }}>
-		<Input placeholder="icon download" icon="download" />
+		<Input placeholder="icon download" icon={<BiDownload size="16px" />} />
 	</div>
 );
 ```
@@ -93,7 +94,7 @@ import { Input } from "aui";
 
 export default () => (
 	<div style={{ width: 300 }}>
-		<Input placeholder="url" append=".com" />
+		<Input placeholder="例如：google" append=".com" />
 	</div>
 );
 ```

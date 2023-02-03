@@ -4,7 +4,7 @@
 
 @layer components {
 	.alert-wrap {
-		@apply rounded-lg  py-5 px-6 text-base text-white;
+		@apply rounded-lg  py-4 px-4 text-base text-white;
 		&.primary {
 			@apply bg-primary;
 		}
@@ -16,6 +16,18 @@
 		}
 		&.warning {
 			@apply bg-warning;
+		}
+		&.right-top {
+			@apply fixed right-8 top-8 z-[100];
+		}
+		&.right-bottom {
+			@apply fixed right-8 bottom-8 z-[100];
+		}
+		&.left-top {
+			@apply fixed left-8 top-8 z-[100];
+		}
+		&.left-bottom {
+			@apply fixed left-8 bottom-8 z-[100];
 		}
 	}
 }

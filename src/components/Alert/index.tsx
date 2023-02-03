@@ -1,21 +1,36 @@
 import classNames from "classnames";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
+import { IoClose } from "react-icons/io5";
+import Icon from "../Icon";
 import "./index.css";
 
 interface AlertProps {
 	type?: "primary" | "success" | "warning" | "danger";
 	children?: ReactNode;
-	closeBtn?: boolean;
+	className?: string; //comstomise style
+	position?: "right-top" | "right-bottom" | "left-top" | "left-bottom";
+	closeBtn?: boolean; //TODO:未完成
+	duration?: number; //ms
 }
 
 const Alert: FC<AlertProps> = (props) => {
-	const { type, children } = props;
+	const { type, children, closeBtn, position, duration, className } = props;
+	const [alerts, setAlerts] = useState([]);
 
-	const classes = classNames("alert-wrap", type, {});
+	// 不同情况，不同样式
+	const classes = classNames(
+		"alert-wrap flex justify-between items-center",
+		type,
+		{
+			[position + ""]: position,
+		},
+		className
+	);
 
 	return (
 		<div className={classes} role="alert">
 			{children}
+			{closeBtn && <Icon className="ml-12 cursor-pointer" icon={<IoClose />} />}
 		</div>
 	);
 };
