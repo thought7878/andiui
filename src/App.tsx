@@ -1,14 +1,14 @@
 import "./App.css";
 import AlertDemo from "./demos/alert";
-import ButtonDemos from "./demos/button";
-import SpinnerDemo from "./demos/spinner";
+import UploadDemo from "./demos/upload";
 
 function App() {
 	return (
 		<div className="App">
+			<UploadDemo />
 			<AlertDemo />
-			<SpinnerDemo />
-			<ButtonDemos></ButtonDemos>
+			{/* <SpinnerDemo />
+			<ButtonDemos></ButtonDemos> */}
 			{/* <InputDemo></InputDemo> */}
 			{/* <AutoCompleteDemo></AutoCompleteDemo> */}
 			{/* <MenuDemo></MenuDemo> */}
