@@ -26,9 +26,13 @@ const Alert: FC<AlertProps> = (props) => {
 		},
 		className
 	);
+	// TODO: unfinished
+	function handleClose() {
+		console.log("close");
+	}
 
 	return (
-		<div className={classes} role="alert">
+		<div className={classes} role="alert" onClick={handleClose}>
 			{children}
 			{closeBtn && <Icon className="ml-12 cursor-pointer" icon={<IoClose />} />}
 		</div>
