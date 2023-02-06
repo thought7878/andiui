@@ -12,6 +12,7 @@ interface UploadProps {
 const Upload: FC<UploadProps> = (props) => {
 	const { action, onProgress, onSuccess, onError } = props;
 	const inputRef = useRef<HTMLInputElement>(null);
+
 	// 点击button，trigger input click
 	function handleClick() {
 		if (inputRef) {
@@ -21,20 +22,59 @@ const Upload: FC<UploadProps> = (props) => {
 
 	//
 	function handleUpload(e: ChangeEvent<HTMLInputElement>) {
-		const files = e.target.files;
-		if (files) {
-			const uploadFile = files[0];
-			const formData = new FormData();
-			formData.append(uploadFile.name, uploadFile);
-			axios
-				.post("https://jsonplaceholder.typicode.com/posts", FormData, {
+		const fileList = e.target.files;
+		if (fileList) {
+			const files = Array.from(fileList);
+			files.forEach((uploadFile) => {
+				//
+				const formData = new FormData();
+				// formData.append(uploadFile.name, uploadFile);
+				formData.append("file", uploadFile);
+
+				//
+				/* request({
+					url: action,
+					method: "post",
 					headers: {
 						"Content-Type": "multipart/form-data",
 					},
-				})
-				.then((res) => {
-					console.log(res);
-				});
+					onUploadProgress: ({ progress = 0 }) => {
+						console.log("progress:", progress);
+
+						if (progress && progress < 1) {
+							if (onProgress) {
+								onProgress(progress, uploadFile);
+							}
+						}
+					},
+				}) */
+				axios
+					.post(action, formData, {
+						headers: {
+							"Content-Type": "multipart/form-data",
+						},
+						onUploadProgress: ({ progress }) => {
+							if (progress && progress < 1) {
+								if (onProgress) {
+									onProgress(progress, uploadFile);
+								}
+							}
+						},
+					})
+					.then((res) => {
+						if (onSuccess) {
+							onSuccess(res, uploadFile);
+						}
+					})
+					.catch((error) => {
+						if (onError) {
+							onError(error, uploadFile);
+						}
+					});
+			});
+			if (inputRef.current) {
+				inputRef.current.value = "";
+			}
 		}
 	}
 
@@ -45,7 +85,7 @@ const Upload: FC<UploadProps> = (props) => {
 			</Button>
 			<input
 				type="file"
-				name="resume"
+				name="andi"
 				className="hidden"
 				onChange={handleUpload}
 				ref={inputRef}
