@@ -1,6 +1,17 @@
 import Upload from "../components/Upload";
 
 const UploadDemo = () => {
+	function handleBeforeUpload(file: File) {
+		let newFile = new File([file], "file", { type: file.type });
+		return Promise.resolve(newFile);
+
+		/* if (file.size > 1024 * 1024) {
+			alert("文件超过了1M");
+			return false;
+		}
+		return true; */
+	}
+
 	return (
 		<div className="m-10">
 			<Upload
@@ -10,8 +21,9 @@ const UploadDemo = () => {
 				// action="https://run.mocky.io/v3/3712e2a8-3b41-4f4b-ab7b-9a4e5eb4d4b9"
 				// action="http://localhost:3000/v2/5cc8019d300000980a055e76"
 				// action="https://jsonplaceholder.typicode.com/posts"
+				beforeUpload={handleBeforeUpload}
 				onProgress={(percentage, file) => {
-					console.log("onProgress:", percentage);
+					// console.log("onProgress:", percentage);
 				}}
 				onSuccess={(res, file) => {
 					console.log("onSuccess:");
