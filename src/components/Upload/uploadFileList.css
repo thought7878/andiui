@@ -1,0 +1,10 @@
+.file-item {
+	.file-remove-btn {
+		display: none;
+	}
+	&:hover {
+		.file-remove-btn {
+			display: inline-block;
+		}
+	}
+}

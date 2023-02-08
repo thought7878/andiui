@@ -1,17 +1,20 @@
 import axios from "axios";
 import { ChangeEvent, FC, useRef, useState } from "react";
 import Button from "../Button";
+import UploadFileList from "./uploadFileList";
 
 //
-interface UploadProps {
+export interface UploadProps {
 	action: string;
+	defaultFileList?: UploadFile[];
 	beforeUpload?: (file: File) => boolean | Promise<File>;
 	onProgress?: (percentage: number, file: File) => void;
 	onSuccess?: (data: any, file: File) => void;
 	onError?: (err: any, file: File) => void;
 	onChange?: (file: File) => void;
+	onRemove?: (file: UploadFile) => void;
 }
-//
+//upload file status type
 export interface UploadFile {
 	uid: string;
 	name: string;
@@ -25,10 +28,18 @@ export interface UploadFile {
 
 //
 const Upload: FC<UploadProps> = (props) => {
-	const { action, beforeUpload, onChange, onProgress, onSuccess, onError } =
-		props;
+	const {
+		action,
+		defaultFileList,
+		beforeUpload,
+		onChange,
+		onProgress,
+		onSuccess,
+		onError,
+		onRemove,
+	} = props;
 	//
-	const [fileList, setFileList] = useState<UploadFile[]>([]);
+	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
 	//file input
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -42,7 +53,6 @@ const Upload: FC<UploadProps> = (props) => {
 				return _file;
 			});
 		});
-		// console.log("***", fileList);
 	}
 
 	// 点击button，trigger input click
@@ -61,7 +71,7 @@ const Upload: FC<UploadProps> = (props) => {
 				// 如果没有beforeUpload，上传。有beforeUpload，返回值是true，执行上传；返回值是Promise
 				if (beforeUpload) {
 					let result = beforeUpload(file);
-					if (typeof result === "boolean" && result) {
+					if (result && typeof result === "boolean") {
 						uploadFile(file);
 					} else if (result instanceof Promise) {
 						result.then((processedFile) => {
@@ -86,11 +96,11 @@ const Upload: FC<UploadProps> = (props) => {
 		};
 		setFileList([_file, ...fileList]);
 
-		//
+		//construct form data
 		const formData = new FormData();
 		formData.append(file.name, file);
 		// formData.append("file", file);
-
+		// ajax
 		axios
 			.post(action, formData, {
 				headers: {
@@ -99,11 +109,7 @@ const Upload: FC<UploadProps> = (props) => {
 				onUploadProgress: ({ progress }) => {
 					if (progress && progress <= 1) {
 						// update current uploading file state
-						console.log("---", progress);
-
 						updateFileList(_file, { status: "uploading", percent: progress });
-						// console.log(fileList);
-
 						// call onProgress property
 						if (onProgress) {
 							onProgress(progress, file);
@@ -115,7 +121,6 @@ const Upload: FC<UploadProps> = (props) => {
 				// update current uploading file success state
 				updateFileList(_file, {
 					status: "success",
-					percent: 1,
 					response: res.data,
 				});
 				// call onSuccess property
@@ -130,7 +135,6 @@ const Upload: FC<UploadProps> = (props) => {
 				// update current uploading file error state
 				updateFileList(_file, {
 					status: "error",
-					percent: 1,
 					error: error,
 				});
 				// call onError property
@@ -148,6 +152,19 @@ const Upload: FC<UploadProps> = (props) => {
 		}
 	}
 
+	// 删除指定的file
+	function handleRemove(file: UploadFile) {
+		setFileList((prevFileList) => {
+			return prevFileList.filter((_file) => {
+				return file.uid !== _file.uid;
+			});
+		});
+		//call onRemove property
+		if (onRemove) {
+			onRemove(file);
+		}
+	}
+
 	return (
 		<div>
 			<Button btnType="primary" onClick={handleClick}>
@@ -160,6 +177,9 @@ const Upload: FC<UploadProps> = (props) => {
 				onChange={handleFileChange}
 				ref={inputRef}
 			/>
+			{fileList && (
+				<UploadFileList uploadFileList={fileList} onRemove={handleRemove} />
+			)}
 		</div>
 	);
 };
