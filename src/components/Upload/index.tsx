@@ -8,11 +8,17 @@ export interface UploadProps {
 	action: string;
 	defaultFileList?: UploadFile[];
 	beforeUpload?: (file: File) => boolean | Promise<File>;
-	onProgress?: (percentage: number, file: File) => void;
-	onSuccess?: (data: any, file: File) => void;
-	onError?: (err: any, file: File) => void;
-	onChange?: (file: File) => void;
+	onProgress?: (percentage: number, file: UploadFile) => void;
+	onSuccess?: (data: any, file: UploadFile) => void;
+	onError?: (err: any, file: UploadFile) => void;
+	onChange?: (file: UploadFile) => void;
 	onRemove?: (file: UploadFile) => void;
+	httpHeader?: { [key: string]: any };
+	formData?: { [key: string]: any };
+	fileName?: string;
+	withCredentials?: boolean;
+	accept?: string;
+	multiple?: boolean;
 }
 //upload file status type
 export interface UploadFile {
@@ -37,6 +43,12 @@ const Upload: FC<UploadProps> = (props) => {
 		onSuccess,
 		onError,
 		onRemove,
+		fileName = "file",
+		httpHeader,
+		formData,
+		withCredentials,
+		accept,
+		multiple,
 	} = props;
 	//
 	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
@@ -94,17 +106,29 @@ const Upload: FC<UploadProps> = (props) => {
 			percent: 0,
 			originalFile: file,
 		};
-		setFileList([_file, ...fileList]);
+		setFileList((prevFileList) => {
+			return [_file, ...prevFileList];
+		});
 
 		//construct form data
-		const formData = new FormData();
-		formData.append(file.name, file);
-		// formData.append("file", file);
+		const _formData = new FormData();
+		_formData.append(fileName || "file", file);
+		// add custom form data
+		if (formData) {
+			Object.keys(formData).forEach((key) => {
+				_formData.append(key, formData[key]);
+			});
+			/* for (const key in formData) {
+				_formData.append(key, formData[key]);
+			} */
+		}
 		// ajax
 		axios
-			.post(action, formData, {
+			.post(action, _formData, {
+				withCredentials,
 				headers: {
 					"Content-Type": "multipart/form-data",
+					...httpHeader,
 				},
 				onUploadProgress: ({ progress }) => {
 					if (progress && progress <= 1) {
@@ -112,7 +136,7 @@ const Upload: FC<UploadProps> = (props) => {
 						updateFileList(_file, { status: "uploading", percent: progress });
 						// call onProgress property
 						if (onProgress) {
-							onProgress(progress, file);
+							onProgress(progress, _file);
 						}
 					}
 				},
@@ -125,10 +149,10 @@ const Upload: FC<UploadProps> = (props) => {
 				});
 				// call onSuccess property
 				if (onSuccess) {
-					onSuccess(res, file);
+					onSuccess(res, _file);
 				}
 				if (onChange) {
-					onChange(file);
+					onChange(_file);
 				}
 			})
 			.catch((error) => {
@@ -139,10 +163,10 @@ const Upload: FC<UploadProps> = (props) => {
 				});
 				// call onError property
 				if (onError) {
-					onError(error, file);
+					onError(error, _file);
 				}
 				if (onChange) {
-					onChange(file);
+					onChange(_file);
 				}
 			});
 
@@ -176,6 +200,8 @@ const Upload: FC<UploadProps> = (props) => {
 				className="hidden"
 				onChange={handleFileChange}
 				ref={inputRef}
+				accept={accept}
+				multiple={multiple}
 			/>
 			{fileList && (
 				<UploadFileList uploadFileList={fileList} onRemove={handleRemove} />

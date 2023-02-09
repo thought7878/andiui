@@ -51,6 +51,12 @@ const UploadDemo = () => {
 				// action="http://localhost:3000/v2/5cc8019d300000980a055e76"
 				// action="https://jsonplaceholder.typicode.com/posts"
 				// beforeUpload={handleBeforeUpload}
+
+				accept=".jpg"
+				multiple
+				// fileName="av"
+				// httpHeader={{ cangjing: "kong" }}
+				// formData={{ goHome: "001.av" }}
 				onProgress={(percentage, file) => {
 					// console.log("onProgress:", percentage);
 				}}

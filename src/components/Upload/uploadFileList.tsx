@@ -49,11 +49,8 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 
 			//
 			return (
-				<li className="file-item">
-					<div
-						key={file.uid}
-						className=" flex items-center justify-between hover:bg-auiLight-border"
-					>
+				<li className="file-item" key={file.uid}>
+					<div className=" flex items-center justify-between hover:bg-auiLight-border">
 						<div className="flex items-center">
 							<Icon
 								icon={<AiOutlineFileText />}
