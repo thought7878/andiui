@@ -25,6 +25,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 		return uploadFileList?.map((file) => {
 			//
 			let statusIcon;
+			let errorFileClass;
 			if (file.status === "success") {
 				statusIcon = (
 					<Icon
@@ -34,7 +35,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 					/>
 				);
 			} else if (file.status === "uploading") {
-				statusIcon = <Spinner className="file-uploading-icon " />;
+				statusIcon = <Spinner className="file-uploading-icon text-primary" />;
 			} else if (file.status === "error") {
 				statusIcon = (
 					<Icon
@@ -43,6 +44,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 						className="file-error-icon text-danger"
 					/>
 				);
+				errorFileClass = "text-danger";
 			}
 
 			//
@@ -53,8 +55,15 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 						className=" flex items-center justify-between hover:bg-auiLight-border"
 					>
 						<div className="flex items-center">
-							<Icon icon={<AiOutlineFileText />} className="file-icon mr-2" />
-							<span className="file-name mr-4">{file.name}</span>
+							<Icon
+								icon={<AiOutlineFileText />}
+								className={`file-icon mr-2 ${errorFileClass && errorFileClass}`}
+							/>
+							<span
+								className={`file-name mr-4 ${errorFileClass && errorFileClass}`}
+							>
+								{file.name}
+							</span>
 						</div>
 						<div className="flex items-center">
 							<button
@@ -68,9 +77,11 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 							{statusIcon}
 						</div>
 					</div>
-					<Progress
-						progress={(file.percent && Math.round(file.percent * 100)) || 0}
-					/>
+					{file.status === "uploading" && (
+						<Progress
+							progress={(file.percent && Math.round(file.percent * 100)) || 0}
+						/>
+					)}
 				</li>
 			);
 		});
