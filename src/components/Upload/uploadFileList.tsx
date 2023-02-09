@@ -50,7 +50,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 			//
 			return (
 				<li className="file-item" key={file.uid}>
-					<div className=" flex items-center justify-between hover:bg-auiLight-border">
+					<div className=" flex items-center justify-between transition-all hover:bg-auiLight-background">
 						<div className="flex items-center">
 							<Icon
 								icon={<AiOutlineFileText />}
@@ -84,7 +84,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 		});
 	}
 
-	return <ul>{renderFileList()}</ul>;
+	return <ul className="mt-2">{renderFileList()}</ul>;
 };
 
 export default UploadFileList;

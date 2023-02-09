@@ -53,7 +53,7 @@ const Input: React.FC<InputProps> = (props) => {
 	});
 
 	return (
-		<div className={` relative flex w-full ${classes}`} style={style}>
+		<div className={` relative inline-block  w-full ${classes}`} style={style}>
 			{prepend && <div className="aui-input-group-prepend">{prepend}</div>}
 			{icon && (
 				<div className="icon-wrapper  absolute right-0 top-0 flex h-full w-[35px] items-center justify-center text-auiLight-secondary">

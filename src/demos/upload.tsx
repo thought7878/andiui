@@ -1,4 +1,5 @@
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import Button from "../components/Button";
 import Icon from "../components/Icon";
 import Upload, { UploadFile } from "../components/Upload";
 
@@ -75,6 +76,23 @@ const UploadDemo = () => {
 					<Icon icon={<AiOutlineCloudUpload />} className="text-5xl" />
 				</div>
 				<p>Drag and Drop to Upload Files</p>
+			</Upload>
+			{/*  */}
+			<Upload
+				action="http://localhost:3100/files/upload"
+				accept=".jpg"
+				multiple
+				onProgress={(percentage, file) => {
+					// console.log("onProgress:", percentage);
+				}}
+				onSuccess={(res, file) => {
+					console.log("onSuccess:");
+				}}
+				onError={(error, file) => {
+					console.log("onError:", error);
+				}}
+			>
+				<Button btnType="primary">Upload Files</Button>
 			</Upload>
 		</div>
 	);

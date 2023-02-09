@@ -1,10 +1,11 @@
 import "./App.css";
-import UploadDemo from "./demos/upload";
+import FormDemo from "./demos/form";
 
 function App() {
 	return (
 		<div className="App">
-			<UploadDemo />
+			<FormDemo></FormDemo>
+			{/* <UploadDemo /> */}
 			{/* <AlertDemo /> */}
 			{/* <SpinnerDemo />
 			<ButtonDemos></ButtonDemos> */}
