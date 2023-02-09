@@ -14,7 +14,7 @@ module.exports = {
 
 		extend: {
 			colors: {
-				primary: "#a0d911", //hope-500
+				primary: "#3b82f6", //blue-500
 				inputFocusColor: "#a0d911", //hope-500
 				success: "#a0d911", //hope-500
 				warning: "#faad14", //gold 6
