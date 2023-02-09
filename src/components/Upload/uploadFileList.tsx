@@ -46,18 +46,25 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 
 			//
 			return (
-				<li key={file.uid} className="file-item flex items-center">
-					<Icon icon={<AiOutlineFileText />} className="file-icon mr-2" />
-					<span className="file-name mr-4">{file.name}</span>
-					{statusIcon}
-					<button
-						className="file-remove-btn ml-4"
-						onClick={() => {
-							onRemove && onRemove(file);
-						}}
-					>
-						<IoMdClose />
-					</button>
+				<li
+					key={file.uid}
+					className="file-item flex items-center justify-between hover:bg-auiLight-border"
+				>
+					<div className="flex items-center">
+						<Icon icon={<AiOutlineFileText />} className="file-icon mr-2" />
+						<span className="file-name mr-4">{file.name}</span>
+					</div>
+					<div className="flex items-center">
+						<button
+							className="file-remove-btn"
+							onClick={() => {
+								onRemove && onRemove(file);
+							}}
+						>
+							<IoMdClose className="text-base" />
+						</button>
+						{statusIcon}
+					</div>
 				</li>
 			);
 		});

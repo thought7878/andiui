@@ -41,7 +41,7 @@ const UploadDemo = () => {
 	];
 
 	return (
-		<div className="m-10">
+		<div className="m-10 w-[300px]">
 			<Upload
 				action="http://localhost:3100/files/upload"
 				defaultFileList={defaultFileList}

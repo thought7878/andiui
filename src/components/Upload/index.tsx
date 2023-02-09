@@ -172,7 +172,7 @@ const Upload: FC<UploadProps> = (props) => {
 			</Button>
 			<input
 				type="file"
-				name="andi"
+				name="file"
 				className="hidden"
 				onChange={handleFileChange}
 				ref={inputRef}
