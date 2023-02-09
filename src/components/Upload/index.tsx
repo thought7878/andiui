@@ -1,11 +1,12 @@
 import axios from "axios";
-import { ChangeEvent, FC, useRef, useState } from "react";
-import Button from "../Button";
+import { ChangeEvent, FC, ReactNode, useRef, useState } from "react";
+import Dragger from "./dragger";
 import UploadFileList from "./uploadFileList";
 
 //
 export interface UploadProps {
 	action: string;
+	children: ReactNode;
 	defaultFileList?: UploadFile[];
 	beforeUpload?: (file: File) => boolean | Promise<File>;
 	onProgress?: (percentage: number, file: UploadFile) => void;
@@ -19,6 +20,7 @@ export interface UploadProps {
 	withCredentials?: boolean;
 	accept?: string;
 	multiple?: boolean;
+	drag?: boolean;
 }
 //upload file status type
 export interface UploadFile {
@@ -49,6 +51,8 @@ const Upload: FC<UploadProps> = (props) => {
 		withCredentials,
 		accept,
 		multiple,
+		drag,
+		children,
 	} = props;
 	//
 	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
@@ -78,23 +82,26 @@ const Upload: FC<UploadProps> = (props) => {
 	function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
 		const fileList = e.target.files;
 		if (fileList) {
-			const files = Array.from(fileList);
-			files.forEach((file) => {
-				// 如果没有beforeUpload，上传。有beforeUpload，返回值是true，执行上传；返回值是Promise
-				if (beforeUpload) {
-					let result = beforeUpload(file);
-					if (result && typeof result === "boolean") {
-						uploadFile(file);
-					} else if (result instanceof Promise) {
-						result.then((processedFile) => {
-							uploadFile(processedFile);
-						});
-					}
-				} else {
-					uploadFile(file);
-				}
-			});
+			uploadFiles(fileList);
 		}
+	}
+	function uploadFiles(fileList: FileList) {
+		const files = Array.from(fileList);
+		files.forEach((file) => {
+			// 如果没有beforeUpload，上传。有beforeUpload，返回值是true，执行上传；返回值是Promise
+			if (beforeUpload) {
+				let result = beforeUpload(file);
+				if (result && typeof result === "boolean") {
+					uploadFile(file);
+				} else if (result instanceof Promise) {
+					result.then((processedFile) => {
+						uploadFile(processedFile);
+					});
+				}
+			} else {
+				uploadFile(file);
+			}
+		});
 	}
 	function uploadFile(file: File) {
 		// ajax之前，把新的file加入fileList[0]
@@ -190,10 +197,13 @@ const Upload: FC<UploadProps> = (props) => {
 	}
 
 	return (
-		<div>
-			<Button btnType="primary" onClick={handleClick}>
-				上传文件
-			</Button>
+		<div
+			className="aui-upload-component inline-block rounded-lg"
+			onClick={handleClick}
+		>
+			{/*  */}
+			{drag ? <Dragger onFileDrop={uploadFiles}>{children}</Dragger> : children}
+			{/*  */}
 			<input
 				type="file"
 				// name="file"
