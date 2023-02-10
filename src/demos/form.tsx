@@ -7,16 +7,33 @@ const FormDemo = () => {
 	return (
 		<div className="m-10 w-[600px]">
 			<Form>
-				<Item label="用户名：">
+				<Item label="用户名：" name="username">
 					<Input />
 				</Item>
-				<Item label="密码：">
+				<Item
+					label="密码："
+					name="password"
+					valueName="value"
+					eventName="onChange"
+					getValueFromEvent={(e) => e.target.value}
+				>
 					<Input type={"password"} />
 				</Item>
-				<Item>
+				<Item name="noLabel">
 					<Input placeholder="no label" />
 				</Item>
-				<Item>
+				<Item
+					name="checkbox"
+					valueName="checked"
+					eventName="onChange"
+					getValueFromEvent={(e) => e.target.checked}
+				>
+					<span>
+						<input type="checkbox" />
+						同意协议
+					</span>
+				</Item>
+				<Item name="submitButton">
 					<Button btnType="primary">登陆</Button>
 				</Item>
 			</Form>

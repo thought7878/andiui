@@ -14,9 +14,9 @@ export interface FormState {
 	isValid: boolean;
 }
 export interface FieldsAction {
-	type: "addField";
+	type: "addField" | "updateValue";
 	name: string; //FieldState name
-	value: any;
+	value: any; //FieldState value
 }
 
 //
@@ -24,6 +24,11 @@ function fieldsReducer(state: FieldsState, action: FieldsAction): FieldsState {
 	switch (action.type) {
 		case "addField":
 			return { ...state, [action.name]: { ...action.value } };
+		case "updateValue":
+			return {
+				...state,
+				[action.name]: { ...state[action.name], value: action.value },
+			};
 		default:
 			return state;
 	}
