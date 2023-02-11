@@ -1,5 +1,12 @@
+import { RuleItem } from "async-validator";
 import React, { FC, ReactNode, useContext, useEffect } from "react";
 import { FormContext } from ".";
+
+// TODO 需要消化
+export type SomeRequired<T, K extends keyof T> = Required<Pick<T, K>> &
+	Omit<T, K>;
+
+// type Test = SomeRequired<ItemProps, "getValueFromEvent">;
 
 interface ItemProps {
 	name: string;
@@ -7,8 +14,10 @@ interface ItemProps {
 	label?: string;
 	children?: ReactNode;
 	valueName?: string;
-	eventName?: string;
+	eventName?: string; //value change event
+	validateEventName?: string;
 	getValueFromEvent?: (event: any) => any;
+	rules?: RuleItem[];
 }
 
 const Item: FC<ItemProps> = (props) => {
@@ -19,11 +28,15 @@ const Item: FC<ItemProps> = (props) => {
 		valueName = "value",
 		// defaultValue = valueName === "value" ? "" : false,
 		eventName = "onChange",
+		validateEventName = "onBlur",
+		rules,
 		getValueFromEvent = (e) => {
 			return e.target?.value;
 		},
-	} = props;
-	const { dispatch, fieldsState, defaultValues } = useContext(FormContext);
+	} = props as SomeRequired<ItemProps, "getValueFromEvent" | "valueName">;
+
+	const { dispatch, fieldsState, defaultValues, validateField } =
+		useContext(FormContext);
 
 	// mounted ,update form store's FieldsState
 	useEffect(() => {
@@ -31,7 +44,7 @@ const Item: FC<ItemProps> = (props) => {
 		dispatch({
 			type: "addField",
 			name,
-			value: { label, name, value: defaultValue || "" },
+			value: { label, name, value: defaultValue || "", rules, isValid: true },
 		});
 	}, []);
 
@@ -49,6 +62,9 @@ const Item: FC<ItemProps> = (props) => {
 	const controlledProps: Record<string, any> = {};
 	controlledProps[valueName] = value;
 	controlledProps[eventName] = handleValueChange;
+	controlledProps[validateEventName] = () => {
+		validateField(name);
+	};
 	// 获取children数组的第一个元素
 	const childList = React.Children.toArray(children);
 	// 判断children类型，没有children/大于一个/不是有效的Element，警告
