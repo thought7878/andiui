@@ -3,21 +3,27 @@ import useStore from "./useStore";
 
 export interface FormProps {
 	children?: ReactNode;
+	defaultValues?: Record<string, any>;
 }
 export type IFormContext = Pick<
 	ReturnType<typeof useStore>,
 	"dispatch" | "fieldsState"
->;
+> &
+	Pick<FormProps, "defaultValues">;
 
 //
 export const FormContext = createContext<IFormContext>({} as IFormContext);
 
 //
 const Form: FC<FormProps> = (props) => {
-	const { children } = props;
+	const { children, defaultValues } = props;
 	// states
 	const { formState, fieldsState, setFormState, dispatch } = useStore();
-	const passedFormContext: IFormContext = { dispatch, fieldsState };
+	const passedFormContext: IFormContext = {
+		dispatch,
+		fieldsState,
+		defaultValues,
+	};
 
 	return (
 		<form>

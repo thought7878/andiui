@@ -6,7 +6,9 @@ import Input from "../components/Input";
 const FormDemo = () => {
 	return (
 		<div className="m-10 w-[600px]">
-			<Form>
+			<Form
+				defaultValues={{ username: "abc", password: "123", checkbox: true }}
+			>
 				<Item label="用户名：" name="username">
 					<Input />
 				</Item>
@@ -28,10 +30,12 @@ const FormDemo = () => {
 					eventName="onChange"
 					getValueFromEvent={(e) => e.target.checked}
 				>
-					<span>
+					<input type="checkbox" />
+					{/* TODO 这样会有bug
+          <span>
 						<input type="checkbox" />
 						同意协议
-					</span>
+					</span> */}
 				</Item>
 				<Item name="submitButton">
 					<Button btnType="primary">登陆</Button>

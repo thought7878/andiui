@@ -23,14 +23,15 @@ const Item: FC<ItemProps> = (props) => {
 			return e.target?.value;
 		},
 	} = props;
-	const { dispatch, fieldsState } = useContext(FormContext);
+	const { dispatch, fieldsState, defaultValues } = useContext(FormContext);
 
 	// mounted ,update form store's FieldsState
 	useEffect(() => {
+		const defaultValue = defaultValues && defaultValues[name];
 		dispatch({
 			type: "addField",
 			name,
-			value: { label, name },
+			value: { label, name, value: defaultValue || "" },
 		});
 	}, []);
 
