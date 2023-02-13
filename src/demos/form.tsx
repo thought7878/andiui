@@ -1,9 +1,22 @@
 import Button from "../components/Button";
 import Form from "../components/Form";
 import Item from "../components/Form/item";
+import { CustomRule } from "../components/Form/useStore";
 import Input from "../components/Input";
 
 const FormDemo = () => {
+	const confirmPasswordRules: CustomRule[] = [
+		{ type: "string", required: true, min: 3, max: 8 },
+		({ getFieldValue }) => ({
+			asyncValidator(rule, value) {
+				if (value !== getFieldValue("password")) {
+					return Promise.reject("Confirm password is different from Password!");
+				}
+				return Promise.resolve();
+			},
+		}),
+	];
+
 	return (
 		<div className="m-10 w-[600px]">
 			<Form
@@ -24,7 +37,17 @@ const FormDemo = () => {
 					getValueFromEvent={(e) => e.target.value}
 					rules={[{ type: "string", required: true, min: 3, max: 8 }]}
 				>
-					<Input type={"password"} />
+					<Input type="password" />
+				</Item>
+				<Item
+					label="重复密码："
+					name="confirmPassword"
+					valueName="value"
+					eventName="onChange"
+					getValueFromEvent={(e) => e.target.value}
+					rules={confirmPasswordRules}
+				>
+					<Input type="password" />
 				</Item>
 				<Item name="noLabel">
 					<Input placeholder="no label" />

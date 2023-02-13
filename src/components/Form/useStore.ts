@@ -1,10 +1,15 @@
 import Schema, { RuleItem, ValidateError } from "async-validator";
 import { useReducer, useState } from "react";
 
+export type CustomRuleFunc = (obj: {
+	[getFieldValue: string]: (name: string) => any;
+}) => RuleItem; //{ getFieldValue }
+export type CustomRule = RuleItem | CustomRuleFunc;
+
 export interface FieldState {
 	name: string; //input/radio name
 	value: string;
-	rules: RuleItem[];
+	rules: CustomRule[];
 	isValid: boolean;
 	errors: ValidateError[];
 }
@@ -47,10 +52,27 @@ export default function useStore() {
 	const [fieldsState, dispatch] = useReducer(fieldsReducer, {});
 
 	//
+	const getFieldValue = (name: string) => {
+		return fieldsState[name]?.value;
+	};
+
+	//调用自定义的规则函数，生成RuleItem[]
+	const transformRules = (rules: CustomRule[]) => {
+		return rules.map((rule) => {
+			if (typeof rule === "function") {
+				return rule({ getFieldValue });
+			}
+			return rule;
+		});
+	};
+
+	//
 	const validateField = async (name: string) => {
 		const { value, rules } = fieldsState[name];
+		const transformedRules = transformRules(rules);
+		//
 		const descriptor = {
-			[name]: rules,
+			[name]: transformedRules,
 		};
 		const valueMap = {
 			[name]: value,
@@ -64,11 +86,8 @@ export default function useStore() {
 		} catch (e) {
 			const err = e as any;
 			isValid = false;
-			console.log("e", err.errors);
-			console.log("e", err.fields);
 			errors = err.errors;
 		} finally {
-			console.log("errors", isValid);
 			dispatch({
 				type: "updateValidateInfo",
 				name,
@@ -83,5 +102,6 @@ export default function useStore() {
 		fieldsState,
 		dispatch,
 		validateField,
+		getFieldValue,
 	};
 }

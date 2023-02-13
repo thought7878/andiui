@@ -1,6 +1,6 @@
-import { RuleItem } from "async-validator";
 import React, { FC, ReactNode, useContext, useEffect } from "react";
 import { FormContext } from ".";
+import { CustomRule } from "./useStore";
 
 // TODO 需要消化
 export type SomeRequired<T, K extends keyof T> = Required<Pick<T, K>> &
@@ -17,7 +17,7 @@ interface ItemProps {
 	eventName?: string; //value change event
 	validateEventName?: string;
 	getValueFromEvent?: (event: any) => any;
-	rules?: RuleItem[];
+	rules?: CustomRule[];
 }
 
 const Item: FC<ItemProps> = (props) => {
@@ -58,6 +58,12 @@ const Item: FC<ItemProps> = (props) => {
 	// 获取自己的fieldState
 	const fieldState = fieldsState[name];
 	const value = fieldState?.value;
+	// error
+	const isRequired = rules?.some(
+		(rule) => typeof rule !== "function" && rule.required //
+	);
+	const errors = fieldState?.errors;
+	const hasError = errors && errors.length > 0;
 	// 额外的属性，事件名和value名来自props：value/checked，onChange
 	const controlledProps: Record<string, any> = {};
 	controlledProps[valueName] = value;
@@ -90,17 +96,27 @@ const Item: FC<ItemProps> = (props) => {
 	}
 	//
 	return (
-		<div className={`mb-3 flex  items-center ${noLabelClass}`}>
+		<div className={`mb-5 flex  items-center ${noLabelClass}`}>
 			{label && (
 				<label
 					htmlFor=""
 					title={label}
 					className="shrink-0 basis-[30%] pr-3 text-right"
 				>
+					{isRequired && (
+						<span className="mr-1 align-middle text-danger">*</span>
+					)}
 					{label}
 				</label>
 			)}
-			<div className="basis-[70%]">{newChild}</div>
+			<div className="relative basis-[70%]">
+				{newChild}
+				{hasError && (
+					<div className="absolute bottom-[-1.25rem] left-0 text-sm text-danger">
+						{errors[0].message}
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
