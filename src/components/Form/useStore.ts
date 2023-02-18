@@ -1,8 +1,9 @@
 import Schema, { RuleItem, ValidateError } from "async-validator";
+import { each, mapValues } from "lodash-es";
 import { useReducer, useState } from "react";
 
 export type CustomRuleFunc = (obj: {
-	[getFieldValue: string]: (name: string) => any;
+	[getFieldValue: string]: (name: string) => string;
 }) => RuleItem; //{ getFieldValue }
 export type CustomRule = RuleItem | CustomRuleFunc;
 
@@ -18,11 +19,18 @@ export interface FieldsState {
 }
 export interface FormState {
 	isValid: boolean;
+	isSubmitting: boolean;
+	errors: Record<string, ValidateError[]>;
 }
 export interface FieldsAction {
 	type: "addField" | "updateValue" | "updateValidateInfo";
 	name: string; //FieldState name
 	value: any; //FieldState value
+}
+//
+export interface ValidateErrorType extends Error {
+	errors: ValidateError[];
+	fields: Record<string, ValidateError[]>;
 }
 
 //
@@ -48,7 +56,12 @@ function fieldsReducer(state: FieldsState, action: FieldsAction): FieldsState {
 
 //
 export default function useStore() {
-	const [formState, setFormState] = useState<FormState>({ isValid: true });
+	//
+	const [formState, setFormState] = useState<FormState>({
+		isValid: true,
+		isSubmitting: false,
+		errors: {},
+	});
 	const [fieldsState, dispatch] = useReducer(fieldsReducer, {});
 
 	//
@@ -96,12 +109,59 @@ export default function useStore() {
 		}
 	};
 
+	//
+	const validateAllFields = async () => {
+		let isValid = true;
+		let errors: Record<string, ValidateError[]> = {};
+		const valueMap = mapValues(fieldsState, (item) => item.value); //{'username':'andy','password':'123'}
+		const descriptor = mapValues(fieldsState, (item) =>
+			transformRules(item.rules)
+		);
+		const validator = new Schema(descriptor);
+		setFormState({ ...formState, isSubmitting: true });
+		try {
+			await validator.validate(valueMap);
+		} catch (e) {
+			isValid = false;
+			const err = e as ValidateErrorType;
+			errors = err.fields; //{username:['rquired']}
+			//
+			each(fieldsState, (fieldState, name) => {
+				// 如果errors中有field name的错误，更新store，显示错误
+				if (errors[name]) {
+					dispatch({
+						type: "updateValidateInfo",
+						name,
+						value: { isValid, errors: errors[name] },
+					});
+				} else if (fieldState.rules.length > 0 && !errors[name]) {
+					//有对应的rules，没有errors // TODO:  solve ？
+					dispatch({
+						type: "updateValidateInfo",
+						name,
+						value: { isValid: true, errors: [] },
+					});
+				}
+			});
+		} finally {
+			setFormState((state) => {
+				return { ...state, isSubmitting: false, isValid, errors };
+			});
+			return {
+				isValid,
+				errors,
+				values: valueMap,
+			};
+		}
+	};
+
 	return {
 		formState,
 		setFormState,
 		fieldsState,
 		dispatch,
 		validateField,
+		validateAllFields,
 		getFieldValue,
 	};
 }

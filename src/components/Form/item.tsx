@@ -14,8 +14,8 @@ interface ItemProps {
 	label?: string;
 	children?: ReactNode;
 	valueName?: string;
-	eventName?: string; //value change event
-	validateEventName?: string;
+	valueChangeEventName?: string; //value change event
+	validateEventName?: string; //onBlur
 	getValueFromEvent?: (event: any) => any;
 	rules?: CustomRule[];
 }
@@ -27,9 +27,10 @@ const Item: FC<ItemProps> = (props) => {
 		name,
 		valueName = "value",
 		// defaultValue = valueName === "value" ? "" : false,
-		eventName = "onChange",
+		valueChangeEventName = "onChange",
 		validateEventName = "onBlur",
-		rules,
+		rules = [],
+
 		getValueFromEvent = (e) => {
 			return e.target?.value;
 		},
@@ -44,7 +45,14 @@ const Item: FC<ItemProps> = (props) => {
 		dispatch({
 			type: "addField",
 			name,
-			value: { label, name, value: defaultValue || "", rules, isValid: true },
+			value: {
+				label,
+				name,
+				value: defaultValue || "",
+				rules,
+				errors: [],
+				isValid: true,
+			},
 		});
 	}, []);
 
@@ -58,16 +66,16 @@ const Item: FC<ItemProps> = (props) => {
 	// 获取自己的fieldState
 	const fieldState = fieldsState[name];
 	const value = fieldState?.value;
-	// error
 	const isRequired = rules?.some(
-		(rule) => typeof rule !== "function" && rule.required //
+		(rule) => typeof rule !== "function" && rule.required
 	);
+	// error
 	const errors = fieldState?.errors;
 	const hasError = errors && errors.length > 0;
-	// 额外的属性，事件名和value名来自props：value/checked，onChange
+	// 额外的属性，事件名和value名来自props：onChange，value/checked
 	const controlledProps: Record<string, any> = {};
 	controlledProps[valueName] = value;
-	controlledProps[eventName] = handleValueChange;
+	controlledProps[valueChangeEventName] = handleValueChange;
 	controlledProps[validateEventName] = () => {
 		validateField(name);
 	};
