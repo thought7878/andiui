@@ -120,7 +120,7 @@ const Item: FC<ItemProps> = (props) => {
 			<div className="relative basis-[70%]">
 				{newChild}
 				{hasError && (
-					<div className="absolute bottom-[-1.25rem] left-0 text-sm text-danger">
+					<div className="absolute bottom-[-1.25rem] left-0 min-w-[100px] text-sm text-danger">
 						{errors[0].message}
 					</div>
 				)}

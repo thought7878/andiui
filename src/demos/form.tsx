@@ -28,7 +28,12 @@ const FormDemo = () => {
 				onFinishFailed={(values, errors) => {
 					console.log("onFinishFailed:", [values, errors]);
 				}}
-				// defaultValues={{ username: "abc", password: "123", checkbox: true }}
+				defaultValues={{
+					username: "abc",
+					password: "123",
+					confirmPassword: "111",
+					// agreement: true,
+				}}
 			>
 				<Item
 					label="用户名："
@@ -60,21 +65,20 @@ const FormDemo = () => {
 				{/* <Item name="noLabel">
 					<Input placeholder="no label" />
 				</Item> */}
-				<Item
-					name="checkbox"
-					valueName="checked"
-					valueChangeEventName="onChange"
-					getValueFromEvent={(e) => e.target.checked}
-				>
-					<div>
+				<div className="flex pl-[30%]">
+					<Item
+						name="agreement"
+						valueName="checked"
+						valueChangeEventName="onChange"
+						getValueFromEvent={(e) => e.target.checked}
+						rules={[{ type: "enum", enum: [true], message: "请同意协议" }]}
+					>
 						<input type="checkbox" className="mr-1" />
-						<span>
-							注册即代表你同意协议<a href="#">用户协议</a>
-						</span>
-					</div>
-				</Item>
-
-				{/* </div> */}
+					</Item>
+					<span>
+						注册即代表你同意协议<a href="#">用户协议</a>
+					</span>
+				</div>
 				<Item name="submitButton">
 					<Button btnType="primary">登陆</Button>
 				</Item>
