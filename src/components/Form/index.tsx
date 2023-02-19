@@ -1,9 +1,11 @@
 import { ValidateError } from "async-validator";
 import { createContext, FC, FormEvent, ReactNode } from "react";
-import useStore from "./useStore";
+import useStore, { FormState } from "./useStore";
+
+export type RenderChildren = (form: FormState) => ReactNode;
 
 export interface FormProps {
-	children?: ReactNode;
+	children?: ReactNode | RenderChildren;
 	defaultValues?: Record<string, any>;
 	onFinish?: (values: Record<string, any>) => void;
 	onFinishFailed?: (
@@ -24,7 +26,7 @@ export const FormContext = createContext<IFormContext>({} as IFormContext);
 const Form: FC<FormProps> = (props) => {
 	const { children, defaultValues, onFinish, onFinishFailed } = props;
 	// states
-	const { validateField, fieldsState, dispatch, validateAllFields } =
+	const { validateField, formState, fieldsState, dispatch, validateAllFields } =
 		useStore();
 	const passedFormContext: IFormContext = {
 		dispatch,
@@ -45,10 +47,18 @@ const Form: FC<FormProps> = (props) => {
 		}
 	}
 
+	//
+	function renderChildren(): ReactNode {
+		if (typeof children === "function") {
+			return children(formState);
+		}
+		return children;
+	}
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<FormContext.Provider value={passedFormContext}>
-				{children}
+				{renderChildren()}
 			</FormContext.Provider>
 		</form>
 	);
