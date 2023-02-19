@@ -12,16 +12,29 @@ interface IMenuContext {
 }
 export interface MenuProps {
 	className?: string;
+	/** 设置方向：横向（默认值）/纵向 */
 	direction?: MenuDirection;
+	/** 设置自定义样式 */
 	style?: React.CSSProperties;
+	/** 设置默认defaultIndex */
 	defaultIndex?: string;
+	/** 设置选中的回调函数 */
 	onSelect?: HandleSelect;
+	/**  */
 	children?: React.ReactNode;
 }
 //
 export const MenuContext = createContext<IMenuContext>({ activeIndex: "0" });
 
-//
+/**
+ * Menu 组件
+ * ### 导入
+ * ```js
+ * import Menu from "aui";
+ * ```
+ * @param props
+ * @returns
+ */
 const Menu: React.FC<MenuProps> = (props) => {
 	const { className, direction, children, style, defaultIndex, onSelect } =
 		props;
@@ -31,7 +44,11 @@ const Menu: React.FC<MenuProps> = (props) => {
 		onCLick: handleItemClick,
 		direction: direction,
 	};
-	//点击item，修改activeIndex，调用用户的onSelect
+	/**
+	 * 点击item，修改activeIndex，调用用户的onSelect
+	 *
+	 * @param index
+	 */
 	function handleItemClick(index: string) {
 		setActiveIndex(index);
 		if (onSelect) {
