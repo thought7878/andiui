@@ -47,7 +47,6 @@
     "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
     "prompts": "^2.4.2",
@@ -79,7 +78,9 @@
     "test": "node scripts/test.js",
     "plop": "plop",
     "dumi": "cross-env APP_ROOT=dumi dumi dev",
-    "dumi-build": "cross-env APP_ROOT=dumi dumi build"
+    "dumi-build": "cross-env APP_ROOT=dumi dumi build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -110,7 +111,18 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack4": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack4": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react-transition-group": "^4.4.5",
+    "autoprefixer": "^10.4.13",
     "cross-env": "^7.0.3",
     "dumi": "^2.1.4",
     "http-proxy-middleware": "^2.0.6",
@@ -118,6 +130,7 @@
     "plop": "^3.1.1",
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
+    "postcss-loader": "^7.0.2",
     "postcss-nested": "^6.0.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "^2.8.3",
