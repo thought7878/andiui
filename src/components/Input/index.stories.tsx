@@ -5,21 +5,43 @@ const inputMeta: ComponentMeta<typeof Input> = {
 	title: "input 组件",
 	component: Input,
 };
-
 export default inputMeta;
 
-export const Default: ComponentStory<typeof Input> = () => {
-	return <Input />;
+//
+const Template: ComponentStory<typeof Input> = (args) => {
+	return (
+		<div className="w-[300px]">
+			<Input {...args} />
+		</div>
+	);
 };
+
+//
+export const Default = Template.bind({});
+Default.args = { inputSize: "sm" };
 Default.storyName = "默认Input";
 
 //
-export const InputWithSize: ComponentStory<typeof Input> = () => {
+export const InputWithSize: ComponentStory<typeof Input> = (args) => {
 	return (
-		<>
-			<Input inputSize="sm" />
-			<Input inputSize="lg" />
-		</>
+		<div className="w-[300px]">
+			<div className="mb-4">
+				<Input inputSize="sm" {...args} />
+			</div>
+
+			<div className="mb-4">
+				<Input {...args} />
+			</div>
+
+			<div className="mb-4">
+				<Input inputSize="lg" {...args} />
+			</div>
+		</div>
 	);
 };
 InputWithSize.storyName = "不同尺寸的Input";
+
+//
+export const InputWithDisabled = Template.bind({});
+InputWithDisabled.args = { disabled: true };
+InputWithDisabled.storyName = "disabled的Input";

@@ -31,7 +31,7 @@ export interface InputProps
  * ~~~
  * 支持 HTMLInput 的所有基本属性
  */
-const Input: React.FC<InputProps> = (props) => {
+export const Input: React.FC<InputProps> = (props) => {
 	const {
 		disabled,
 		inputSize,
