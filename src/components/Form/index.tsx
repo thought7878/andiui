@@ -1,12 +1,18 @@
 import { ValidateError } from "async-validator";
-import { createContext, FC, FormEvent, ReactNode } from "react";
+import {
+	createContext,
+	FormEvent,
+	forwardRef,
+	ReactNode,
+	useImperativeHandle,
+} from "react";
 import useStore, { FormState } from "./useStore";
 
 export type RenderChildren = (form: FormState) => ReactNode;
 
 export interface FormProps {
 	children?: ReactNode | RenderChildren;
-	defaultValues?: Record<string, any>;
+	initialValues?: Record<string, any>;
 	onFinish?: (values: Record<string, any>) => void;
 	onFinishFailed?: (
 		values: Record<string, any>,
@@ -17,23 +23,53 @@ export type IFormContext = Pick<
 	ReturnType<typeof useStore>,
 	"dispatch" | "fieldsState" | "validateField"
 > &
-	Pick<FormProps, "defaultValues">;
+	Pick<FormProps, "initialValues">;
+//
+export type IFormRef = Omit<
+	ReturnType<typeof useStore>,
+	| "formState"
+	| "setFormState"
+	| "fieldsState"
+	| "dispatch"
+	| "validateField"
+	| "validateAllFields"
+>;
 
 //
 export const FormContext = createContext<IFormContext>({} as IFormContext);
 
 //
-const Form: FC<FormProps> = (props) => {
-	const { children, defaultValues, onFinish, onFinishFailed } = props;
+const Form = forwardRef<IFormRef, FormProps>((props, ref) => {
+	const { children, initialValues, onFinish, onFinishFailed } = props;
+	// const formRef = useRef(null);
 	// states
-	const { validateField, formState, fieldsState, dispatch, validateAllFields } =
-		useStore();
+	const {
+		validateField,
+		formState,
+		fieldsState,
+		dispatch,
+		validateAllFields,
+		getFieldValue,
+		setFieldValue,
+		getFieldsValue,
+		resetFields,
+	} = useStore(initialValues);
 	const passedFormContext: IFormContext = {
 		dispatch,
 		fieldsState,
-		defaultValues,
+		initialValues,
 		validateField,
 	};
+
+	// expose api
+	useImperativeHandle(ref, () => {
+		return {
+			getFieldValue,
+			setFieldValue,
+			getFieldsValue,
+			resetFields,
+		};
+	}); //TODO: []问题
 
 	//
 	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -62,6 +98,6 @@ const Form: FC<FormProps> = (props) => {
 			</FormContext.Provider>
 		</form>
 	);
-};
+});
 
 export default Form;

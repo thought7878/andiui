@@ -55,7 +55,9 @@ function fieldsReducer(state: FieldsState, action: FieldsAction): FieldsState {
 }
 
 //
-export default function useStore() {
+export default function useStore(
+	initialValues: Record<string, any> | undefined
+) {
 	//
 	const [formState, setFormState] = useState<FormState>({
 		isValid: true,
@@ -64,14 +66,35 @@ export default function useStore() {
 	});
 	const [fieldsState, dispatch] = useReducer(fieldsReducer, {});
 
-	//
+	//暴露的API
 	const getFieldValue = (name: string) => {
 		return fieldsState[name]?.value;
+	};
+	const getFieldsValue = () => {
+		return mapValues(fieldsState, (fieldState) => fieldState.value);
+	};
+	const setFieldValue = (name: string, value: any) => {
+		if (fieldsState[name]) {
+			dispatch({ type: "updateValue", name, value });
+		}
+	};
+	const resetFields = () => {
+		if (initialValues) {
+			each(initialValues, (value, name) => {
+				if (fieldsState[name]) {
+					dispatch({ type: "updateValue", name, value });
+				}
+			});
+		} else {
+			each(fieldsState, (value, name) => {
+				dispatch({ type: "updateValue", name, value: "" });
+			});
+		}
 	};
 
 	//调用自定义的规则函数，生成RuleItem[]
 	const transformRules = (rules: CustomRule[]) => {
-		return rules.map((rule) => {
+		return rules?.map((rule) => {
 			if (typeof rule === "function") {
 				return rule({ getFieldValue });
 			}
@@ -163,5 +186,8 @@ export default function useStore() {
 		validateField,
 		validateAllFields,
 		getFieldValue,
+		setFieldValue,
+		getFieldsValue,
+		resetFields,
 	};
 }

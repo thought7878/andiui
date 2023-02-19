@@ -22,26 +22,26 @@ interface ItemProps {
 
 const Item: FC<ItemProps> = (props) => {
 	const {
-		label,
-		children,
-		name,
+		name = "",
+		label = "",
+		children = "",
 		valueName = "value",
 		// defaultValue = valueName === "value" ? "" : false,
 		valueChangeEventName = "onChange",
 		validateEventName = "onBlur",
 		rules = [],
-
 		getValueFromEvent = (e) => {
 			return e.target?.value;
 		},
 	} = props as SomeRequired<ItemProps, "getValueFromEvent" | "valueName">;
 
-	const { dispatch, fieldsState, defaultValues, validateField } =
+	const { dispatch, fieldsState, initialValues, validateField } =
 		useContext(FormContext);
 
 	// mounted ,update form store's FieldsState
 	useEffect(() => {
-		const defaultValue = defaultValues && defaultValues[name];
+		const defaultValue = initialValues && initialValues[name];
+		// TODO: 应该排除掉非数据的，如：Button
 		dispatch({
 			type: "addField",
 			name,

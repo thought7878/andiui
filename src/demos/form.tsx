@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import Button from "../components/Button";
-import Form from "../components/Form";
+import Form, { IFormRef } from "../components/Form";
 import Item from "../components/Form/item";
 import { CustomRule } from "../components/Form/useStore";
 import Input from "../components/Input";
@@ -19,21 +20,24 @@ const FormDemo = () => {
 		}),
 	];
 
+	let formRef = useRef<IFormRef>(null);
+
 	return (
 		<div className="m-10 w-[600px]">
 			<Form
+				ref={formRef}
 				onFinish={(values) => {
 					console.log("onFinish:", values);
 				}}
 				onFinishFailed={(values, errors) => {
 					console.log("onFinishFailed:", [values, errors]);
 				}}
-				defaultValues={{
-					username: "abc",
-					password: "123",
-					confirmPassword: "111",
-					// agreement: true,
-				}}
+				// initialValues={{
+				// 	username: "abc",
+				// 	password: "123",
+				// 	confirmPassword: "111",
+				// 	// agreement: true,
+				// }}
 			>
 				<Item
 					label="用户名："
@@ -81,6 +85,21 @@ const FormDemo = () => {
 				</div>
 				<Item name="submitButton">
 					<Button btnType="primary">登陆</Button>
+				</Item>
+				<Item name="submitButton">
+					<Button
+						onClick={() => {
+							// console.log(formRef);
+							// console.log(
+							// 	"username:",
+							// 	formRef.current?.getFieldValue("username")
+							// 	// formRef.current?.getFieldsValue()
+							// );
+							formRef.current?.resetFields();
+						}}
+					>
+						重置
+					</Button>
 				</Item>
 			</Form>
 		</div>
