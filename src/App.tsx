@@ -1,15 +1,15 @@
 import "./App.css";
-import FormDemo from "./demos/form";
+import InputDemo from "./demos/input";
 
 function App() {
 	return (
 		<div className="App">
-			<FormDemo></FormDemo>
+			{/* <FormDemo></FormDemo> */}
 			{/* <UploadDemo /> */}
 			{/* <AlertDemo /> */}
 			{/* <SpinnerDemo />
 			<ButtonDemos></ButtonDemos> */}
-			{/* <InputDemo></InputDemo> */}
+			<InputDemo></InputDemo>
 			{/* <AutoCompleteDemo></AutoCompleteDemo> */}
 			{/* <MenuDemo></MenuDemo> */}
 		</div>

@@ -1,6 +1,6 @@
-.input-transition {
+/* .input-transition {
 	@apply transition-all duration-300 ease-in-out;
-}
+} */
 .aui-input-wrapper {
 	.icon-wrapper {
 		svg {
@@ -18,13 +18,13 @@
 		/* border-color: $input-disabled-border-color; */
 	}
 }
-.aui-input-group-prepend,
+/* .aui-input-group-prepend,
 .aui-input-group-append {
-	@apply mb-0 flex items-center
+	@apply mb-0 inline-flex items-center
      whitespace-nowrap rounded-md border border-solid
      border-auiLight-divider bg-auiLight-divider px-3 py-1.5
      text-center text-base font-normal text-auiLight-primary;
-}
+} */
 .aui-input-group-append + .btn {
 	padding: 0;
 	border: 0;

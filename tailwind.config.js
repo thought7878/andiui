@@ -44,8 +44,9 @@ module.exports = {
 				},
 			},
 			boxShadow: {
-				input: `0 0 0 2px #22c55e`,
-				button: `0 0 0 2px #22c55e`,
+				primary: `0 0 0 2px #3b82f6`,
+				input: `0 0 0 2px #3b82f6`,
+				button: `0 0 0 2px #3b82f6`,
 			},
 			// borderRadius: {
 			// 	input: `0 0 0 2px #a0d911`,
