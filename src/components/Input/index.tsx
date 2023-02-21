@@ -6,10 +6,10 @@ type InputSize = "lg" | "sm";
 
 export interface InputProps
 	extends Partial<React.InputHTMLAttributes<HTMLElement>> {
-	/**是否禁用 Input */
-	disabled?: boolean;
 	/**设置 input 大小，支持 lg 或者是 sm */
 	inputSize?: InputSize;
+	/**是否禁用 Input */
+	disabled?: boolean;
 	/**添加图标，在右侧悬浮添加一个图标，用于提示 */
 	icon?: React.ReactElement;
 	/**添加前缀，用于配置一些固定组合 */
@@ -46,7 +46,7 @@ export const Input: React.FC<InputProps> = (props) => {
 	const classes = classNames("aui-input-wrapper", {
 		// className: className,
 		[`input-size-${inputSize}`]: inputSize,
-		"is-disabled": disabled,
+		// "is-disabled": disabled,
 		"input-group": prepend || append,
 		"input-group-append": !!append,
 		"input-group-prepend": !!prepend,
@@ -64,11 +64,13 @@ export const Input: React.FC<InputProps> = (props) => {
 					{icon}
 				</div>
 			)}
-			<div className=""></div>
+			{/* <div className=""></div> */}
 			<input
-				className={`aui-input-inner w-full rounded-md border border-solid border-auiLight-border 
-        bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out
-        placeholder:text-auiLight-secondary  focus:outline-0 hover:enabled:border-primary focus:enabled:border-primary focus:enabled:shadow-primary disabled:cursor-not-allowed disabled:bg-auiLight-black15
+				className={`aui-input-inner w-full  rounded-md border border-solid border-auiLight-border 
+        bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out placeholder:text-auiLight-secondary  
+        read-only:cursor-not-allowed read-only:bg-auiLight-black15 
+        hover:border-primary focus:border-primary focus:shadow-primary focus:outline-0  
+        disabled:cursor-not-allowed disabled:border-auiLight-border disabled:bg-auiLight-black15 disabled:shadow-none 
         ${className}`}
 				style={style}
 				disabled={disabled}

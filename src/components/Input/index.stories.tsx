@@ -83,6 +83,7 @@ InputWithAppend.storyName = "带后缀的Input";
 export const InputWithCustom = Template.bind({});
 InputWithCustom.args = {
 	placeholder: "自定义样式",
+	// readOnly: true,
 	style: { borderRadius: "2rem" },
 	className:
 		"px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500",
