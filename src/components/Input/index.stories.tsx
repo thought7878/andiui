@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof Input> = (args) => {
 
 //
 export const Default = Template.bind({});
-Default.args = { inputSize: "sm" };
+Default.args = {};
 Default.storyName = "默认Input";
 
 //
@@ -79,3 +79,13 @@ InputWithAppend.args = {
 };
 
 InputWithAppend.storyName = "带后缀的Input";
+//
+export const InputWithCustom = Template.bind({});
+InputWithCustom.args = {
+	placeholder: "自定义样式",
+	style: { borderRadius: "2rem" },
+	className:
+		"px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500",
+};
+
+InputWithCustom.storyName = "自定义样式的Input";

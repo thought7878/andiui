@@ -33,13 +33,28 @@ module.exports = {
 				},
 				auiLight: {
 					//antD
+					black85: "#262626", //black 85%,title text
 					title: "#262626", //black 85%
+
+					black65: "#595959", //65%,primary text
 					primary: "#595959", //65%
+
+					black45: "#8c8c8c", //45%,secondary text
 					secondary: "#8c8c8c", //45%
+
+					black25: "#bfbfbf", //25%,border/disable
 					disable: "#bfbfbf", //25%
+
+					black15: "#d9d9d9", //15%,border/disable
 					border: "#d9d9d9", //15%
+
+					black6: "#f0f0f0", //6%,divider
 					divider: "#f0f0f0", //6%
+
+					black4: "#f5f5f5", //4%,background
 					background: "#f5f5f5", //4%
+
+					black2: "#fafafa", //2%,tableHeader
 					tableHeader: "#fafafa", //2%
 				},
 			},

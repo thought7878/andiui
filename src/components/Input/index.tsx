@@ -44,7 +44,7 @@ export const Input: React.FC<InputProps> = (props) => {
 	} = props;
 	//style
 	const classes = classNames("aui-input-wrapper", {
-		className: className,
+		// className: className,
 		[`input-size-${inputSize}`]: inputSize,
 		"is-disabled": disabled,
 		"input-group": prepend || append,
@@ -53,14 +53,9 @@ export const Input: React.FC<InputProps> = (props) => {
 	});
 
 	return (
-		<div className={`relative inline-flex  w-full ${classes}`} style={style}>
+		<div className={`relative inline-flex  w-full ${classes}`}>
 			{prepend && (
-				<div
-					className="aui-input-group-prepend mb-0 inline-flex items-center
-     whitespace-nowrap rounded-md border border-solid
-     border-auiLight-divider bg-auiLight-divider px-3 py-1.5
-     text-center text-base font-normal text-auiLight-primary"
-				>
+				<div className="aui-input-group-prepend mb-0 inline-flex items-center whitespace-nowrap rounded-md border border-solid border-auiLight-divider bg-auiLight-divider px-3 py-1.5 text-center text-base font-normal text-auiLight-primary">
 					{prepend}
 				</div>
 			)}
@@ -69,18 +64,18 @@ export const Input: React.FC<InputProps> = (props) => {
 					{icon}
 				</div>
 			)}
+			<div className=""></div>
 			<input
-				className="aui-input-inner w-full rounded-md border border-solid border-auiLight-border bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out placeholder:text-auiLight-secondary  focus:outline-0 hover:enabled:border-blue-500 focus:enabled:border-blue-500 focus:enabled:shadow-primary disabled:cursor-not-allowed disabled:bg-auiLight-disable"
+				className={`aui-input-inner w-full rounded-md border border-solid border-auiLight-border 
+        bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out
+        placeholder:text-auiLight-secondary  focus:outline-0 hover:enabled:border-primary focus:enabled:border-primary focus:enabled:shadow-primary disabled:cursor-not-allowed disabled:bg-auiLight-black15
+        ${className}`}
+				style={style}
 				disabled={disabled}
 				{...otherProps}
 			/>
 			{append && (
-				<div
-					className="aui-input-group-append mb-0 inline-flex items-center
-     whitespace-nowrap rounded-md border border-solid
-     border-auiLight-divider bg-auiLight-divider px-3 py-1.5
-     text-center text-base font-normal text-auiLight-primary"
-				>
+				<div className="aui-input-group-append mb-0 inline-flex items-center whitespace-nowrap rounded-md border border-solid border-auiLight-divider bg-auiLight-divider px-3 py-1.5 text-center text-base font-normal text-auiLight-primary">
 					{append}
 				</div>
 			)}
