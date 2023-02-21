@@ -50,8 +50,7 @@ const Alert: FC<AlertProps> = (props) => {
 
 	// 不同情况，不同样式
 	const classes = classNames(
-		`alert-wrap flex justify-between items-center rounded-lg  py-4 px-4 text-base text-white 
-    `,
+		`alert-wrap flex justify-between items-center rounded-lg  py-4 px-4 text-base text-white`,
 		type,
 		{
 			[position + ""]: position,

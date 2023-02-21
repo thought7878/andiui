@@ -14,13 +14,21 @@ import Input, { InputProps } from "../Input";
 import Spinner from "../Spinner";
 
 //
-interface DataSourceObject {
+export interface DataSourceObject {
 	value: string; //suggestion string
 }
 export type DataSourceType<T = {}> = Partial<T & DataSourceObject>;
 
 //
 export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
+	/**设置Input 样式 */
+	inputClass?: string;
+	/**设置Input 样式 */
+	inputStyle?: React.StyleHTMLAttributes<HTMLInputElement>;
+	/**设置spinner 样式 */ // TODO:
+	spinnerClass?: string;
+	color?: string;
+	/**获取远程数据 */
 	fetchSuggestions: (
 		keyword: string
 	) => DataSourceType[] | Promise<DataSourceType[]>;
@@ -31,8 +39,18 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
 }
 
 const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
-	const { fetchSuggestions, onSelect, value, renderOption, ...otherProps } =
-		props;
+	const {
+		fetchSuggestions,
+		onSelect,
+		inputClass,
+		inputStyle,
+		spinnerClass,
+		color,
+		value,
+		renderOption,
+		...otherProps
+	} = props;
+	//
 	const [inputValue, setInputValue] = useState(value);
 	const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -72,6 +90,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		setInputValue(value);
 		shouldSearch.current = true;
 	};
+
 	//
 	function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
 		switch (e.code) {
@@ -79,16 +98,14 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				if (highlightIndex < suggestions.length - 1) {
 					setHighlightIndex(highlightIndex + 1);
 				}
-				console.log("ArrowDown");
-
 				break;
 			case "ArrowUp":
 				if (highlightIndex > 0) {
 					setHighlightIndex(highlightIndex - 1);
 				}
-				console.log("ArrowUp");
 				break;
 			case "Enter":
+			case "NumpadEnter":
 				if (suggestions[highlightIndex]) {
 					handleClick(suggestions[highlightIndex]);
 				}
@@ -143,7 +160,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	function renderLoadingIcon() {
 		return (
 			<div className="suggstions-loading-icon top absolute left-0 z-[99] flex min-h-[75px] w-full justify-center ">
-				<Spinner color="#22c55e" style={{ fontSize: "2rem" }} />
+				<Spinner color={color} style={{ fontSize: "2rem" }} />
 			</div>
 		);
 	}
@@ -152,6 +169,8 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	return (
 		<div className="aui-auto-complete relative" ref={autoCompleteRef}>
 			<Input
+				className={inputClass}
+				style={inputStyle}
 				value={inputValue}
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
@@ -179,6 +198,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
 AutoComplete.defaultProps = {
 	value: "",
+	color: "#3b82f6",
 };
 
 export default AutoComplete;
