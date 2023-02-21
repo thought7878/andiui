@@ -37,7 +37,7 @@ const Icon: React.FC<IconProps> = (props) => {
 	//
 	return (
 		<IconContext.Provider value={{ className: classes, style, ...restProps }}>
-			<div className="inline-block">{_children}</div>
+			<div className="inline-flex">{_children}</div>
 		</IconContext.Provider>
 	);
 };

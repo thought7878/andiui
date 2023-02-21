@@ -6,14 +6,21 @@ import "./index.css";
 
 interface BaseButtonProps {
 	className?: string;
-	disabled?: boolean;
-	size?: "lg" | "md" | "sm";
+	/**设置 Button 类型 */
 	btnType?: "primary" | "default" | "danger" | "link";
+	/**设置 Button 大小，支持 lg 或者是 sm ，默认是md*/
+	size?: "lg" | "md" | "sm";
+	/**设置 Button 不可用 */
+	disabled?: boolean;
+	/**设置 Button 左侧图标 */
+	leftIcon?: React.ReactElement;
+	/**设置 Button 右侧图标 */
+	rightIcon?: React.ReactElement;
+	/**设置 Button 加载 */
 	loading?: boolean;
+
 	children: React.ReactNode;
 	href?: string;
-	rightIcon?: React.ReactElement;
-	leftIcon?: React.ReactElement;
 	// icon?: IconProp;
 }
 //
@@ -57,7 +64,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 	}
 	//return button
 	return (
-		<div className="inline-block">
+		<div className="inline-flex">
 			<button className={classes} disabled={disabled} {...otherProps}>
 				{leftIcon && <Icon icon={leftIcon} className="mr-1" />}
 				{loading && <Spinner className="mr-1" />}

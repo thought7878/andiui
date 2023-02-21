@@ -1,5 +1,5 @@
 import "./App.css";
-import InputDemo from "./demos/input";
+import ButtonDemos from "./demos/button";
 
 function App() {
 	return (
@@ -7,9 +7,9 @@ function App() {
 			{/* <FormDemo></FormDemo> */}
 			{/* <UploadDemo /> */}
 			{/* <AlertDemo /> */}
-			{/* <SpinnerDemo />
-			<ButtonDemos></ButtonDemos> */}
-			<InputDemo></InputDemo>
+			{/* <SpinnerDemo />*/}
+			<ButtonDemos></ButtonDemos>
+			{/* <InputDemo></InputDemo> */}
 			{/* <AutoCompleteDemo></AutoCompleteDemo> */}
 			{/* <MenuDemo></MenuDemo> */}
 		</div>
