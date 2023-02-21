@@ -11,9 +11,7 @@ export default alertMeta;
 const Template: ComponentStory<typeof Alert> = (args) => {
 	return (
 		<div className="m-10 w-80">
-			<div className="mb-5">
-				<Alert closeBtn>default alert</Alert>
-			</div>
+			<Alert closeBtn>default alert</Alert>
 		</div>
 	);
 };
@@ -56,45 +54,61 @@ AlertWithType.storyName = "不同类型的Alert";
 export const AlertWithPosition: ComponentStory<typeof Alert> = (args) => {
 	return (
 		<div className="m-10 w-80">
-			<div className="mb-5">
-				<Alert position="left-top" closeBtn>
-					left-top alert
-				</Alert>
-				<Alert position="left-bottom" closeBtn>
-					left-top alert
-				</Alert>
-				<Alert position="right-top" closeBtn>
-					left-top alert
-				</Alert>
-				<Alert position="right-bottom" closeBtn>
-					left-top alert
-				</Alert>
-			</div>
+			<Alert position="left-top" closeBtn>
+				left-top of viewport
+			</Alert>
+			<Alert position="left-bottom" closeBtn>
+				left-bottom of viewport
+			</Alert>
+			<Alert position="right-top" closeBtn>
+				right-top of viewport
+			</Alert>
+			<Alert position="right-bottom" closeBtn>
+				right-bottom of viewport
+			</Alert>
 		</div>
 	);
 };
 AlertWithPosition.storyName = "不同位置的Alert";
 
 //
-//
-export const AlertWithCustom: ComponentStory<typeof Alert> = (args) => {
+export const AlertWithAutoClose: ComponentStory<typeof Alert> = (args) => {
 	return (
 		<div className="m-10 w-80">
 			<div className="mb-5">
-				<Alert
-					className="bg-amber-500!"
-					style={{ backgroundColor: "#a855f7" }}
-					closeBtn
-				>
-					left-top alert
+				<Alert autoClose>3000 ms</Alert>
+			</div>
+			<div className="mb-5">
+				<Alert autoClose duration={5000}>
+					5000 ms
+				</Alert>
+			</div>
+			<div className="mb-5">
+				<Alert autoClose duration={8000}>
+					8000 ms
 				</Alert>
 			</div>
 		</div>
 	);
 };
-AlertWithCustom.args = {
+AlertWithAutoClose.args = {
 	// style: { padding: "20px 28px", borderRadius: "1.6rem" },
-	className: "px-8 py-6 ",
+	// className: "px-8 py-6 ",
 };
 
+AlertWithAutoClose.storyName = "自动关闭的Alert";
+
+// TODO: unfinish custom class
+export const AlertWithCustom: ComponentStory<typeof Alert> = (args) => {
+	return (
+		<div className="m-10 w-[500px]">
+			<Alert
+				// className="bg-amber-500 px-8 py-6"
+				style={{ backgroundColor: "#a855f7", padding: "1.5rem 2rem" }}
+			>
+				custom backgroundColor & padding
+			</Alert>
+		</div>
+	);
+};
 AlertWithCustom.storyName = "自定义样式的Alert";

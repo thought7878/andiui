@@ -1,6 +1,6 @@
-.alert-wrap {
+/* .alert-wrap {
 	@apply rounded-lg  py-4 px-4 text-base text-white;
-}
+} */
 
 .primary {
 	@apply bg-primary;
