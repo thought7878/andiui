@@ -65,8 +65,10 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 						<div className="flex items-center">
 							<button
 								className="file-remove-btn"
-								onClick={() => {
+								onClick={(e) => {
 									onRemove && onRemove(file);
+									e.preventDefault();
+									e.stopPropagation();
 								}}
 							>
 								<IoMdClose className="text-base" />
@@ -84,7 +86,18 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 		});
 	}
 
-	return <ul className="mt-2">{renderFileList()}</ul>;
+	return (
+		<ul
+			className="mt-2 "
+			// TODO: 阻止点击li，trigger upload
+			onClick={(e) => {
+				e.preventDefault();
+				e.stopPropagation();
+			}}
+		>
+			{renderFileList()}
+		</ul>
+	);
 };
 
 export default UploadFileList;

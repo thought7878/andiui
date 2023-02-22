@@ -4,10 +4,11 @@ import { DragEvent, FC, ReactNode, useState } from "react";
 interface DraggerProps {
 	children?: ReactNode;
 	onFileDrop: (files: FileList) => void;
+	onClick: () => void;
 }
 
 const Dragger: FC<DraggerProps> = (props) => {
-	const { children, onFileDrop } = props;
+	const { children, onFileDrop, onClick } = props;
 	const [isDragOver, setIsDragOver] = useState(false);
 
 	const classes = classNames("", {
@@ -33,10 +34,11 @@ const Dragger: FC<DraggerProps> = (props) => {
 
 	return (
 		<div
-			className={`rounded-lg bg-auiLight-background px-10 py-8 transition-all ${classes} `}
+			className={`cursor-pointer rounded-lg bg-auiLight-background px-10 py-8 transition-all ${classes} `}
 			onDragOver={handleDragOver}
 			onDragLeave={handleDragLeave}
 			onDrop={handleDrop}
+			onClick={onClick}
 		>
 			{children}
 		</div>

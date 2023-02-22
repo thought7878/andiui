@@ -1,25 +1,41 @@
 import axios from "axios";
-import { ChangeEvent, FC, ReactNode, useRef, useState } from "react";
+import React, { ChangeEvent, FC, ReactElement, useRef, useState } from "react";
 import Dragger from "./dragger";
 import UploadFileList from "./uploadFileList";
 
 //
 export interface UploadProps {
+	/**设置url */
 	action: string;
-	children: ReactNode;
+	/**设置children */
+	children: ReactElement;
+	/**设置 */
 	defaultFileList?: UploadFile[];
+	/**上传之前的回调函数  */
 	beforeUpload?: (file: File) => boolean | Promise<File>;
+	/**上传进度的回调函数 */
 	onProgress?: (percentage: number, file: UploadFile) => void;
+	/**上传成功的回调函数 */
 	onSuccess?: (data: any, file: UploadFile) => void;
+	/**上传失败的回调函数 */
 	onError?: (err: any, file: UploadFile) => void;
+	/**文件改变的回调函数 */
 	onChange?: (file: UploadFile) => void;
+	/**文件删除的回调函数 */
 	onRemove?: (file: UploadFile) => void;
+	/**设置http header */
 	httpHeader?: { [key: string]: any };
+	/**设置表单数据 */
 	formData?: { [key: string]: any };
+	/**设置上传文件名 */
 	fileName?: string;
+	/**设置 */
 	withCredentials?: boolean;
+	/**设置接受的文件类型 */
 	accept?: string;
+	/**设置是否可以多文件上传 */
 	multiple?: boolean;
+	/**设置是否拖拽上传 */
 	drag?: boolean;
 }
 //upload file status type
@@ -196,13 +212,22 @@ const Upload: FC<UploadProps> = (props) => {
 		}
 	}
 
+	// 如果不是拖拽上传，给children添加onClick
+	let _children = children;
+	if (!drag) {
+		_children = React.cloneElement(children, { onClick: handleClick });
+	}
+
 	return (
-		<div
-			className="aui-upload-component inline-block rounded-lg"
-			onClick={handleClick}
-		>
+		<div className="rounded-lg">
 			{/*  */}
-			{drag ? <Dragger onFileDrop={uploadFiles}>{children}</Dragger> : children}
+			{drag ? (
+				<Dragger onClick={handleClick} onFileDrop={uploadFiles}>
+					{children}
+				</Dragger>
+			) : (
+				_children
+			)}
 			{/*  */}
 			<input
 				type="file"
@@ -213,6 +238,7 @@ const Upload: FC<UploadProps> = (props) => {
 				accept={accept}
 				multiple={multiple}
 			/>
+			{/*  */}
 			{fileList && (
 				<UploadFileList uploadFileList={fileList} onRemove={handleRemove} />
 			)}
