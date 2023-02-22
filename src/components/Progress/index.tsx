@@ -2,7 +2,11 @@ import { FC } from "react";
 
 interface ProgressProps {
 	progress: number; //0~100
+
+	/* TODO: unfinished custom class */
+	/**设置外层容器的className */
 	wrapperClass?: string;
+	/**设置内层容器的className */
 	innerClass?: string;
 	// text?: string;
 }
