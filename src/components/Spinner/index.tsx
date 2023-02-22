@@ -5,10 +5,15 @@ import { FaSpinner } from "react-icons/fa";
 import Icon from "../Icon";
 
 interface SpinnerProps {
+	/**设置大小 */
 	size?: "sm" | "md" | "lg";
+	/**设置类型 */
 	type?: "ring" | "dot";
+	/**设置颜色 */
 	color?: string;
+	/**自定义大小和颜色 */
 	style?: React.CSSProperties; //Can overwrite size and color,  style={ { verticalAlign: 'middle' } }
+	/**自定义大小和颜色 */
 	className?: string; //自定义size的值
 }
 
@@ -37,6 +42,11 @@ const Spinner: FC<SpinnerProps> = (props) => {
 	}
 
 	return <>{renderIcon()}</>;
+};
+
+Spinner.defaultProps = {
+	// size: "md",
+	type: "ring",
 };
 
 export default Spinner;
