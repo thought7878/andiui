@@ -6,7 +6,7 @@ import Icon from "../Icon";
 
 interface SpinnerProps {
 	/**设置大小 */
-	size?: "sm" | "md" | "lg";
+	size?: "sm" | "md" | "lg" | "xl";
 	/**设置类型 */
 	type?: "ring" | "dot";
 	/**设置颜色 */
@@ -22,8 +22,11 @@ const Spinner: FC<SpinnerProps> = (props) => {
 
 	//handle size
 	let _size: string;
-	if (size && size === "lg") {
-		_size = `1.125rem`;
+
+	if (size && size === "xl") {
+		_size = `1.6rem`;
+	} else if (size && size === "lg") {
+		_size = `1.25rem`;
 	} else if (size && size === "sm") {
 		_size = `0.875rem`;
 	} else if (size && size === "md") {

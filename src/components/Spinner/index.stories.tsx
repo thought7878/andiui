@@ -20,10 +20,11 @@ SpinnerWithDefault.storyName = "默认的spinner";
 //
 export const SpinnerWithSize: ComponentStory<typeof Spinner> = (args) => {
 	return (
-		<div className="flex w-[80px] justify-between ">
+		<div className="text flex w-[80px] items-center justify-between">
 			<Spinner size="sm" />
 			<Spinner size="md" />
 			<Spinner size="lg" />
+			<Spinner size="xl" />
 		</div>
 	);
 };
