@@ -33,20 +33,59 @@ export const AutoCompleteWithDefault: ComponentStory<typeof AutoComplete> = (
 		</div>
 	);
 };
-AutoCompleteWithDefault.storyName = "默认AutoComplete";
+AutoCompleteWithDefault.storyName = "默认的AutoComplete";
 
 //
-export const AutoCompleteWithCustom: ComponentStory<typeof AutoComplete> = (
-	args
-) => {
+export const AutoCompleteWithCustomInput: ComponentStory<
+	typeof AutoComplete
+> = (args) => {
 	return (
 		<div style={{ width: "300px", height: "500px" }}>
-			<AutoComplete
-				fetchSuggestions={fetchSuggestions}
-				inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
-				// renderOption={renderOption}
-			/>
+			<div className="mb-[200px]">
+				<AutoComplete
+					fetchSuggestions={fetchSuggestions}
+					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
+					// renderOption={renderOption}
+				/>
+			</div>
+
+			<div className="mb-8">
+				<AutoComplete
+					fetchSuggestions={fetchSuggestions}
+					inputStyle={{ padding: "2rem 3rem" }}
+					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
+					// renderOption={renderOption}
+				/>
+			</div>
 		</div>
 	);
 };
-AutoCompleteWithCustom.storyName = "自定义AutoComplete的样式";
+AutoCompleteWithCustomInput.storyName = "自定义AutoComplete的input样式";
+
+//
+export const AutoCompleteWithCustomSpinner: ComponentStory<
+	typeof AutoComplete
+> = (args) => {
+	return (
+		<div style={{ width: "300px", height: "500px" }}>
+			<div className="mb-[200px]">
+				<AutoComplete
+					fetchSuggestions={fetchSuggestions}
+					spinnerStyle={{ color: "#3b82f6", fontSize: "2rem" }}
+					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
+					// renderOption={renderOption}
+				/>
+			</div>
+
+			<div className="mb-8">
+				<AutoComplete
+					fetchSuggestions={fetchSuggestions}
+					spinnerStyle={{ color: "#a855f7", fontSize: "3rem" }}
+					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
+					// renderOption={renderOption}
+				/>
+			</div>
+		</div>
+	);
+};
+AutoCompleteWithCustomSpinner.storyName = "自定义AutoComplete的spinner样式";

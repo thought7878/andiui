@@ -1,3 +1,5 @@
+/* @layer components { */
+/* TODO: unfinished tailwind */
 .aui-input-wrapper {
 	.icon-wrapper {
 		svg {
@@ -31,3 +33,4 @@
 .input-size-lg .aui-input-inner {
 	@apply px-4 py-2 text-lg;
 }
+/* } */

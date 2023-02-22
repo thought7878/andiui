@@ -24,10 +24,13 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
 	/**设置Input 样式 */
 	inputClass?: string;
 	/**设置Input 样式 */
-	inputStyle?: React.StyleHTMLAttributes<HTMLInputElement>;
-	/**设置spinner 样式 */ // TODO:
+	inputStyle?: React.CSSProperties;
+	/**设置spinner className属性 */ // TODO: unfinished
 	spinnerClass?: string;
-	color?: string;
+	/**设置spinner style属性 */
+	spinnerStyle?: React.CSSProperties;
+	/**设置spinner color属性 */
+	spinnerColor?: string;
 	/**获取远程数据 */
 	fetchSuggestions: (
 		keyword: string
@@ -45,9 +48,11 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		inputClass,
 		inputStyle,
 		spinnerClass,
-		color,
+		spinnerStyle,
+		spinnerColor,
 		value,
 		renderOption,
+
 		...otherProps
 	} = props;
 	//
@@ -160,7 +165,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	function renderLoadingIcon() {
 		return (
 			<div className="suggstions-loading-icon top absolute left-0 z-[99] flex min-h-[75px] w-full justify-center ">
-				<Spinner color={color} style={{ fontSize: "2rem" }} />
+				<Spinner color={spinnerColor} style={spinnerStyle} />
 			</div>
 		);
 	}
@@ -198,7 +203,8 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
 AutoComplete.defaultProps = {
 	value: "",
-	color: "#3b82f6",
+	spinnerColor: "#3b82f6",
+	spinnerStyle: { color: "#3b82f6", fontSize: "2rem" },
 };
 
 export default AutoComplete;
