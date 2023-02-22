@@ -1,11 +1,11 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import AutoComplete from "./";
 
-const alertMeta: ComponentMeta<typeof AutoComplete> = {
+const autoCompleteMeta: ComponentMeta<typeof AutoComplete> = {
 	title: "AutoComplete 组件",
 	component: AutoComplete,
 };
-export default alertMeta;
+export default autoCompleteMeta;
 
 function fetchSuggestions(keyword: string) {
 	// return lakers.filter((item) => item.value.includes(keyword));
