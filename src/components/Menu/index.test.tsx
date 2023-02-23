@@ -1,6 +1,5 @@
 import { render, RenderResult, screen } from "@testing-library/react";
-import React from "react";
-import Menu, { MenuProps } from ".";
+import Menu, { MenuProps } from "./menu";
 import MenuItem from "./menuItem";
 
 const testProps: MenuProps = {

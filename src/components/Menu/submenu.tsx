@@ -2,11 +2,11 @@ import classNames from "classnames";
 import React, { useContext, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { CSSTransition } from "react-transition-group";
-import { MenuContext } from ".";
 import Icon from "../Icon";
+import { MenuContext } from "./menu";
 import { MenuItemProps } from "./menuItem";
 
-interface SubmenuProps {
+export interface SubmenuProps {
 	index?: string;
 	title: string;
 	className?: string;

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Menu from "./";
+import Menu from "./menu";
 // import mdx from "./index.mdx";
 import MenuItem from "./menuItem";
 import Submenu from "./submenu";
