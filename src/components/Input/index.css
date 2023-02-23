@@ -1,36 +1,51 @@
-/* @layer components { */
-/* TODO: unfinished tailwind */
-.aui-input-wrapper {
-	.icon-wrapper {
-		svg {
-			@apply text-gray-400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .zhang-liang {
+	color: gold;
+} */
+
+@layer components {
+	/* TODO: unfinished tailwind */
+	.aui-input-wrapper {
+		.icon-wrapper {
+			svg {
+				@apply text-gray-400;
+			}
 		}
 	}
-}
-.icon-wrapper + .aui-input-inner {
-	padding-right: 35px;
-}
-.aui-input-group-append + .btn {
-	padding: 0;
-	border: 0;
-}
-.input-group > .aui-input-group-prepend,
-.input-group.input-group-append > .aui-input-inner {
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
+	.aui-input-inner {
+		@apply w-full  rounded-md border border-solid border-auiLight-border 
+        bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out placeholder:text-auiLight-secondary  
+        read-only:cursor-not-allowed read-only:bg-auiLight-black15 
+        hover:border-primary focus:border-primary focus:shadow-primary focus:outline-0  
+        disabled:cursor-not-allowed disabled:border-auiLight-border disabled:bg-auiLight-black15 disabled:shadow-none;
+	}
+	.icon-wrapper + .aui-input-inner {
+		padding-right: 35px;
+	}
+	.aui-input-group-append + .btn {
+		padding: 0;
+		border: 0;
+	}
+	.input-group > .aui-input-group-prepend,
+	.input-group.input-group-append > .aui-input-inner {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
 
-.input-group > .aui-input-group-append,
-.input-group.input-group-prepend > .aui-input-inner {
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
+	.input-group > .aui-input-group-append,
+	.input-group.input-group-prepend > .aui-input-inner {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
 
-.input-size-sm .aui-input-inner {
-	@apply rounded-md px-2 py-1 text-sm;
-}
+	.input-size-sm .aui-input-inner {
+		@apply rounded-md px-2 py-1 text-sm;
+	}
 
-.input-size-lg .aui-input-inner {
-	@apply px-4 py-2 text-lg;
+	.input-size-lg .aui-input-inner {
+		@apply px-4 py-2 text-lg;
+	}
 }
-/* } */

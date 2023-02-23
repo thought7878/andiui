@@ -66,12 +66,7 @@ export const Input: React.FC<InputProps> = (props) => {
 			)}
 			{/* <div className=""></div> */}
 			<input
-				className={`aui-input-inner w-full  rounded-md border border-solid border-auiLight-border 
-        bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out placeholder:text-auiLight-secondary  
-        read-only:cursor-not-allowed read-only:bg-auiLight-black15 
-        hover:border-primary focus:border-primary focus:shadow-primary focus:outline-0  
-        disabled:cursor-not-allowed disabled:border-auiLight-border disabled:bg-auiLight-black15 disabled:shadow-none 
-        ${className}`}
+				className={`aui-input-inner ${className}`}
 				style={style}
 				disabled={disabled}
 				{...otherProps}

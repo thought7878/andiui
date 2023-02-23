@@ -9,6 +9,13 @@ export interface UploadProps {
 	action: string;
 	/**设置children */
 	children: ReactElement;
+	/**设置接受的文件类型。参考，input accept属性，如：.jpg, .pdf,  .doc */
+	accept?: string;
+	/**设置是否可以多文件上传 */
+	multiple?: boolean;
+	/**设置是否拖拽上传 */
+	drag?: boolean;
+
 	/**设置 */
 	defaultFileList?: UploadFile[];
 	/**上传之前的回调函数  */
@@ -31,12 +38,6 @@ export interface UploadProps {
 	fileName?: string;
 	/**设置 */
 	withCredentials?: boolean;
-	/**设置接受的文件类型 */
-	accept?: string;
-	/**设置是否可以多文件上传 */
-	multiple?: boolean;
-	/**设置是否拖拽上传 */
-	drag?: boolean;
 }
 //upload file status type
 export interface UploadFile {
@@ -244,6 +245,11 @@ const Upload: FC<UploadProps> = (props) => {
 			)}
 		</div>
 	);
+};
+
+Upload.defaultProps = {
+	multiple: false,
+	drag: false,
 };
 
 export default Upload;

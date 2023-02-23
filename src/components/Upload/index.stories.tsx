@@ -24,35 +24,62 @@ export const UploadWithDefault = Template.bind({});
 UploadWithDefault.args = {
 	action: "https://jsonplaceholder.typicode.com/posts",
 };
+UploadWithDefault.storyName = "默认upload";
+
+//
+export const UploadWithAccept = Template.bind({});
+UploadWithAccept.args = {
+	action: "https://jsonplaceholder.typicode.com/posts",
+	accept: ".jpg",
+};
+UploadWithAccept.storyName = "设置accept2";
 
 //
 export const UploadWithButton: ComponentStory<typeof Upload> = (args) => {
 	return (
-		<Upload
-			action="https://jsonplaceholder.typicode.com/posts"
-			accept=".jpg"
-			multiple
-			onProgress={(percentage, file) => {
-				// console.log("onProgress:", percentage);
-			}}
-			onSuccess={(res, file) => {
-				console.log("onSuccess:");
-			}}
-			onError={(error, file) => {
-				console.log("onError:", error);
-			}}
-		>
-			<Button btnType="primary">Upload Files</Button>
-		</Upload>
+		<div className="w-[300px]">
+			<Upload action="https://jsonplaceholder.typicode.com/posts" accept=".jpg">
+				<Button btnType="primary">Upload Files</Button>
+			</Upload>
+		</div>
 	);
 };
-UploadWithButton.storyName = "使用Button的upload";
+UploadWithButton.storyName = "设置接受的文件类型";
+
+//
+export const UploadWithMultiple: ComponentStory<typeof Upload> = (args) => {
+	return (
+		<div className="w-[300px]">
+			<Upload action="https://jsonplaceholder.typicode.com/posts" multiple>
+				<Button btnType="primary">Upload Files</Button>
+			</Upload>
+		</div>
+	);
+};
+UploadWithMultiple.storyName = "设置多文件上传";
+
+//
+export const UploadWithDrag: ComponentStory<typeof Upload> = (args) => {
+	return (
+		<div className="w-[300px]">
+			<Upload action="https://jsonplaceholder.typicode.com/posts" drag>
+				<>
+					<div className="mb-5 flex justify-center">
+						<Icon icon={<AiOutlineCloudUpload />} className="text-5xl" />
+					</div>
+					<p>Drag and Drop to Upload Files</p>
+				</>
+			</Upload>
+		</div>
+	);
+};
+UploadWithDrag.storyName = "拖拽上传";
 
 //
 export const UploadWithBeforeFun: ComponentStory<typeof Upload> = (args) => {
 	return (
 		<div>
-			<div className="mb-8">
+			<div className="mb-8 w-[300px]">
 				<Upload
 					action="https://jsonplaceholder.typicode.com/posts"
 					beforeUpload={() => {
@@ -63,7 +90,7 @@ export const UploadWithBeforeFun: ComponentStory<typeof Upload> = (args) => {
 					<Button btnType="primary">beforeUpload:false</Button>
 				</Upload>
 			</div>
-			<div className="mb-8">
+			<div className="mb-8 w-[300px]">
 				<Upload
 					action="https://jsonplaceholder.typicode.com/posts"
 					beforeUpload={() => {
@@ -84,13 +111,6 @@ export const UploadWithSize: ComponentStory<typeof Upload> = (args) => {
 	return (
 		<div className="w-[300px]">
 			<Upload
-				// action="http://localhost:3100/files/upload"
-				// defaultFileList={defaultFileList}
-
-				// action="http://localhost:3000/request/upload"
-				// action="http://0.0.0.0:3200/files/v3/files"
-				// action="https://run.mocky.io/v3/3712e2a8-3b41-4f4b-ab7b-9a4e5eb4d4b9"
-				// action="http://localhost:3000/v2/5cc8019d300000980a055e76"
 				action="https://jsonplaceholder.typicode.com/posts"
 				// beforeUpload={handleBeforeUpload}
 

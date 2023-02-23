@@ -84,9 +84,9 @@ export const InputWithCustom = Template.bind({});
 InputWithCustom.args = {
 	placeholder: "自定义样式",
 	// readOnly: true,
-	style: { borderRadius: "2rem" },
+	// style: { borderRadius: "2rem" },
 	className:
-		"px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500",
+		"px-8 py-6 rounded-[5rem] hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500",
 };
 
 InputWithCustom.storyName = "自定义样式的Input";

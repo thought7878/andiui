@@ -72,10 +72,12 @@ const UploadDemo = () => {
 					console.log("onError:", error);
 				}}
 			>
-				<div className="mb-5 flex justify-center">
-					<Icon icon={<AiOutlineCloudUpload />} className="text-5xl" />
-				</div>
-				<p>Drag and Drop to Upload Files</p>
+				<>
+					<div className="mb-5 flex justify-center">
+						<Icon icon={<AiOutlineCloudUpload />} className="text-5xl" />
+					</div>
+					<p>Drag and Drop to Upload Files</p>
+				</>
 			</Upload>
 			{/*  */}
 			<Upload
