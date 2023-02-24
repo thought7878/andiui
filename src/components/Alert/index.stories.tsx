@@ -98,8 +98,25 @@ AlertWithAutoClose.args = {
 
 AlertWithAutoClose.storyName = "自动关闭的Alert";
 
-// TODO: unfinish custom class
-export const AlertWithCustom: ComponentStory<typeof Alert> = (args) => {
+//
+export const AlertWithCustomClassName: ComponentStory<typeof Alert> = (
+	args
+) => {
+	return (
+		<div className="m-10 w-[500px]">
+			<Alert
+				className="bg-purple-500 py-6 px-8"
+				// style={{ backgroundColor: "#a855f7", padding: "1.5rem 2rem" }}
+			>
+				custom backgroundColor & padding
+			</Alert>
+		</div>
+	);
+};
+AlertWithCustomClassName.storyName = "自定义样式：className";
+
+//
+export const AlertWithCustomStyle: ComponentStory<typeof Alert> = (args) => {
 	return (
 		<div className="m-10 w-[500px]">
 			<Alert
@@ -111,4 +128,4 @@ export const AlertWithCustom: ComponentStory<typeof Alert> = (args) => {
 		</div>
 	);
 };
-AlertWithCustom.storyName = "自定义样式的Alert";
+AlertWithCustomStyle.storyName = "自定义样式：style";

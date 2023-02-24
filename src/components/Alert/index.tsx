@@ -16,8 +16,10 @@ interface AlertProps extends React.HTMLAttributes<HTMLElement> {
 	autoClose?: boolean;
 	/**自动关闭的持续时间，单位是毫秒 ms */
 	duration?: number; //ms
-
+	/**自定义样式 */
 	className?: string; //comstomise style
+	/**自定义样式 */
+	style?: React.CSSProperties;
 	children?: ReactNode;
 }
 
@@ -49,13 +51,9 @@ const Alert: FC<AlertProps> = (props) => {
 	}, []);
 
 	// 不同情况，不同样式
-	const classes = classNames(
-		`alert-wrap flex justify-between items-center rounded-lg  py-4 px-4 text-base text-white`,
-		type,
-		{
-			[position + ""]: position,
-		}
-	);
+	const classes = classNames("alert", type, className, {
+		[position + ""]: position,
+	});
 
 	//
 	function handleClose() {
@@ -69,12 +67,7 @@ const Alert: FC<AlertProps> = (props) => {
 			classNames="aui-show-hide"
 			unmountOnExit
 		>
-			<div
-				className={`${classes} ${className}`}
-				style={style}
-				role="alert"
-				{...rest}
-			>
+			<div className={classes} style={style} role="alert" {...rest}>
 				{children}
 				{closeBtn && (
 					<div
