@@ -1,21 +1,19 @@
-import Menu from "../components/Menu/menu";
-import MenuItem from "../components/Menu/menuItem";
-import Submenu from "../components/Menu/submenu";
+import Menu from "../components/Menu/";
 
 const MenuDemo = () => {
 	return (
 		<div>
 			<div className="menu-horizontal-container">
 				<Menu defaultIndex="0" onSelect={(index) => {}}>
-					<MenuItem>菜单1</MenuItem>
-					<MenuItem>菜单2</MenuItem>
-					<MenuItem>菜单3</MenuItem>
-					<MenuItem disabled>菜单4</MenuItem>
-					<Submenu title="菜单4">
-						<MenuItem>菜单1</MenuItem>
-						<MenuItem>菜单2</MenuItem>
-						<MenuItem>菜单3</MenuItem>
-					</Submenu>
+					<Menu.Item>菜单1</Menu.Item>
+					<Menu.Item>菜单2</Menu.Item>
+					<Menu.Item>菜单3</Menu.Item>
+					<Menu.Item disabled>菜单4</Menu.Item>
+					<Menu.SubMenu title="菜单4">
+						<Menu.Item>菜单1</Menu.Item>
+						<Menu.Item>菜单2</Menu.Item>
+						<Menu.Item>菜单3</Menu.Item>
+					</Menu.SubMenu>
 				</Menu>
 			</div>
 			<div className="menu-vertical-container">
@@ -26,15 +24,15 @@ const MenuDemo = () => {
 					}}
 					direction="vertical"
 				>
-					<MenuItem>菜单1</MenuItem>
-					<MenuItem>菜单2</MenuItem>
-					<Submenu title="菜单3" extended>
-						<MenuItem>子菜单1</MenuItem>
-						<MenuItem>子菜单2</MenuItem>
-						<MenuItem>子菜单3</MenuItem>
-					</Submenu>
-					<MenuItem disabled>菜单4</MenuItem>
-					<MenuItem>菜单5</MenuItem>
+					<Menu.Item>菜单1</Menu.Item>
+					<Menu.Item>菜单2</Menu.Item>
+					<Menu.SubMenu title="菜单3" extended>
+						<Menu.Item>子菜单1</Menu.Item>
+						<Menu.Item>子菜单2</Menu.Item>
+						<Menu.Item>子菜单3</Menu.Item>
+					</Menu.SubMenu>
+					<Menu.Item disabled>菜单4</Menu.Item>
+					<Menu.Item>菜单5</Menu.Item>
 				</Menu>
 			</div>
 		</div>
