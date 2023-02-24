@@ -1,14 +1,11 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Menu from "./menu";
-// import mdx from "./index.mdx";
-import MenuItem from "./menuItem";
-import Submenu from "./submenu";
+import Menu from "./";
 
 const menuMeta: ComponentMeta<typeof Menu> = {
 	title: "Menu 组件",
 	// id: "Menu",
 	component: Menu,
-	subcomponents: { Submenu: Submenu, MenuItem: MenuItem },
+	subcomponents: { Submenu: Menu.SubMenu, MenuItem: Menu.Item },
 	args: { defaultIndex: "1" },
 	argTypes: {
 		defaultIndex: {
@@ -33,15 +30,15 @@ const Template: ComponentStory<typeof Menu> = (args) => {
 	return (
 		<div className="menu-horizontal-container">
 			<Menu {...args}>
-				<MenuItem>菜单1</MenuItem>
-				<MenuItem>菜单2</MenuItem>
-				<MenuItem>菜单3</MenuItem>
-				<MenuItem disabled>菜单4</MenuItem>
-				<Submenu title="菜单4">
-					<MenuItem>菜单1</MenuItem>
-					<MenuItem>菜单2</MenuItem>
-					<MenuItem>菜单3</MenuItem>
-				</Submenu>
+				<Menu.Item>菜单1</Menu.Item>
+				<Menu.Item>菜单2</Menu.Item>
+				<Menu.Item>菜单3</Menu.Item>
+				<Menu.Item disabled>菜单4</Menu.Item>
+				<Menu.SubMenu title="菜单4">
+					<Menu.Item>菜单1</Menu.Item>
+					<Menu.Item>菜单2</Menu.Item>
+					<Menu.Item>菜单3</Menu.Item>
+				</Menu.SubMenu>
 			</Menu>
 		</div>
 	);
