@@ -1,19 +1,21 @@
-.aui-auto-complete {
-}
-.suggstions-loading-icon {
-	top: calc(100% + 8px);
-}
-.aui-suggestion-list {
-	top: calc(100% + 8px);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-	.suggestion-item {
-		transition: $menu-transition;
-		&.is-active {
-			background: $menu-item-active-color !important;
-			color: $white !important;
-		}
-		&:hover {
-			color: $menu-item-active-color !important;
+@layer components {
+	.suggstions-loading-icon {
+		top: calc(100% + 8px);
+	}
+	.aui-suggestion-list {
+		top: calc(100% + 8px);
+
+		.suggestion-item {
+			@apply cursor-pointer px-4 py-2 text-gray-900 transition-all 
+      hover:bg-primary hover:text-white;
+
+			&.is-active {
+				@apply bg-primary  text-white;
+			}
 		}
 	}
 }

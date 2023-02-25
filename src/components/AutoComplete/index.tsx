@@ -13,6 +13,8 @@ import useDebounce from "../../hooks/useDebounce";
 import Input, { InputProps } from "../Input";
 import Spinner from "../Spinner";
 
+import "./index.css";
+
 //
 export interface DataSourceObject {
 	value: string; //suggestion string
@@ -146,7 +148,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 			return (
 				<li
 					key={index}
-					className={`${suggestionClasses} cursor-pointer px-4 py-2 text-gray-900`}
+					className={suggestionClasses}
 					onClick={() => {
 						handleClick(suggestion);
 					}}
@@ -164,15 +166,19 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	//
 	function renderLoadingIcon() {
 		return (
-			<div className="suggstions-loading-icon top absolute left-0 z-[99] flex min-h-[75px] w-full justify-center ">
-				<Spinner color={spinnerColor} style={spinnerStyle} />
+			<div className="suggstions-loading-icon absolute left-0 z-[99] flex min-h-[75px] w-full justify-center ">
+				<Spinner
+					className={spinnerClass}
+					color={spinnerColor}
+					style={spinnerStyle}
+				/>
 			</div>
 		);
 	}
 
 	//
 	return (
-		<div className="aui-auto-complete relative" ref={autoCompleteRef}>
+		<div className=" relative" ref={autoCompleteRef}>
 			<Input
 				className={inputClass}
 				style={inputStyle}
@@ -203,8 +209,8 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
 AutoComplete.defaultProps = {
 	value: "",
-	spinnerColor: "#3b82f6",
-	spinnerStyle: { color: "#3b82f6", fontSize: "2rem" },
+	// spinnerColor: "#3b82f6",
+	// spinnerStyle: { color: "#3b82f6", fontSize: "2rem" },
 };
 
 export default AutoComplete;
