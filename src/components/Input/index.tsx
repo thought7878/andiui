@@ -55,7 +55,7 @@ export const Input: React.FC<InputProps> = (props) => {
 	return (
 		<div className={`relative inline-flex  w-full ${classes}`}>
 			{prepend && (
-				<div className="aui-input-group-prepend mb-0 inline-flex items-center whitespace-nowrap rounded-md border border-solid border-auiLight-divider bg-auiLight-divider px-3 py-1.5 text-center text-base font-normal text-auiLight-primary">
+				<div className="input-prepend-wrapper mb-0 inline-flex items-center whitespace-nowrap rounded-md border border-solid border-auiLight-divider bg-auiLight-divider px-3 py-1.5 text-center text-base font-normal text-auiLight-primary">
 					{prepend}
 				</div>
 			)}
@@ -64,15 +64,14 @@ export const Input: React.FC<InputProps> = (props) => {
 					{icon}
 				</div>
 			)}
-			{/* <div className=""></div> */}
 			<input
-				className={`aui-input-inner ${className}`}
+				className={`aui-input ${className}`}
 				style={style}
 				disabled={disabled}
 				{...otherProps}
 			/>
 			{append && (
-				<div className="aui-input-group-append mb-0 inline-flex items-center whitespace-nowrap rounded-md border border-solid border-auiLight-divider bg-auiLight-divider px-3 py-1.5 text-center text-base font-normal text-auiLight-primary">
+				<div className="input-append-wrapper mb-0 inline-flex items-center whitespace-nowrap rounded-md border border-solid border-auiLight-divider bg-auiLight-divider px-3 py-1.5 text-center text-base font-normal text-auiLight-primary">
 					{append}
 				</div>
 			)}

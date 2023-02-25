@@ -15,37 +15,37 @@
 			}
 		}
 	}
-	.aui-input-inner {
+	.aui-input {
 		@apply w-full  rounded-md border border-solid border-auiLight-border 
         bg-white bg-clip-padding px-3 py-1.5 text-base font-normal text-auiLight-primary shadow-sm transition-all duration-300 ease-in-out placeholder:text-auiLight-secondary  
         read-only:cursor-not-allowed read-only:bg-auiLight-black15 
         hover:border-primary focus:border-primary focus:shadow-primary focus:outline-0  
         disabled:cursor-not-allowed disabled:border-auiLight-border disabled:bg-auiLight-black15 disabled:shadow-none;
 	}
-	.icon-wrapper + .aui-input-inner {
+	.icon-wrapper + .aui-input {
 		padding-right: 35px;
 	}
-	.aui-input-group-append + .btn {
+	.input-append-wrapper + .btn {
 		padding: 0;
 		border: 0;
 	}
-	.input-group > .aui-input-group-prepend,
-	.input-group.input-group-append > .aui-input-inner {
+	.input-group > .input-prepend-wrapper,
+	.input-group.input-group-append > .aui-input {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}
 
-	.input-group > .aui-input-group-append,
-	.input-group.input-group-prepend > .aui-input-inner {
+	.input-group > .input-append-wrapper,
+	.input-group.input-group-prepend > .aui-input {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 	}
 
-	.input-size-sm .aui-input-inner {
+	.input-size-sm .aui-input {
 		@apply rounded-md px-2 py-1 text-sm;
 	}
 
-	.input-size-lg .aui-input-inner {
+	.input-size-lg .aui-input {
 		@apply px-4 py-2 text-lg;
 	}
 }

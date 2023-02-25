@@ -1,0 +1,19 @@
+.aui-auto-complete {
+}
+.suggstions-loading-icon {
+	top: calc(100% + 8px);
+}
+.aui-suggestion-list {
+	top: calc(100% + 8px);
+
+	.suggestion-item {
+		transition: $menu-transition;
+		&.is-active {
+			background: $menu-item-active-color !important;
+			color: $white !important;
+		}
+		&:hover {
+			color: $menu-item-active-color !important;
+		}
+	}
+}
