@@ -33,6 +33,8 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
 	spinnerStyle?: React.CSSProperties;
 	/**设置spinner color属性 */
 	spinnerColor?: string;
+	/**设置item className属性 */
+	itemClass?: string;
 	/**获取远程数据 */
 	fetchSuggestions: (
 		keyword: string
@@ -52,6 +54,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		spinnerClass,
 		spinnerStyle,
 		spinnerColor,
+		itemClass,
 		value,
 		renderOption,
 
@@ -141,9 +144,13 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	function renderSuggestions() {
 		let lis = suggestions.map((suggestion, index) => {
 			// classes
-			let suggestionClasses = classNames("suggestion-item", {
-				"is-active": index === highlightIndex,
-			});
+			let suggestionClasses = classNames(
+				"suggestion-item",
+				{
+					"is-active": index === highlightIndex,
+				},
+				itemClass
+			);
 			//
 			return (
 				<li
@@ -178,7 +185,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 
 	//
 	return (
-		<div className=" relative" ref={autoCompleteRef}>
+		<div className="relative" ref={autoCompleteRef}>
 			<Input
 				className={inputClass}
 				style={inputStyle}

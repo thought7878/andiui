@@ -48,7 +48,7 @@ export const AutoCompleteWithCustomSpinnerColor: ComponentStory<
 		</div>
 	);
 };
-AutoCompleteWithCustomSpinnerColor.storyName = "自定义spinner color样式";
+AutoCompleteWithCustomSpinnerColor.storyName = "自定义spinner color";
 
 //
 export const AutoCompleteWithCustomSpinner: ComponentStory<
@@ -75,7 +75,7 @@ export const AutoCompleteWithCustomSpinner: ComponentStory<
 		</div>
 	);
 };
-AutoCompleteWithCustomSpinner.storyName = "自定义spinner样式";
+AutoCompleteWithCustomSpinner.storyName = "自定义spinner color和size";
 
 //
 export const AutoCompleteWithCustomInput: ComponentStory<
@@ -83,7 +83,7 @@ export const AutoCompleteWithCustomInput: ComponentStory<
 > = (args) => {
 	return (
 		<div className="w-[300px]">
-			<div className="mb-[60px]">
+			<div className="mb-[200px]">
 				<AutoComplete
 					fetchSuggestions={fetchSuggestions}
 					inputClass="px-6 py-3  rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
@@ -91,10 +91,11 @@ export const AutoCompleteWithCustomInput: ComponentStory<
 				/>
 			</div>
 
-			<div className="mb-8">
+			<div className="mb-[200px]">
 				<AutoComplete
 					fetchSuggestions={fetchSuggestions}
 					inputStyle={{ padding: "0.75rem 1.5rem", borderRadius: "2rem" }}
+					spinnerClass="text-primary text-[2rem]"
 					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
 					// renderOption={renderOption}
 				/>
@@ -103,3 +104,24 @@ export const AutoCompleteWithCustomInput: ComponentStory<
 	);
 };
 AutoCompleteWithCustomInput.storyName = "自定义input样式";
+
+//
+export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
+	args
+) => {
+	return (
+		<div className="w-[300px]">
+			<div className="mb-[200px]">
+				<AutoComplete
+					fetchSuggestions={fetchSuggestions}
+					itemClass="hover:bg-green-500"
+					inputClass="px-6 py-3  rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
+					spinnerClass="text-primary text-[2rem]"
+					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
+					// renderOption={renderOption}
+				/>
+			</div>
+		</div>
+	);
+};
+AutoCompleteWithCustomItem.storyName = "自定义Item样式";
