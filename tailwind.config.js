@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require("tailwindcss/defaultTheme");
+const path = require("path");
 
 module.exports = {
-	content: ["./src/**/*.{js,jsx,ts,tsx}"],
+	content: [path.join(__dirname, "./src/**/*.{js,jsx,ts,tsx}")],
 	theme: {
 		// fontFamily: {
 		// 	sans: ["Graphik", "sans-serif"],

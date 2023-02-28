@@ -11,7 +11,7 @@
 // };
 
 // postcss.config.js
-
+/* 
 module.exports = {
 	plugins: [
 		"postcss-import",
@@ -20,6 +20,7 @@ module.exports = {
 		"postcss-simple-vars",
 		"tailwindcss",
 		"postcss-flexbugs-fixes",
+
 		[
 			"postcss-preset-env",
 			{
@@ -29,5 +30,17 @@ module.exports = {
 				stage: 1, //3
 			},
 		],
+	],
+}; */
+
+module.exports = {
+	plugins: [
+		require("postcss-import"),
+		require("tailwindcss/nesting"),
+		require("tailwindcss"),
+		// require('postcss-mixins'),
+		// require("stylelint"),
+		require("postcss-preset-env")({ stage: 1 }),
+		// require('cssnano'),
 	],
 };
