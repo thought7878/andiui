@@ -23,25 +23,25 @@ export type DataSourceType<T = {}> = Partial<T & DataSourceObject>;
 
 //
 export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
-	/**设置Input 样式 */
+	/**Set input style with class name */
 	inputClass?: string;
-	/**设置Input 样式 */
+	/**Set input style with style */
 	inputStyle?: React.CSSProperties;
-	/**设置spinner className属性 */ // TODO: unfinished
+	/**Set spinner style with class name */ // TODO: unfinished
 	spinnerClass?: string;
-	/**设置spinner style属性 */
+	/**Set spinner style with style */
 	spinnerStyle?: React.CSSProperties;
-	/**设置spinner color属性 */
+	/**Set spinner color */
 	spinnerColor?: string;
-	/**设置item className属性 */
+	/**Set item style with class name */
 	itemClass?: string;
-	/**获取远程数据 */
+	/**fetch data */
 	fetchSuggestions: (
 		keyword: string
 	) => DataSourceType[] | Promise<DataSourceType[]>;
-	/**选中suggestion的回调函数 */
+	/**Selected Item's callback function */
 	onSelect?: (item: DataSourceType) => void;
-	/**自定义option列表   */
+	/**Custom option list   */
 	renderOption?: (item: DataSourceType) => ReactElement;
 }
 

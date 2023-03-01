@@ -21,19 +21,34 @@ function fetchSuggestions(keyword: string) {
 }
 
 //
-export const AutoCompleteWithDefault: ComponentStory<typeof AutoComplete> = (
-	args
-) => {
+const Template: ComponentStory<typeof AutoComplete> = (args) => {
 	return (
 		<div style={{ width: "300px", height: "350px" }}>
 			<AutoComplete
-				fetchSuggestions={fetchSuggestions}
-				// renderOption={renderOption}
+				// fetchSuggestions={fetchSuggestions}
+				{...args}
 			/>
 		</div>
 	);
 };
-AutoCompleteWithDefault.storyName = "默认的AutoComplete";
+
+//
+export const AutoCompleteWithDefault = Template.bind({});
+AutoCompleteWithDefault.args = {
+	fetchSuggestions: (keyword: string) => {
+		// return lakers.filter((item) => item.value.includes(keyword));
+		return fetch(`https://api.github.com/search/users?q=${keyword}`)
+			.then((res) => {
+				return res.json();
+			})
+			.then(({ items }) => {
+				return items.slice(0, 10).map((item: { login: any }) => {
+					return { value: item.login, ...item };
+				});
+			});
+	},
+};
+AutoCompleteWithDefault.storyName = "default";
 
 //
 export const AutoCompleteWithCustomSpinnerColor: ComponentStory<
