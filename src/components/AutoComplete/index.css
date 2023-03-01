@@ -6,7 +6,7 @@
 	.suggstions-loading-icon {
 		top: calc(100% + 8px);
 	}
-	.aui-suggestion-list {
+	.suggestion-list {
 		top: calc(100% + 8px);
 
 		.suggestion-item {

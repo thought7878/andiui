@@ -165,7 +165,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 			);
 		});
 		return (
-			<ul className="aui-suggestion-list absolute left-0 z-[100] w-full list-none whitespace-nowrap rounded-lg border border-solid border-gray-200 bg-white pl-0 shadow-lg">
+			<ul className="suggestion-list absolute left-0 z-[100] w-full list-none whitespace-nowrap rounded-lg border border-solid border-gray-200 bg-white pl-0 shadow-lg">
 				{lis}
 			</ul>
 		);

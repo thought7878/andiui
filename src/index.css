@@ -2,12 +2,12 @@
 
 @import "tailwindcss/components";
 
-/* ./components/Alert/index.css */
+/* component start */
 @import "./components/Alert/index.css";
-/*@import "./components/AutoComplete/index.css";
-@import "./components/Button/index.css";
+@import "./components/AutoComplete/index.css";
+/*@import "./components/Button/index.css";
 @import "./components/Input/index.css"; */
 
-/*  */
+/* component end */
 
 @import "tailwindcss/utilities";
