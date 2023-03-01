@@ -2,15 +2,15 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Menu from "./";
 
 const menuMeta: ComponentMeta<typeof Menu> = {
-	title: "Menu 组件",
+	title: "Menu",
 	// id: "Menu",
 	component: Menu,
-	subcomponents: { Submenu: Menu.SubMenu, MenuItem: Menu.Item },
+	subcomponents: { Submenu: Menu.Submenu, Item: Menu.Item },
 	args: { defaultIndex: "1" },
 	argTypes: {
 		defaultIndex: {
 			// control: "color",
-			description: "设置默认选中的tab",
+			description: "Set the default selected tab",
 		},
 	},
 	parameters: {
@@ -28,17 +28,17 @@ export default menuMeta;
 //
 const Template: ComponentStory<typeof Menu> = (args) => {
 	return (
-		<div className="h-[300px]">
+		<div className="">
 			<Menu {...args}>
-				<Menu.Item>菜单1</Menu.Item>
-				<Menu.Item>菜单2</Menu.Item>
-				<Menu.Item>菜单3</Menu.Item>
-				<Menu.Item disabled>菜单4</Menu.Item>
-				<Menu.SubMenu title="菜单4">
-					<Menu.Item>菜单1</Menu.Item>
-					<Menu.Item>菜单2</Menu.Item>
-					<Menu.Item>菜单3</Menu.Item>
-				</Menu.SubMenu>
+				<Menu.Item>Menu1</Menu.Item>
+				<Menu.Item>Menu2</Menu.Item>
+				<Menu.Item>Menu3</Menu.Item>
+				<Menu.Item disabled>Menu4</Menu.Item>
+				<Menu.Submenu title="Menu4">
+					<Menu.Item>Submenu1</Menu.Item>
+					<Menu.Item>Submenu2</Menu.Item>
+					<Menu.Item>Submenu3</Menu.Item>
+				</Menu.Submenu>
 			</Menu>
 		</div>
 	);

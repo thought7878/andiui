@@ -5,11 +5,11 @@ import Submenu, { SubmenuProps } from "./submenu";
 
 export type IMenuComponent = FC<MenuProps> & {
 	Item: FC<MenuItemProps>;
-	SubMenu: FC<SubmenuProps>;
+	Submenu: FC<SubmenuProps>;
 };
 
 const MenuComponent = Menu as IMenuComponent;
 MenuComponent.Item = MenuItem;
-MenuComponent.SubMenu = Submenu;
+MenuComponent.Submenu = Submenu;
 
 export default MenuComponent;

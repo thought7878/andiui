@@ -4,11 +4,11 @@ import React, { createContext, useState } from "react";
 import { MenuItemProps } from "./menuItem";
 
 //
-type HandleSelect = (selectedIndex: string) => void;
+export type HandleSelect = (selectedIndex: string) => void;
 
-type MenuDirection = "horizontal" | "vertical";
+export type MenuDirection = "horizontal" | "vertical";
 
-interface IMenuContext {
+export interface IMenuContext {
 	activeIndex: string;
 	onCLick?: HandleSelect;
 	direction?: string;
@@ -16,15 +16,15 @@ interface IMenuContext {
 
 export interface MenuProps {
 	className?: string;
-	/** 设置方向：横向（默认值）/纵向 */
+	/** Set direction */
 	direction?: MenuDirection;
 	/** 设置自定义样式 */
 	style?: React.CSSProperties;
-	/** 设置默认defaultIndex */
+	/** Set the default selected tab  */
 	defaultIndex?: string;
-	/** 选中的回调函数 */
+	/** The selected callback function */
 	onSelect?: HandleSelect;
-	/**  children*/
+	/** children*/
 	children?: React.ReactNode;
 }
 //
@@ -39,7 +39,7 @@ export const MenuContext = createContext<IMenuContext>({ activeIndex: "0" });
  * @param props
  * @returns
  */
-const Menu: React.FC<MenuProps> = (props) => {
+export const Menu: React.FC<MenuProps> = (props) => {
 	const { className, direction, children, style, defaultIndex, onSelect } =
 		props;
 	const [activeIndex, setActiveIndex] = useState(defaultIndex);
