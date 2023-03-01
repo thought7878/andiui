@@ -13,7 +13,7 @@ import useDebounce from "../../hooks/useDebounce";
 import Input, { InputProps } from "../Input";
 import Spinner from "../Spinner";
 
-import "./index.css";
+// import "./index.css";
 
 //
 export interface DataSourceObject {

@@ -3,7 +3,7 @@ import { FC, ReactNode, useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { CSSTransition } from "react-transition-group";
 import Icon from "../Icon";
-import "./index.css";
+// import "./index.css";
 
 interface AlertProps extends React.HTMLAttributes<HTMLElement> {
 	/**4种类型 */

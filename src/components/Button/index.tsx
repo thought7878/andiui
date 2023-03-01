@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import Icon from "../Icon";
 import Spinner from "../Spinner";
-import "./index.css";
+// import "./index.css";
 
 interface BaseButtonProps {
 	className?: string;

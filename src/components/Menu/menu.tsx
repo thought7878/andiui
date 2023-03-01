@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { createContext, useState } from "react";
-import "./index.css";
+// import "./index.css";
 import { MenuItemProps } from "./menuItem";
 
 //

@@ -1,10 +1,10 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
 
 /* component start */
-@import "./components/Alert/index.css";
+
 @import "./components/AutoComplete/index.css";
+@import "./components/Alert/index.css";
 @import "./components/Button/index.css";
 @import "./components/Input/index.css";
 @import "./components/Menu/index.css";
