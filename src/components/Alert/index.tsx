@@ -5,25 +5,25 @@ import { CSSTransition } from "react-transition-group";
 import Icon from "../Icon";
 // import "./index.css";
 
-interface AlertProps extends React.HTMLAttributes<HTMLElement> {
-	/**4种类型 */
+export interface AlertProps extends React.HTMLAttributes<HTMLElement> {
+	/**4 types */
 	type?: "primary" | "success" | "warning" | "danger";
-	/**设置定位 */
+	/**Setting position */
 	position?: "right-top" | "right-bottom" | "left-top" | "left-bottom";
-	/**是否显示关闭按钮 */
+	/**Whether to display the closed button */
 	closeBtn?: boolean;
-	/**是否自动关闭 */
+	/**Whether to automatically close */
 	autoClose?: boolean;
-	/**自动关闭的持续时间，单位是毫秒 ms */
+	/**The duration of automatic close, the unit is millisecond */
 	duration?: number; //ms
-	/**自定义样式 */
+	/**Custom style with className */
 	className?: string; //comstomise style
-	/**自定义样式 */
+	/**Custom style with style */
 	style?: React.CSSProperties;
 	children?: ReactNode;
 }
 
-const Alert: FC<AlertProps> = (props) => {
+export const Alert: FC<AlertProps> = (props) => {
 	const {
 		type,
 		children,
@@ -84,7 +84,6 @@ const Alert: FC<AlertProps> = (props) => {
 
 Alert.defaultProps = {
 	type: "primary",
-	// position: "right-top",
 	closeBtn: true,
 	autoClose: false,
 	duration: 3000,
