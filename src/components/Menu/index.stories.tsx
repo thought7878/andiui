@@ -28,7 +28,7 @@ export default menuMeta;
 //
 const Template: ComponentStory<typeof Menu> = (args) => {
 	return (
-		<div className="menu-horizontal-container">
+		<div className="h-[300px]">
 			<Menu {...args}>
 				<Menu.Item>菜单1</Menu.Item>
 				<Menu.Item>菜单2</Menu.Item>

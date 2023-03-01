@@ -49,7 +49,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 
 			//
 			return (
-				<li className="file-item" key={file.uid}>
+				<li className="group" key={file.uid}>
 					<div className=" flex items-center justify-between transition-all hover:bg-auiLight-background">
 						<div className="flex items-center">
 							<Icon
@@ -64,7 +64,7 @@ const UploadFileList: FC<UploadFileListProps> = (props) => {
 						</div>
 						<div className="flex items-center">
 							<button
-								className="file-remove-btn"
+								className="hidden group-hover:inline-flex"
 								onClick={(e) => {
 									onRemove && onRemove(file);
 									e.preventDefault();
