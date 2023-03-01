@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .zhang-liang {
-	color: gold;
-} */
-
 @layer components {
 	/* TODO: unfinished tailwind */
 	.aui-input-wrapper {
