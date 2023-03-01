@@ -1,15 +1,19 @@
 import classNames from "classnames";
 import React, { createContext, useState } from "react";
+import "./index.css";
 import { MenuItemProps } from "./menuItem";
 
 //
 type HandleSelect = (selectedIndex: string) => void;
+
 type MenuDirection = "horizontal" | "vertical";
+
 interface IMenuContext {
 	activeIndex: string;
 	onCLick?: HandleSelect;
 	direction?: string;
 }
+
 export interface MenuProps {
 	className?: string;
 	/** 设置方向：横向（默认值）/纵向 */
@@ -18,9 +22,9 @@ export interface MenuProps {
 	style?: React.CSSProperties;
 	/** 设置默认defaultIndex */
 	defaultIndex?: string;
-	/** 设置选中的回调函数 */
+	/** 选中的回调函数 */
 	onSelect?: HandleSelect;
-	/**  */
+	/**  children*/
 	children?: React.ReactNode;
 }
 //
@@ -55,6 +59,7 @@ const Menu: React.FC<MenuProps> = (props) => {
 			onSelect(index);
 		}
 	}
+
 	//
 	const classes = classNames("aui-menu", className, {
 		"menu-vertical": direction === "vertical",
