@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import React from "react";
 import { IconBaseProps, IconContext } from "react-icons";
-import "./index.css";
 
 //
 export type ThemeProps =
@@ -36,7 +35,7 @@ const Icon: React.FC<IconProps> = (props) => {
 	const { icon, children, className, ...restProps } = props;
 
 	//
-	const classes = classNames("react-icons", className, {
+	const classes = classNames("align-middle", className, {
 		//'react-icons':From version 3, vertical-align: middle is not automatically given. Please use IconContext to specify className or specify an inline style.
 		// [`icon-${theme}`]: theme,
 	});

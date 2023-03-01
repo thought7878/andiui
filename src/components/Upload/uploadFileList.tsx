@@ -11,8 +11,6 @@ import Icon from "../Icon";
 import Progress from "../Progress";
 import Spinner from "../Spinner";
 
-import "./uploadFileList.css";
-
 export interface UploadFileListProps {
 	uploadFileList?: UploadFile[];
 	onRemove?: (file: UploadFile) => void;
