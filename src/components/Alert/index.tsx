@@ -67,12 +67,13 @@ export const Alert: FC<AlertProps> = (props) => {
 			classNames="aui-show-hide"
 			unmountOnExit
 		>
-			<div className={classes} style={style} role="alert" {...rest}>
+			<div className={classes} style={style} data-testid="alert" {...rest}>
 				{children}
 				{closeBtn && (
 					<div
 						onClick={handleClose}
 						className="ml-12 inline-flex cursor-pointer"
+						data-testid="close-btn"
 					>
 						<Icon icon={<IoClose />} />
 					</div>
