@@ -76,11 +76,9 @@ LinkWithDisabled.storyName = "disabled";
 export const LinkWithCustom: ComponentStory<typeof Link> = (args) => {
 	return (
 		<div className="mb-8">
-			<div className="mr-4 inline-block">
-				<Link {...args} className="text-2xl text-green-500">
-					Press Me
-				</Link>
-			</div>
+			<Link {...args} className="text-2xl text-green-500">
+				Press Me
+			</Link>
 		</div>
 	);
 };

@@ -41,11 +41,6 @@ export const ButtonWithType: ComponentStory<typeof Button> = (args) => {
 					Press Me
 				</Button>
 			</div>
-			<div className="mr-4 inline-block">
-				<Button btnType="link" {...args}>
-					Press Me
-				</Button>
-			</div>
 		</div>
 	);
 };
@@ -110,25 +105,6 @@ export const ButtonWithSize: ComponentStory<typeof Button> = (args) => {
 					</Button>
 				</div>
 			</div>
-			<div className="mb-8">
-				<div className="mr-4 inline-block">
-					<Button size="sm" btnType="link" {...args}>
-						Press Me
-					</Button>
-				</div>
-
-				<div className="mr-4 inline-block">
-					<Button btnType="link" {...args}>
-						Press Me
-					</Button>
-				</div>
-
-				<div className="mr-4 inline-block">
-					<Button size="lg" btnType="link" {...args}>
-						Press Me
-					</Button>
-				</div>
-			</div>
 		</div>
 	);
 };
@@ -137,15 +113,19 @@ ButtonWithSize.storyName = "size";
 //
 export const ButtonWithDisabled: ComponentStory<typeof Button> = (args) => {
 	return (
-		<div className="w-[300px]">
+		<div>
 			<div className="mr-4 inline-block">
-				<Button btnType="link" {...args}>
+				<Button btnType="primary" {...args}>
 					Press Me
 				</Button>
 			</div>
-
 			<div className="mr-4 inline-block">
-				<Button btnType="primary" {...args}>
+				<Button btnType="default" {...args}>
+					Press Me
+				</Button>
+			</div>
+			<div className="mr-4 inline-block">
+				<Button btnType="danger" {...args}>
 					Press Me
 				</Button>
 			</div>

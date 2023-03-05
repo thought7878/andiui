@@ -15,19 +15,19 @@ export type ThemeProps =
 
 export interface IconProps extends IconBaseProps {
 	// theme?: ThemeProps;
-	/**设置icon，也可以使用children方式 */
+	/**Set icon, you can also use the children  */
 	icon?: React.ReactElement;
-	/**子元素 */
+	/**Set icon */
 	children?: React.ReactElement;
-	/**设置color，css颜色，如：#8b5cf6/rgb(0, 255, 0)/hsl(30, 100%, 50%)/hsla(30, 100%, 50%, .3) */
+	/**Set icon color. e.g.:#8b5cf6/rgb(0, 255, 0)/hsl(30, 100%, 50%)/hsla(30, 100%, 50%, .3) */
 	color?: string;
-	/**设置size，css尺寸，如：2em/20px/2rem */
+	/**Set icon size. e.g.: 2em/20px/2rem */
 	size?: string;
-	/**设置样式，可以覆盖size 和 color */
-	style?: React.CSSProperties; //Can overwrite size and color,  style={ { verticalAlign: 'middle' } }
-	/**设置样式 */
+	/**Set icon style, can overwrite size and color */
 	className?: string;
-	/**设置图标说明 */
+	/**Set icon style, can overwrite size and color */
+	style?: React.CSSProperties; //Can overwrite size and color,  style={ { verticalAlign: 'middle' } }
+	/**Icon description for accessibility*/
 	title?: string; //Icon description for accessibility
 }
 

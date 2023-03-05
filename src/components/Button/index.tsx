@@ -8,7 +8,7 @@ interface BaseButtonProps {
 	className?: string;
 	// TODO: refactor link
 	/**Setting type */
-	btnType?: "primary" | "default" | "danger" | "link";
+	btnType?: "primary" | "default" | "danger";
 	/**Setting size*/
 	size?: "lg" | "md" | "sm";
 	/**Setting disabled */
@@ -52,18 +52,11 @@ const Button: React.FC<ButtonProps> = (props) => {
 		{
 			[`btn-${btnType}`]: btnType,
 			[`btn-${size}`]: size,
-			disabled: (btnType === "link" && disabled) || loading,
+			disabled: disabled || loading,
 		},
 		className
 	);
-	//return a
-	if (btnType === "link" && href) {
-		return (
-			<a href={href} className={classes} {...otherProps}>
-				{children}
-			</a>
-		);
-	}
+
 	//return button
 	return (
 		<div className="inline-flex">
