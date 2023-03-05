@@ -60,7 +60,7 @@ export const AutoCompleteWithCustomSpinnerColor: ComponentStory<
 			<AutoComplete
 				{...args}
 				fetchSuggestions={fetchSuggestions}
-				spinnerColor="#3b82f6"
+				spinnerColor="#f43f5e"
 			/>
 		</div>
 	);
@@ -78,7 +78,7 @@ export const AutoCompleteWithCustomSpinner: ComponentStory<
 				<AutoComplete
 					{...args}
 					fetchSuggestions={fetchSuggestions}
-					spinnerClass="text-blue-500 text-[2rem]"
+					spinnerClass="text-[#f43f5e] text-[2rem]"
 				/>
 			</div>
 
@@ -86,7 +86,7 @@ export const AutoCompleteWithCustomSpinner: ComponentStory<
 				<AutoComplete
 					{...args}
 					fetchSuggestions={fetchSuggestions}
-					spinnerStyle={{ color: "#3b82f6", fontSize: "2rem" }}
+					spinnerStyle={{ color: "#f43f5e", fontSize: "2rem" }}
 				/>
 			</div>
 		</div>
@@ -135,8 +135,8 @@ export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
 					{...args}
 					fetchSuggestions={fetchSuggestions}
 					highlightColor="#22c55e"
-					inputClass="px-6 py-3 rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
-					spinnerClass="text-green-500 text-[2rem]"
+					// inputClass="px-6 py-3 rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
+					// spinnerClass="text-green-500"
 				/>
 			</div>
 		</div>
@@ -154,7 +154,6 @@ export const AutoCompleteWithCustomItemWithClass: ComponentStory<
 				<AutoComplete
 					fetchSuggestions={fetchSuggestions}
 					itemClass="px-8 py-8"
-					spinnerClass="text-primary text-[2rem]"
 				/>
 			</div>
 		</div>

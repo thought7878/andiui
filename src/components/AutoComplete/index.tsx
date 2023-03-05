@@ -210,10 +210,11 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 	}
 	//
 	function renderLoadingIcon() {
+		const classes = classNames("text-primary text-[2rem]", spinnerClass);
 		return (
 			<div className="suggstions-loading-icon absolute left-0 z-[99] flex min-h-[75px] w-full justify-center ">
 				<Spinner
-					className={spinnerClass}
+					className={classes}
 					color={spinnerColor}
 					style={spinnerStyle}
 				/>
