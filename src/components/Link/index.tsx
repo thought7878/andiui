@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React from "react";
 // import "./index.css";
 
-interface LinkProps extends React.AnchorHTMLAttributes<HTMLElement> {
+export interface LinkProps extends React.AnchorHTMLAttributes<HTMLElement> {
 	className?: string;
 	/**Setting size*/
 	size?: "lg" | "md" | "sm";
@@ -14,7 +14,7 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLElement> {
 }
 
 //
-const Link: React.FC<LinkProps> = (props) => {
+export const Link: React.FC<LinkProps> = (props) => {
 	const { className, disabled, size, children, href, ...otherProps } = props;
 	//
 	const classes = classNames(

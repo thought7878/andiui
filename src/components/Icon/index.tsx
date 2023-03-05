@@ -23,9 +23,9 @@ export interface IconProps extends IconBaseProps {
 	color?: string;
 	/**Set icon size. e.g.: 2em/20px/2rem */
 	size?: string;
-	/**Set icon style, can overwrite size and color */
+	/**Set icon color & size */
 	className?: string;
-	/**Set icon style, can overwrite size and color */
+	/**Set icon color & size, can overwrite size and color */
 	style?: React.CSSProperties; //Can overwrite size and color,  style={ { verticalAlign: 'middle' } }
 	/**Icon description for accessibility*/
 	title?: string; //Icon description for accessibility

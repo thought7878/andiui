@@ -4,36 +4,34 @@ import Icon from "../Icon";
 import Spinner from "../Spinner";
 // import "./index.css";
 
-interface BaseButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
 	className?: string;
-	// TODO: refactor link
-	/**Setting type */
+	/**Set type */
 	btnType?: "primary" | "default" | "danger";
-	/**Setting size*/
+	/**Set size*/
 	size?: "lg" | "md" | "sm";
-	/**Setting disabled */
+	/**Set disabled */
 	disabled?: boolean;
-	/**Setting left icon */
+	/**Set left icon */
 	leftIcon?: React.ReactElement;
-	/**Setting right icon*/
+	/**Set right icon*/
 	rightIcon?: React.ReactElement;
 	// TODO: style bug
-	/**Setting loading */
+	/**Set loading */
 	loading?: boolean;
 
 	children: React.ReactNode;
-	href?: string;
 	// icon?: IconProp;
 }
 //
-type NativeButtonProps = BaseButtonProps &
+/* type NativeButtonProps = BaseButtonProps &
 	React.ButtonHTMLAttributes<HTMLElement>;
 type NativeAnchorProps = BaseButtonProps &
 	React.AnchorHTMLAttributes<HTMLElement>;
-export type ButtonProps = Partial<NativeButtonProps & NativeAnchorProps>;
+export type ButtonProps = Partial<NativeButtonProps & NativeAnchorProps>; */
 
 //
-const Button: React.FC<ButtonProps> = (props) => {
+export const Button: React.FC<ButtonProps> = (props) => {
 	const {
 		btnType,
 		className,
@@ -43,7 +41,6 @@ const Button: React.FC<ButtonProps> = (props) => {
 		disabled,
 		size,
 		children,
-		href,
 		...otherProps
 	} = props;
 	//btn,btn-lg,btn-primary
@@ -57,7 +54,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 		className
 	);
 
-	//return button
+	//
 	return (
 		<div className="inline-flex">
 			<button className={classes} disabled={disabled} {...otherProps}>
