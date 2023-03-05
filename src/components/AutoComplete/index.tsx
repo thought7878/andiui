@@ -35,6 +35,8 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
 	spinnerColor?: string;
 	/**Set item style with class name */
 	itemClass?: string;
+	/**Set item highlight color */
+	highlightColor?: string;
 	/**fetch data */
 	fetchSuggestions: (
 		keyword: string
@@ -55,6 +57,7 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		spinnerStyle,
 		spinnerColor,
 		itemClass,
+		highlightColor,
 		value,
 		renderOption,
 
@@ -148,14 +151,28 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 				"suggestion-item",
 				{
 					"is-active": index === highlightIndex,
+					// highlightColor has value,hover is highlightColor
+					// TODO: 动态的，tailwind不会生成
+					["hover:!bg-[" + highlightColor + "]"]: highlightColor,
+					["bg-[" + highlightColor + "]"]:
+						highlightColor && index === highlightIndex,
 				},
+
 				itemClass
 			);
+
 			//
 			return (
 				<li
 					key={index}
 					className={suggestionClasses}
+					// style={{
+					// 	// highlightColor has value&&highlightIndex,backgroundColor is highlightColor
+					// 	backgroundColor:
+					// 		highlightColor && index === highlightIndex
+					// 			? highlightColor
+					// 			: undefined,
+					// }}
 					onClick={() => {
 						handleClick(suggestion);
 					}}

@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import AutoComplete from "./";
 
 const autoCompleteMeta: ComponentMeta<typeof AutoComplete> = {
-	title: "AutoComplete 组件",
+	title: "AutoComplete",
 	component: AutoComplete,
 };
 export default autoCompleteMeta;
@@ -57,13 +57,14 @@ export const AutoCompleteWithCustomSpinnerColor: ComponentStory<
 	return (
 		<div className="mb-[200px] h-[300px] w-[300px]">
 			<AutoComplete
+				{...args}
 				fetchSuggestions={fetchSuggestions}
-				spinnerColor="#a855f7"
+				spinnerColor="#3b82f6"
 			/>
 		</div>
 	);
 };
-AutoCompleteWithCustomSpinnerColor.storyName = "自定义spinner color";
+AutoCompleteWithCustomSpinnerColor.storyName = "Custom spinner color";
 
 //
 export const AutoCompleteWithCustomSpinner: ComponentStory<
@@ -73,24 +74,23 @@ export const AutoCompleteWithCustomSpinner: ComponentStory<
 		<div className="w-[300px]">
 			<div className="mb-[200px]">
 				<AutoComplete
+					{...args}
 					fetchSuggestions={fetchSuggestions}
-					spinnerClass="text-green-500 text-[2rem]"
-					// spinnerStyle={{ color: "#3b82f6", fontSize: "2rem" }}
-					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
-					// renderOption={renderOption}
+					spinnerClass="text-blue-500 text-[2rem]"
 				/>
 			</div>
 
 			<div className="mb-[200px]">
 				<AutoComplete
+					{...args}
 					fetchSuggestions={fetchSuggestions}
-					spinnerStyle={{ color: "#22c55e", fontSize: "2rem" }}
+					spinnerStyle={{ color: "#3b82f6", fontSize: "2rem" }}
 				/>
 			</div>
 		</div>
 	);
 };
-AutoCompleteWithCustomSpinner.storyName = "自定义spinner color和size";
+AutoCompleteWithCustomSpinner.storyName = "Custom spinner color & size";
 
 //
 export const AutoCompleteWithCustomInput: ComponentStory<
@@ -100,6 +100,7 @@ export const AutoCompleteWithCustomInput: ComponentStory<
 		<div className="w-[300px]">
 			<div className="mb-[200px]">
 				<AutoComplete
+					{...args}
 					fetchSuggestions={fetchSuggestions}
 					inputClass="px-6 py-3  rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
 					spinnerClass="text-green-500 text-[2rem]"
@@ -108,17 +109,16 @@ export const AutoCompleteWithCustomInput: ComponentStory<
 
 			<div className="mb-[200px]">
 				<AutoComplete
+					{...args}
 					fetchSuggestions={fetchSuggestions}
 					inputStyle={{ padding: "0.75rem 1.5rem", borderRadius: "2rem" }}
 					spinnerClass="text-primary text-[2rem]"
-					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
-					// renderOption={renderOption}
 				/>
 			</div>
 		</div>
 	);
 };
-AutoCompleteWithCustomInput.storyName = "自定义input样式";
+AutoCompleteWithCustomInput.storyName = "Custom input style";
 
 //
 export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
@@ -126,17 +126,17 @@ export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
 ) => {
 	return (
 		<div className="w-[300px]">
-			<div className="mb-[200px]">
+			<div className="mb-[200px] ">
 				<AutoComplete
+					{...args}
 					fetchSuggestions={fetchSuggestions}
-					itemClass="hover:bg-green-500"
-					inputClass="px-6 py-3  rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
-					spinnerClass="text-primary text-[2rem]"
-					// inputClass="px-8 py-6 hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500"
-					// renderOption={renderOption}
+					itemClass="px-8 py-8"
+					highlightColor="#22c55e"
+					inputClass="px-6 py-3 rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
+					spinnerClass="text-green-500 text-[2rem]"
 				/>
 			</div>
 		</div>
 	);
 };
-AutoCompleteWithCustomItem.storyName = "自定义Item样式";
+AutoCompleteWithCustomItem.storyName = "Custom Item highlight color";

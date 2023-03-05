@@ -1,21 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-	.suggstions-loading-icon {
-		top: calc(100% + 8px);
-	}
-	.suggestion-list {
-		top: calc(100% + 8px);
-
-		.suggestion-item {
-			@apply cursor-pointer px-4 py-2 text-gray-900 transition-all 
+.suggstions-loading-icon {
+	top: calc(100% + 8px);
+}
+.suggestion-list {
+	top: calc(100% + 8px);
+}
+.suggestion-item {
+	@apply cursor-pointer px-4 py-2 text-gray-900 transition-all 
       hover:bg-primary hover:text-white;
-
-			&.is-active {
-				@apply bg-primary  text-white;
-			}
-		}
-	}
+}
+.is-active {
+	@apply bg-primary  text-white;
 }
