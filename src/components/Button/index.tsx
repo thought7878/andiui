@@ -6,6 +6,7 @@ import Spinner from "../Spinner";
 
 interface BaseButtonProps {
 	className?: string;
+	// TODO: refactor link
 	/**Setting type */
 	btnType?: "primary" | "default" | "danger" | "link";
 	/**Setting size*/
@@ -79,5 +80,6 @@ const Button: React.FC<ButtonProps> = (props) => {
 Button.defaultProps = {
 	disabled: false,
 	btnType: "default",
+	size: "md",
 };
 export default Button;

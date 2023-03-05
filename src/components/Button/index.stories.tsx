@@ -272,9 +272,5 @@ export const ButtonWithCustom: ComponentStory<typeof Button> = (args) => {
 		</div>
 	);
 };
-ButtonWithCustom.args = {
-	// style: { padding: "20px 28px", borderRadius: "1.6rem" },
-	className: "px-8 py-6 ",
-};
 
 ButtonWithCustom.storyName = "custom with style";
