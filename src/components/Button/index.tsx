@@ -6,17 +6,18 @@ import Spinner from "../Spinner";
 
 interface BaseButtonProps {
 	className?: string;
-	/**设置 Button 类型 */
+	/**Setting type */
 	btnType?: "primary" | "default" | "danger" | "link";
-	/**设置 Button 大小，支持 lg 或者是 sm ，默认是md*/
+	/**Setting size*/
 	size?: "lg" | "md" | "sm";
-	/**设置 Button 不可用 */
+	/**Setting disabled */
 	disabled?: boolean;
-	/**设置 Button 左侧图标 */
+	/**Setting left icon */
 	leftIcon?: React.ReactElement;
-	/**设置 Button 右侧图标 */
+	/**Setting right icon*/
 	rightIcon?: React.ReactElement;
-	/**设置 Button 加载 */
+	// TODO: style bug
+	/**Setting loading */
 	loading?: boolean;
 
 	children: React.ReactNode;

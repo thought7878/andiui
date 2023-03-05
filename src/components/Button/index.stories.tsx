@@ -3,7 +3,7 @@ import { BiDownload } from "react-icons/bi";
 import Button from "./";
 
 const buttonMeta: ComponentMeta<typeof Button> = {
-	title: "Button 组件",
+	title: "Button",
 	component: Button,
 };
 export default buttonMeta;
@@ -12,7 +12,7 @@ export default buttonMeta;
 const Template: ComponentStory<typeof Button> = (args) => {
 	return (
 		<div className="w-[300px]">
-			<Button {...args}>按钮</Button>
+			<Button {...args}>Press Me</Button>
 		</div>
 	);
 };
@@ -20,119 +20,119 @@ const Template: ComponentStory<typeof Button> = (args) => {
 //
 export const Default = Template.bind({});
 Default.args = {};
-Default.storyName = "默认Button";
+Default.storyName = "default";
 
 //
 export const ButtonWithType: ComponentStory<typeof Button> = (args) => {
 	return (
-		<div className="w-[300px]">
+		<div className="w-[500px]">
 			<div className="mr-4 inline-block">
 				<Button btnType="primary" {...args}>
-					按钮
+					Press Me
 				</Button>
 			</div>
 
 			<div className="mr-4 inline-block">
-				<Button {...args}>按钮</Button>
+				<Button {...args}>Press Me</Button>
 			</div>
 
 			<div className="mr-4 inline-block">
 				<Button btnType="danger" {...args}>
-					按钮
+					Press Me
 				</Button>
 			</div>
 			<div className="mr-4 inline-block">
 				<Button btnType="link" {...args}>
-					按钮
+					Press Me
 				</Button>
 			</div>
 		</div>
 	);
 };
-ButtonWithType.storyName = "不同类型的Button";
+ButtonWithType.storyName = "type";
 
 //
 export const ButtonWithSize: ComponentStory<typeof Button> = (args) => {
 	return (
 		<div>
-			<div className="mb-8 w-[300px]">
+			<div className="mb-8">
 				<div className="mr-4 inline-block">
 					<Button size="sm" btnType="primary" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button btnType="primary" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button size="lg" btnType="primary" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 			</div>
-			<div className="mb-8 w-[300px]">
+			<div className="mb-8">
 				<div className="mr-4 inline-block">
 					<Button size="sm" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
-					<Button {...args}>按钮</Button>
+					<Button {...args}>Press Me</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button size="lg" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 			</div>
-			<div className="mb-8 w-[300px]">
+			<div className="mb-8">
 				<div className="mr-4 inline-block">
 					<Button size="sm" btnType="danger" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button btnType="danger" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button size="lg" btnType="danger" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 			</div>
-			<div className="mb-8 w-[300px]">
+			<div className="mb-8">
 				<div className="mr-4 inline-block">
 					<Button size="sm" btnType="link" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button btnType="link" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 
 				<div className="mr-4 inline-block">
 					<Button size="lg" btnType="link" {...args}>
-						按钮
+						Press Me
 					</Button>
 				</div>
 			</div>
 		</div>
 	);
 };
-ButtonWithSize.storyName = "不同尺寸的Button";
+ButtonWithSize.storyName = "size";
 
 //
 export const ButtonWithDisabled: ComponentStory<typeof Button> = (args) => {
@@ -140,20 +140,20 @@ export const ButtonWithDisabled: ComponentStory<typeof Button> = (args) => {
 		<div className="w-[300px]">
 			<div className="mr-4 inline-block">
 				<Button btnType="link" {...args}>
-					按钮
+					Press Me
 				</Button>
 			</div>
 
 			<div className="mr-4 inline-block">
 				<Button btnType="primary" {...args}>
-					按钮
+					Press Me
 				</Button>
 			</div>
 		</div>
 	);
 };
 ButtonWithDisabled.args = { disabled: true };
-ButtonWithDisabled.storyName = "disabled的Button";
+ButtonWithDisabled.storyName = "disabled";
 
 //
 export const ButtonWithIcon: ComponentStory<typeof Button> = (args) => {
@@ -199,7 +199,7 @@ export const ButtonWithIcon: ComponentStory<typeof Button> = (args) => {
 	);
 };
 
-ButtonWithIcon.storyName = "带Icon的Button";
+ButtonWithIcon.storyName = "icon";
 
 //
 export const ButtonWithLoading: ComponentStory<typeof Button> = (args) => {
@@ -218,8 +218,35 @@ export const ButtonWithLoading: ComponentStory<typeof Button> = (args) => {
 	);
 };
 
-ButtonWithLoading.storyName = "带loading的Button";
+ButtonWithLoading.storyName = "loading";
 
+//
+//
+export const ButtonWithCustomClass: ComponentStory<typeof Button> = (args) => {
+	return (
+		<div className="w-[500px]">
+			<div className="mb-4 flex justify-between">
+				<Button
+					btnType="primary"
+					className="rounded-[1.6rem] px-[28px] py-[20px]"
+				>
+					Press Me
+				</Button>
+				<Button className="rounded-[1.6rem] px-[28px] py-[20px]">
+					Press Me
+				</Button>
+				<Button
+					btnType="danger"
+					className="rounded-[1.6rem] px-[28px] py-[20px]"
+				>
+					Press Me
+				</Button>
+			</div>
+		</div>
+	);
+};
+
+ButtonWithCustomClass.storyName = "custom with className";
 //
 //
 export const ButtonWithCustom: ComponentStory<typeof Button> = (args) => {
@@ -230,16 +257,16 @@ export const ButtonWithCustom: ComponentStory<typeof Button> = (args) => {
 					btnType="primary"
 					style={{ padding: "20px 28px", borderRadius: "1.6rem" }}
 				>
-					自定义
+					Press Me
 				</Button>
 				<Button style={{ padding: "20px 28px", borderRadius: "1.6rem" }}>
-					自定义
+					Press Me
 				</Button>
 				<Button
 					btnType="danger"
 					style={{ padding: "20px 28px", borderRadius: "1.6rem" }}
 				>
-					自定义
+					Press Me
 				</Button>
 			</div>
 		</div>
@@ -250,4 +277,4 @@ ButtonWithCustom.args = {
 	className: "px-8 py-6 ",
 };
 
-ButtonWithCustom.storyName = "自定义样式的Button";
+ButtonWithCustom.storyName = "custom with style";

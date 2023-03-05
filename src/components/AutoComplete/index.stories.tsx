@@ -149,7 +149,7 @@ export const AutoCompleteWithCustomItemWithClass: ComponentStory<
 	typeof AutoComplete
 > = (args) => {
 	return (
-		<div className="w-[300px]">
+		<div className="h-[350px] w-[300px]">
 			<div className="mb-[200px] ">
 				<AutoComplete
 					fetchSuggestions={fetchSuggestions}
