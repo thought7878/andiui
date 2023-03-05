@@ -4,6 +4,7 @@ import AutoComplete from "./";
 const autoCompleteMeta: ComponentMeta<typeof AutoComplete> = {
 	title: "AutoComplete",
 	component: AutoComplete,
+	argTypes: { onSelect: { action: "selected value" } },
 };
 export default autoCompleteMeta;
 
@@ -64,7 +65,8 @@ export const AutoCompleteWithCustomSpinnerColor: ComponentStory<
 		</div>
 	);
 };
-AutoCompleteWithCustomSpinnerColor.storyName = "Custom spinner color";
+AutoCompleteWithCustomSpinnerColor.storyName =
+	"Custom spinner color with spinnerColor";
 
 //
 export const AutoCompleteWithCustomSpinner: ComponentStory<
@@ -90,7 +92,8 @@ export const AutoCompleteWithCustomSpinner: ComponentStory<
 		</div>
 	);
 };
-AutoCompleteWithCustomSpinner.storyName = "Custom spinner color & size";
+AutoCompleteWithCustomSpinner.storyName =
+	"Custom spinner color & size with spinnerClass or spinnerStyle";
 
 //
 export const AutoCompleteWithCustomInput: ComponentStory<
@@ -118,7 +121,8 @@ export const AutoCompleteWithCustomInput: ComponentStory<
 		</div>
 	);
 };
-AutoCompleteWithCustomInput.storyName = "Custom input style";
+AutoCompleteWithCustomInput.storyName =
+	"Custom input style with inputClass or inputStyle";
 
 //
 export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
@@ -130,7 +134,6 @@ export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
 				<AutoComplete
 					{...args}
 					fetchSuggestions={fetchSuggestions}
-					itemClass="px-8 py-8"
 					highlightColor="#22c55e"
 					inputClass="px-6 py-3 rounded-full hover:border-green-500 focus:border-green-500 focus:shadow-green-500"
 					spinnerClass="text-green-500 text-[2rem]"
@@ -140,3 +143,22 @@ export const AutoCompleteWithCustomItem: ComponentStory<typeof AutoComplete> = (
 	);
 };
 AutoCompleteWithCustomItem.storyName = "Custom Item highlight color";
+
+//
+export const AutoCompleteWithCustomItemWithClass: ComponentStory<
+	typeof AutoComplete
+> = (args) => {
+	return (
+		<div className="w-[300px]">
+			<div className="mb-[200px] ">
+				<AutoComplete
+					fetchSuggestions={fetchSuggestions}
+					itemClass="px-8 py-8"
+					spinnerClass="text-primary text-[2rem]"
+				/>
+			</div>
+		</div>
+	);
+};
+AutoCompleteWithCustomItemWithClass.storyName =
+	"Custom Item style with itemClass";

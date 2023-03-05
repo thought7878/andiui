@@ -27,7 +27,7 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
 	inputClass?: string;
 	/**Set input style with style */
 	inputStyle?: React.CSSProperties;
-	/**Set spinner style with class name */ // TODO: unfinished
+	/**Set spinner style with class name */
 	spinnerClass?: string;
 	/**Set spinner style with style */
 	spinnerStyle?: React.CSSProperties;
@@ -35,15 +35,33 @@ export interface AutoCompleteProps extends Omit<InputProps, "onSelect"> {
 	spinnerColor?: string;
 	/**Set item style with class name */
 	itemClass?: string;
-	/**Set item highlight color */
+	/**
+	 * Set item highlight color.
+	 * Note: Due to the use of Tailwind, when not effective, please generate the corresponding static Tailwind class.
+	 * e.g. #22c55e-->bg-[#22c55e]
+	 * */
 	highlightColor?: string;
-	/**fetch data */
+	/**
+	 * fetch data function
+	 * @param keyword : search string
+	 * @returns DataSourceType[] : Synchronous data
+	 * @returns Promise<DataSourceType[]> : Asynchronous data
+	 */
 	fetchSuggestions: (
 		keyword: string
 	) => DataSourceType[] | Promise<DataSourceType[]>;
-	/**Selected Item's callback function */
+	/**
+	 * Selected Item function
+	 * @param item :selected item object
+	 * @returns void
+	 */
 	onSelect?: (item: DataSourceType) => void;
-	/**Custom option list   */
+	// TODO: unfinished 事例
+	/**
+	 * Custom Item display data
+	 * @param item : render item
+	 * @returns React Element
+	 */
 	renderOption?: (item: DataSourceType) => ReactElement;
 }
 
@@ -137,6 +155,9 @@ const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 		setInputValue(suggestion.value);
 		setSuggestions([]);
 		shouldSearch.current = false;
+		if (onSelect) {
+			onSelect(suggestion);
+		}
 	}
 
 	// render li option

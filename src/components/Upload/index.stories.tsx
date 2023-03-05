@@ -38,7 +38,11 @@ UploadWithAccept.storyName = "设置accept2";
 export const UploadWithButton: ComponentStory<typeof Upload> = (args) => {
 	return (
 		<div className="w-[300px]">
-			<Upload action="https://jsonplaceholder.typicode.com/posts" accept=".jpg">
+			<Upload
+				{...args}
+				action="https://jsonplaceholder.typicode.com/posts"
+				accept=".jpg"
+			>
 				<Button btnType="primary">Upload Files</Button>
 			</Upload>
 		</div>
