@@ -18,7 +18,9 @@ const Template: ComponentStory<typeof Link> = (args) => {
 
 //
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+	href: "https://reactjs.org/",
+};
 Default.storyName = "default";
 
 //
@@ -69,3 +71,17 @@ export const LinkWithDisabled: ComponentStory<typeof Link> = (args) => {
 };
 LinkWithDisabled.args = { disabled: true };
 LinkWithDisabled.storyName = "disabled";
+
+//
+export const LinkWithCustom: ComponentStory<typeof Link> = (args) => {
+	return (
+		<div className="mb-8">
+			<div className="mr-4 inline-block">
+				<Link {...args} className="text-2xl text-green-500">
+					Press Me
+				</Link>
+			</div>
+		</div>
+	);
+};
+LinkWithCustom.storyName = "custom with className";
