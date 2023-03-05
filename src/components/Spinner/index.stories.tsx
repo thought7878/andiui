@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Spinner from "./";
 
 const spinnerMeta: ComponentMeta<typeof Spinner> = {
-	title: "Spinner 组件",
+	title: "Spinner",
 	component: Spinner,
 };
 export default spinnerMeta;
@@ -11,56 +11,70 @@ export default spinnerMeta;
 export const SpinnerWithDefault: ComponentStory<typeof Spinner> = (args) => {
 	return (
 		<div className="w-[500px] ">
-			<Spinner />
+			<Spinner {...args} />
 		</div>
 	);
 };
-SpinnerWithDefault.storyName = "默认的spinner";
+SpinnerWithDefault.storyName = "default";
 
 //
 export const SpinnerWithSize: ComponentStory<typeof Spinner> = (args) => {
 	return (
 		<div className="text flex w-[80px] items-center justify-between">
-			<Spinner size="sm" />
-			<Spinner size="md" />
-			<Spinner size="lg" />
-			<Spinner size="xl" />
+			<Spinner {...args} size="sm" />
+			<Spinner {...args} size="md" />
+			<Spinner {...args} size="lg" />
+			<Spinner {...args} size="xl" />
 		</div>
 	);
 };
-SpinnerWithSize.storyName = "设置size";
+SpinnerWithSize.storyName = "size";
 
 //
 export const SpinnerWithType: ComponentStory<typeof Spinner> = (args) => {
 	return (
 		<div className="flex w-[80px] justify-between ">
-			<Spinner type="ring" />
-			<Spinner type="dot" />
+			<Spinner {...args} type="ring" />
+			<Spinner {...args} type="dot" />
 		</div>
 	);
 };
-SpinnerWithType.storyName = "设置type";
+SpinnerWithType.storyName = "type";
 
 //
 export const SpinnerWithColor: ComponentStory<typeof Spinner> = (args) => {
 	return (
 		<div className="flex w-[80px] justify-between ">
-			<Spinner />
-			<Spinner color="#ec4899" />
-			<Spinner color="#a855f7" />
+			<Spinner {...args} />
+			<Spinner {...args} color="#ec4899" />
+			<Spinner {...args} color="#a855f7" />
 		</div>
 	);
 };
-SpinnerWithColor.storyName = "设置color";
+SpinnerWithColor.storyName = "color";
+
+//
+export const SpinnerWithCustomClass: ComponentStory<typeof Spinner> = (
+	args
+) => {
+	return (
+		<div className="flex w-[80px] items-center justify-between ">
+			<Spinner {...args} className="text-[#a855f7]" />
+			<Spinner {...args} className="text-[1.4rem] text-[#0ea5e9]" />
+			<Spinner {...args} className="text-[30px] text-[#f97316]" />
+		</div>
+	);
+};
+SpinnerWithCustomClass.storyName = "custom color & size with className";
 
 //
 export const SpinnerWithCustom: ComponentStory<typeof Spinner> = (args) => {
 	return (
 		<div className="flex w-[80px] items-center justify-between ">
-			<Spinner color="#a855f7" />
-			<Spinner style={{ color: "#0ea5e9", fontSize: "1.4rem" }} />
-			<Spinner style={{ color: "#f97316", fontSize: "30px" }} />
+			<Spinner {...args} style={{ color: "#a855f7" }} />
+			<Spinner {...args} style={{ color: "#0ea5e9", fontSize: "1.4rem" }} />
+			<Spinner {...args} style={{ color: "#f97316", fontSize: "30px" }} />
 		</div>
 	);
 };
-SpinnerWithCustom.storyName = "自定义color和size";
+SpinnerWithCustom.storyName = "custom color & size with style";
