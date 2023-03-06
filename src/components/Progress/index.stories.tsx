@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Progress from "./";
 
 const progressMeta: ComponentMeta<typeof Progress> = {
-	title: "Progress 组件",
+	title: "Progress",
 	component: Progress,
 };
 export default progressMeta;
@@ -11,22 +11,82 @@ export default progressMeta;
 export const ProgressWithDefault: ComponentStory<typeof Progress> = (args) => {
 	return (
 		<div className="w-[500px] ">
-			<Progress progress={80} />
+			<Progress {...args} />
 		</div>
 	);
 };
-ProgressWithDefault.storyName = "设置progress和children";
+ProgressWithDefault.args = {
+	progress: 80,
+};
+ProgressWithDefault.storyName = "default";
 
 //
-export const ProgressWithCustom: ComponentStory<typeof Progress> = (args) => {
+export const ProgressWithProgress: ComponentStory<typeof Progress> = (args) => {
 	return (
 		<div className="w-[500px] ">
 			<Progress
-				progress={20}
-				outerClass="bg-yellow-500 h-[12px]"
-				innerClass="bg-Purple-500"
+				{...args}
+				// outerClass="bg-yellow-500 h-[12px]"
+				// innerClass="bg-Purple-500"
 			/>
 		</div>
 	);
 };
-ProgressWithCustom.storyName = "设置size";
+ProgressWithProgress.args = {
+	progress: 20,
+};
+ProgressWithProgress.storyName = "progress";
+
+//
+export const ProgressWithShowNumber: ComponentStory<typeof Progress> = (
+	args
+) => {
+	return (
+		<div className="w-[500px] ">
+			<Progress {...args} />
+		</div>
+	);
+};
+ProgressWithShowNumber.args = {
+	progress: 80,
+	showNumber: false,
+};
+ProgressWithShowNumber.storyName = "showNumber";
+
+//
+export const ProgressWithCustomInner: ComponentStory<typeof Progress> = (
+	args
+) => {
+	return (
+		<div className="w-[500px] ">
+			<Progress
+				{...args}
+				// outerClass="bg-yellow-500 h-[12px]"
+				innerClass="bg-purple-500"
+			/>
+		</div>
+	);
+};
+ProgressWithCustomInner.args = {
+	progress: 20,
+};
+ProgressWithCustomInner.storyName = "custom inner style";
+
+//
+export const ProgressWithCustomOuter: ComponentStory<typeof Progress> = (
+	args
+) => {
+	return (
+		<div className="w-[500px] ">
+			<Progress
+				{...args}
+				outerClass="bg-yellow-500 h-[16px]"
+				// innerClass="bg-purple-500"
+			/>
+		</div>
+	);
+};
+ProgressWithCustomOuter.args = {
+	progress: 20,
+};
+ProgressWithCustomOuter.storyName = "custom outer style";
