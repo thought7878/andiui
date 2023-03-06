@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Menu from "./";
 
 const menuMeta: ComponentMeta<typeof Menu> = {
-	title: "Menu",
+	title: "Menu 组件",
 	// id: "Menu",
 	component: Menu,
 	subcomponents: { Submenu: Menu.Submenu, Item: Menu.Item },
@@ -47,9 +47,9 @@ const Template: ComponentStory<typeof Menu> = (args) => {
 //
 export const Default = Template.bind({});
 Default.args = {};
-Default.storyName = "默认Menu";
+Default.storyName = "default";
 
 //
 export const Vertical = Template.bind({});
 Vertical.args = { defaultIndex: "1", direction: "vertical" };
-Vertical.storyName = "纵向的Menu";
+Vertical.storyName = "vertical menu";

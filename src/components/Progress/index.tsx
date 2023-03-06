@@ -4,19 +4,28 @@ interface ProgressProps {
 	progress: number; //0~100
 
 	/* TODO: unfinished custom class */
-	/**设置外层容器的className */
-	wrapperClass?: string;
-	/**设置内层容器的className */
+	/**Set the style of outer container */
+	outerClass?: string;
+	/**Set the style of the inner container */
 	innerClass?: string;
 	// text?: string;
 }
 
-const Progress: FC<ProgressProps> = (props) => {
-	const { wrapperClass, innerClass, progress = 0 } = props;
+/**
+ * Progress component
+ *
+ * ```js
+ * // import like this
+ * import { Progress } from 'aui'
+ * ```
+ *
+ */
+export const Progress: FC<ProgressProps> = (props) => {
+	const { outerClass, innerClass, progress = 0 } = props;
 
 	return (
 		<div
-			className={`progress-wrapper relative h-4 overflow-hidden rounded-md bg-auiLight-border ${wrapperClass}`}
+			className={`progress-outer relative h-4 overflow-hidden rounded-md bg-auiLight-border ${outerClass}`}
 		>
 			<div
 				style={{ width: `${progress}%` }}

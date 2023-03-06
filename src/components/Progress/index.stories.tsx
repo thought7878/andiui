@@ -23,7 +23,7 @@ export const ProgressWithCustom: ComponentStory<typeof Progress> = (args) => {
 		<div className="w-[500px] ">
 			<Progress
 				progress={20}
-				wrapperClass="bg-yellow-500 h-[12px]"
+				outerClass="bg-yellow-500 h-[12px]"
 				innerClass="bg-Purple-500"
 			/>
 		</div>

@@ -31,9 +31,11 @@ export interface MenuProps {
 export const MenuContext = createContext<IMenuContext>({ activeIndex: "0" });
 
 /**
- * Menu 组件
- * ### 导入
+ * Menu component
+ *
  * ```js
+ * //import like this
+ *
  * import Menu from "aui";
  * ```
  * @param props

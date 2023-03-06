@@ -13,7 +13,15 @@ export interface LinkProps extends React.AnchorHTMLAttributes<HTMLElement> {
 	href?: string;
 }
 
-//
+/**
+ * Link component, support all basic attributes of HTML a
+ *
+ * ```js
+ * // import like this
+ * import { Link } from 'aui'
+ * ```
+ *
+ */
 export const Link: React.FC<LinkProps> = (props) => {
 	const { className, disabled, size, children, href, ...otherProps } = props;
 	//
