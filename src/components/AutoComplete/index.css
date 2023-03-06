@@ -8,6 +8,6 @@
 	@apply cursor-pointer px-4 py-2 text-gray-900 transition-all 
       hover:bg-primary hover:text-white;
 }
-.is-active {
+.suggestion-item-active {
 	@apply bg-primary  text-white;
 }

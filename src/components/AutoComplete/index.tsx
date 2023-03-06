@@ -180,7 +180,7 @@ export const AutoComplete: React.FC<AutoCompleteProps> = (props) => {
 			let suggestionClasses = classNames(
 				"suggestion-item",
 				{
-					"is-active": index === highlightIndex,
+					"suggestion-item-active": index === highlightIndex,
 					// highlightColor has value,hover is highlightColor
 					// TODO: 动态的，tailwind不会生成
 					["hover:!bg-[" + highlightColor + "]"]: highlightColor,
