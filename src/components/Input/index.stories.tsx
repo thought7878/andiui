@@ -3,7 +3,7 @@ import { BiDownload } from "react-icons/bi";
 import Input from "./";
 
 const inputMeta: ComponentMeta<typeof Input> = {
-	title: "input 组件",
+	title: "input",
 	component: Input,
 };
 export default inputMeta;
@@ -20,7 +20,7 @@ const Template: ComponentStory<typeof Input> = (args) => {
 //
 export const Default = Template.bind({});
 Default.args = {};
-Default.storyName = "默认Input";
+Default.storyName = "default";
 
 //
 export const InputWithSize: ComponentStory<typeof Input> = (args) => {
@@ -40,12 +40,12 @@ export const InputWithSize: ComponentStory<typeof Input> = (args) => {
 		</div>
 	);
 };
-InputWithSize.storyName = "不同尺寸的Input";
+InputWithSize.storyName = "inputSize";
 
 //
 export const InputWithDisabled = Template.bind({});
 InputWithDisabled.args = { disabled: true };
-InputWithDisabled.storyName = "disabled的Input";
+InputWithDisabled.storyName = "disabled";
 
 //
 export const InputWithIcon: ComponentStory<typeof Input> = (args) => {
@@ -58,35 +58,35 @@ export const InputWithIcon: ComponentStory<typeof Input> = (args) => {
 	);
 };
 
-InputWithIcon.storyName = "带Icon的Input";
+InputWithIcon.storyName = "icon";
 
 //
-export const InputWithPrepend = Template.bind({});
-InputWithPrepend.args = {
+export const InputWithPrefix = Template.bind({});
+InputWithPrefix.args = {
 	placeholder: "gmail.com",
 
-	prepend: "https://",
+	prefix: "https://",
 };
 
-InputWithPrepend.storyName = "带前缀的Input";
+InputWithPrefix.storyName = "prefix";
 
 //
-export const InputWithAppend = Template.bind({});
-InputWithAppend.args = {
+export const InputWithSuffix = Template.bind({});
+InputWithSuffix.args = {
 	placeholder: "xxx@gmail.com",
 	type: "email",
-	append: "@gmail.com",
+	suffix: "@gmail.com",
 };
 
-InputWithAppend.storyName = "带后缀的Input";
+InputWithSuffix.storyName = "suffix";
 //
 export const InputWithCustom = Template.bind({});
 InputWithCustom.args = {
-	placeholder: "自定义样式",
+	placeholder: "custom input",
 	// readOnly: true,
 	// style: { borderRadius: "2rem" },
 	className:
 		"px-8 py-6 rounded-[5rem] hover:enabled:border-green-500 focus:enabled:border-green-500 focus:enabled:shadow-green-500",
 };
 
-InputWithCustom.storyName = "自定义样式的Input";
+InputWithCustom.storyName = "custom input with className";

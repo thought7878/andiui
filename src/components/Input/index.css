@@ -16,18 +16,18 @@
 .icon-wrapper + .aui-input {
 	padding-right: 35px;
 }
-.input-append-wrapper + .btn {
+.input-suffix-wrapper + .btn {
 	padding: 0;
 	border: 0;
 }
-.input-group > .input-prepend-wrapper,
-.input-group.input-group-append > .aui-input {
+.input-group > .input-prefix-wrapper,
+.input-group.input-group-suffix > .aui-input {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 }
 
-.input-group > .input-append-wrapper,
-.input-group.input-group-prepend > .aui-input {
+.input-group > .input-suffix-wrapper,
+.input-group.input-group-prefix > .aui-input {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
