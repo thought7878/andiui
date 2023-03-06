@@ -23,14 +23,16 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
 	children: React.ReactNode;
 	// icon?: IconProp;
 }
-//
-/* type NativeButtonProps = BaseButtonProps &
-	React.ButtonHTMLAttributes<HTMLElement>;
-type NativeAnchorProps = BaseButtonProps &
-	React.AnchorHTMLAttributes<HTMLElement>;
-export type ButtonProps = Partial<NativeButtonProps & NativeAnchorProps>; */
 
-//
+/**
+ * Button component, support all basic attributes of HTML button
+ *
+ * ```js
+ * // import like this
+ * import { Button } from 'aui'
+ * ```
+ *
+ */
 export const Button: React.FC<ButtonProps> = (props) => {
 	const {
 		btnType,

@@ -23,6 +23,15 @@ export interface AlertProps extends React.HTMLAttributes<HTMLElement> {
 	children?: ReactNode;
 }
 
+/**
+ * Alert component
+ *
+ * ```js
+ * // import like this
+ * import { Alert } from 'aui'
+ * ```
+ *
+ */
 export const Alert: FC<AlertProps> = (props) => {
 	const {
 		type,

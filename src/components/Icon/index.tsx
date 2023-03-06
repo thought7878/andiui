@@ -31,7 +31,16 @@ export interface IconProps extends IconBaseProps {
 	title?: string; //Icon description for accessibility
 }
 
-const Icon: React.FC<IconProps> = (props) => {
+/**
+ * Icon component
+ *
+ * ```js
+ * // import like this
+ * import { Icon } from 'aui'
+ * ```
+ *
+ */
+export const Icon: React.FC<IconProps> = (props) => {
 	const { icon, children, className, ...restProps } = props;
 
 	//
