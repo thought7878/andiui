@@ -78,15 +78,12 @@ export const ProgressWithCustomOuter: ComponentStory<typeof Progress> = (
 ) => {
 	return (
 		<div className="w-[500px] ">
-			<Progress
-				{...args}
-				outerClass="bg-yellow-500 h-[16px]"
-				// innerClass="bg-purple-500"
-			/>
+			<Progress {...args} outerClass="bg-blue-200 h-[12px]" />
 		</div>
 	);
 };
 ProgressWithCustomOuter.args = {
 	progress: 20,
+	showNumber: false,
 };
 ProgressWithCustomOuter.storyName = "custom outer style";
