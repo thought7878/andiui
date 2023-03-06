@@ -5,38 +5,37 @@ import UploadFileList from "./uploadFileList";
 
 //
 export interface UploadProps {
-	/**设置url */
-	action: string;
-	/**设置children */
+	/**Set url */
+	url: string;
+	/**Set children */
 	children: ReactElement;
-	/**设置接受的文件类型。参考，input accept属性，如：.jpg, .pdf,  .doc */
+	/**Set the type of file. Refer to the input attribute, such as: .jpg, .pdf, .doc */
 	accept?: string;
-	/**设置是否可以多文件上传 */
+	/**Set multi-file upload */
 	multiple?: boolean;
-	/**设置是否拖拽上传 */
+	/**Set whether to drag and upload */
 	drag?: boolean;
-
-	/**设置 */
+	/**Set default file list */
 	defaultFileList?: UploadFile[];
-	/**上传之前的回调函数  */
-	beforeUpload?: (file: File) => boolean | Promise<File>;
-	/**上传进度的回调函数 */
+	/**function before upload   */
+	onBeforeUpload?: (file: File) => boolean | Promise<File>;
+	/**function on progress */
 	onProgress?: (percentage: number, file: UploadFile) => void;
-	/**上传成功的回调函数 */
+	/**function on success */
 	onSuccess?: (data: any, file: UploadFile) => void;
-	/**上传失败的回调函数 */
+	/**function on error */
 	onError?: (err: any, file: UploadFile) => void;
-	/**文件改变的回调函数 */
+	/**function on file change  */
 	onChange?: (file: UploadFile) => void;
-	/**文件删除的回调函数 */
+	/**function on file remove */
 	onRemove?: (file: UploadFile) => void;
-	/**设置http header */
+	/**Set http header */
 	httpHeader?: { [key: string]: any };
-	/**设置表单数据 */
+	/**Set form data */
 	formData?: { [key: string]: any };
-	/**设置上传文件名 */
+	/**Set uploading file name */
 	fileName?: string;
-	/**设置 */
+	/**`withCredentials` indicates whether or not cross-site Access-Control requests */
 	withCredentials?: boolean;
 }
 //upload file status type
@@ -51,12 +50,20 @@ export interface UploadFile {
 	error?: any;
 }
 
-//
-const Upload: FC<UploadProps> = (props) => {
+/**
+ * Upload component
+ *
+ * ```js
+ * // import like this
+ * import { Upload } from 'aui'
+ * ```
+ *
+ */
+export const Upload: FC<UploadProps> = (props) => {
 	const {
-		action,
-		defaultFileList,
-		beforeUpload,
+		url,
+		defaultFileList = [],
+		onBeforeUpload,
 		onChange,
 		onProgress,
 		onSuccess,
@@ -72,7 +79,7 @@ const Upload: FC<UploadProps> = (props) => {
 		children,
 	} = props;
 	//
-	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || []);
+	const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList);
 	//file input
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -105,9 +112,9 @@ const Upload: FC<UploadProps> = (props) => {
 	function uploadFiles(fileList: FileList) {
 		const files = Array.from(fileList);
 		files.forEach((file) => {
-			// 如果没有beforeUpload，上传。有beforeUpload，返回值是true，执行上传；返回值是Promise
-			if (beforeUpload) {
-				let result = beforeUpload(file);
+			// 如果没有onBeforeUpload，上传。有onBeforeUpload，返回值是true，执行上传；返回值是Promise
+			if (onBeforeUpload) {
+				let result = onBeforeUpload(file);
 				if (result && typeof result === "boolean") {
 					uploadFile(file);
 				} else if (result instanceof Promise) {
@@ -148,7 +155,7 @@ const Upload: FC<UploadProps> = (props) => {
 		}
 		// ajax
 		axios
-			.post(action, _formData, {
+			.post(url, _formData, {
 				withCredentials,
 				headers: {
 					"Content-Type": "multipart/form-data",
@@ -250,6 +257,7 @@ const Upload: FC<UploadProps> = (props) => {
 Upload.defaultProps = {
 	multiple: false,
 	drag: false,
+	defaultFileList: [],
 };
 
 export default Upload;

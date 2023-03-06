@@ -5,15 +5,28 @@ import Icon from "../Icon";
 import Upload from "./";
 
 const uploadMeta: ComponentMeta<typeof Upload> = {
-	title: "Upload 组件",
+	title: "Upload",
 	component: Upload,
+	args: {
+		// onBeforeUpload: () => {
+		// 	return true;
+		// },
+	},
+	argTypes: {
+		// onBeforeUpload: { action: "onBeforeUpload" },
+	},
 };
 export default uploadMeta;
 
 //
 const Template: ComponentStory<typeof Upload> = (args) => (
 	<div className="w-[300px]">
-		<Upload {...args}>
+		<Upload
+			{...args}
+			onBeforeUpload={(file) => {
+				return true;
+			}}
+		>
 			<Button btnType="primary">Upload Files</Button>
 		</Upload>
 	</div>
@@ -22,51 +35,35 @@ const Template: ComponentStory<typeof Upload> = (args) => (
 //
 export const UploadWithDefault = Template.bind({});
 UploadWithDefault.args = {
-	action: "https://jsonplaceholder.typicode.com/posts",
+	url: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
 };
-UploadWithDefault.storyName = "默认upload";
+UploadWithDefault.storyName = "default";
 
 //
 export const UploadWithAccept = Template.bind({});
 UploadWithAccept.args = {
-	action: "https://jsonplaceholder.typicode.com/posts",
+	url: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
 	accept: ".jpg",
 };
-UploadWithAccept.storyName = "设置accept2";
+UploadWithAccept.storyName = "accept";
 
 //
-export const UploadWithButton: ComponentStory<typeof Upload> = (args) => {
-	return (
-		<div className="w-[300px]">
-			<Upload
-				{...args}
-				action="https://jsonplaceholder.typicode.com/posts"
-				accept=".jpg"
-			>
-				<Button btnType="primary">Upload Files</Button>
-			</Upload>
-		</div>
-	);
+export const UploadWithMultiple = Template.bind({});
+UploadWithMultiple.args = {
+	url: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+	multiple: true,
 };
-UploadWithButton.storyName = "设置接受的文件类型";
-
-//
-export const UploadWithMultiple: ComponentStory<typeof Upload> = (args) => {
-	return (
-		<div className="w-[300px]">
-			<Upload action="https://jsonplaceholder.typicode.com/posts" multiple>
-				<Button btnType="primary">Upload Files</Button>
-			</Upload>
-		</div>
-	);
-};
-UploadWithMultiple.storyName = "设置多文件上传";
+UploadWithMultiple.storyName = "multiple";
 
 //
 export const UploadWithDrag: ComponentStory<typeof Upload> = (args) => {
 	return (
 		<div className="w-[300px]">
-			<Upload action="https://jsonplaceholder.typicode.com/posts" drag>
+			<Upload
+				{...args}
+				url="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+				drag
+			>
 				<>
 					<div className="mb-5 flex justify-center">
 						<Icon icon={<AiOutlineCloudUpload />} className="text-5xl" />
@@ -77,46 +74,46 @@ export const UploadWithDrag: ComponentStory<typeof Upload> = (args) => {
 		</div>
 	);
 };
-UploadWithDrag.storyName = "拖拽上传";
+UploadWithDrag.storyName = "drag";
 
 //
-export const UploadWithBeforeFun: ComponentStory<typeof Upload> = (args) => {
+/* export const UploadWithBeforeFun: ComponentStory<typeof Upload> = (args) => {
 	return (
 		<div>
 			<div className="mb-8 w-[300px]">
 				<Upload
-					action="https://jsonplaceholder.typicode.com/posts"
-					beforeUpload={() => {
-						alert("beforeUpload返回false，不会执行上传文件");
+					url="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+					onBeforeUpload={() => {
+						alert("onBeforeUpload返回false，不会执行上传文件");
 						return false;
 					}}
 				>
-					<Button btnType="primary">beforeUpload:false</Button>
+					<Button btnType="primary">onBeforeUpload:false</Button>
 				</Upload>
 			</div>
 			<div className="mb-8 w-[300px]">
 				<Upload
-					action="https://jsonplaceholder.typicode.com/posts"
-					beforeUpload={() => {
-						alert("beforeUpload返回true，执行上传文件");
+					url="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+					onBeforeUpload={() => {
+						alert("onBeforeUpload返回true，执行上传文件");
 						return true;
 					}}
 				>
-					<Button btnType="primary">beforeUpload:true</Button>
+					<Button btnType="primary">onBeforeUpload:true</Button>
 				</Upload>
 			</div>
 		</div>
 	);
 };
-UploadWithBeforeFun.storyName = "beforeUpload 函数";
+UploadWithBeforeFun.storyName = "onBeforeUpload 函数"; */
 
 //
 export const UploadWithSize: ComponentStory<typeof Upload> = (args) => {
 	return (
 		<div className="w-[300px]">
 			<Upload
-				action="https://jsonplaceholder.typicode.com/posts"
-				// beforeUpload={handleBeforeUpload}
+				url="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+				// onBeforeUpload={handleBeforeUpload}
 
 				accept=".jpg"
 				multiple
