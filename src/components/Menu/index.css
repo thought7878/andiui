@@ -21,7 +21,7 @@
 			@apply flex items-center;
 		}
 		.arrow-icon {
-			@apply ml-[3px] transition-transform;
+			@apply ml-[3px] transition-transform duration-300;
 		}
 		&:hover {
 			.arrow-icon {

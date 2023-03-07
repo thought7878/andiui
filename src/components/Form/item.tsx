@@ -1,26 +1,32 @@
 import React, { FC, ReactNode, useContext, useEffect } from "react";
-import { FormContext } from ".";
+import { FormContext } from "./form";
 import { CustomRule } from "./useStore";
 
 // TODO 需要消化
 export type SomeRequired<T, K extends keyof T> = Required<Pick<T, K>> &
 	Omit<T, K>;
 
-// type Test = SomeRequired<ItemProps, "getValueFromEvent">;
-
-interface ItemProps {
+export interface ItemProps {
+	/**element's name. e.g. username/password */
 	name: string;
 	// defaultValue?: string | boolean; //string/boolean
+	/**label text */
 	label?: string;
-	children?: ReactNode;
+	/**The name of element's value. e.g. value/checked */
 	valueName?: string;
-	valueChangeEventName?: string; //value change event
-	validateEventName?: string; //onBlur
+	/**The event name that changes value. e.g. onChange */
+	valueChangeEventName?: string;
+	/**The event name when validate . e.g. onBlur */
+	validateEventName?: string;
+	/**The function how to  get value from the Event object . */
 	getValueFromEvent?: (event: any) => any;
+	/**The rules how to verify the element. Please refer to [async-validator rules](https://github.com/yiminghe/async-validator)*/
 	rules?: CustomRule[];
+	/**children */
+	children?: ReactNode;
 }
 
-const Item: FC<ItemProps> = (props) => {
+export const Item: FC<ItemProps> = (props) => {
 	const {
 		name = "",
 		label = "",
@@ -83,12 +89,12 @@ const Item: FC<ItemProps> = (props) => {
 	const childList = React.Children.toArray(children);
 	// 判断children类型，没有children/大于一个/不是有效的Element，警告
 	if (childList.length === 0) {
-		console.error("Item 组件,没有子元素!");
+		console.error("Item no children!");
 	} else if (childList.length > 1) {
-		console.error("Item 子组件,不能大于1个!");
+		console.error("Item's children can not be more than 1!");
 	}
 	if (!React.isValidElement(childList[0])) {
-		console.error("Item 子组件,不是有效的Element!");
+		console.error("Item's children is not valid Element!");
 	}
 	// cloneElement，新element包含旧的所有属性和新的属性
 	const originChild = childList[0] as React.ReactElement;
@@ -120,13 +126,27 @@ const Item: FC<ItemProps> = (props) => {
 			<div className="relative basis-[70%]">
 				{newChild}
 				{hasError && (
-					<div className="absolute bottom-[-1.25rem] left-0 min-w-[100px] text-sm text-danger">
+					<div className="absolute bottom-[-1.25rem] left-0 min-w-[500px] text-sm text-danger">
 						{errors[0].message}
 					</div>
 				)}
 			</div>
 		</div>
 	);
+};
+
+Item.defaultProps = {
+	name: "",
+	label: "",
+	children: "",
+	valueName: "value",
+	// defaultValue = valueName === "value" ? "" : false,
+	valueChangeEventName: "onChange",
+	validateEventName: "onBlur",
+	rules: [],
+	getValueFromEvent: (e) => {
+		return e.target?.value;
+	},
 };
 
 export default Item;

@@ -24,7 +24,6 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
 	function handleClick() {
 		if (context.onCLick && !disabled && typeof index === "string") {
 			context.onCLick(index);
-			console.log(index);
 		}
 	}
 	//
