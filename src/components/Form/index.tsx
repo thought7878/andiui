@@ -1,10 +1,11 @@
+import { FC } from "react";
 import InternalForm from "./form";
-import Item from "./item";
+import Item, { ItemProps } from "./item";
 
 export type InternalFormType = typeof InternalForm;
 
 export type CompoundedFormType = InternalFormType & {
-	Item: typeof Item;
+	Item: FC<ItemProps>;
 };
 
 const Form = InternalForm as CompoundedFormType;

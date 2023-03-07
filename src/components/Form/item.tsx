@@ -7,16 +7,16 @@ export type SomeRequired<T, K extends keyof T> = Required<Pick<T, K>> &
 	Omit<T, K>;
 
 export interface ItemProps {
-	/**element's name. e.g. username/password */
+	/**element's name. For example: username/password */
 	name: string;
 	// defaultValue?: string | boolean; //string/boolean
 	/**label text */
 	label?: string;
-	/**The name of element's value. e.g. value/checked */
+	/**The name of element's value. For example: value/checked */
 	valueName?: string;
-	/**The event name that changes value. e.g. onChange */
+	/**The event name that changes value. For example: onChange */
 	valueChangeEventName?: string;
-	/**The event name when validate . e.g. onBlur */
+	/**The event name when validate . For example: onBlur */
 	validateEventName?: string;
 	/**The function how to  get value from the Event object . */
 	getValueFromEvent?: (event: any) => any;

@@ -8,9 +8,10 @@ import {
 } from "react";
 import useStore, { FormState } from "./useStore";
 
+//
 export type RenderChildren = (form: FormState) => ReactNode;
-
-export interface FormProps {
+//
+export interface InternalFormProps {
 	/**children */
 	children?: ReactNode | RenderChildren;
 	/**The initial value of the form */
@@ -23,11 +24,12 @@ export interface FormProps {
 		errors: Record<string, ValidateError[]>
 	) => void;
 }
+//
 export type IFormContext = Pick<
 	ReturnType<typeof useStore>,
 	"dispatch" | "fieldsState" | "validateField"
 > &
-	Pick<FormProps, "initialValues">;
+	Pick<InternalFormProps, "initialValues">;
 //
 export type IFormRef = Omit<
 	ReturnType<typeof useStore>,
@@ -43,7 +45,7 @@ export type IFormRef = Omit<
 export const FormContext = createContext<IFormContext>({} as IFormContext);
 
 //
-const InternalForm = forwardRef<IFormRef, FormProps>((props, ref) => {
+const InternalForm = forwardRef<IFormRef, InternalFormProps>((props, ref) => {
 	const { children, initialValues, onFinish, onFinishFailed } = props;
 	// const formRef = useRef(null);
 	// states

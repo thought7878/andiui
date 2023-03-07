@@ -1,58 +1,58 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useRef } from "react";
+import Form from ".";
 import Button from "../Button";
 import Input from "../Input";
-import Form from "./";
+// import Form from "./";
 import { IFormRef } from "./form";
 
 const formMeta: ComponentMeta<typeof Form> = {
-	title: "Form 组件",
+	title: "Form 组",
 	component: Form,
-	subcomponents: { Item: Form.Item },
+	subcomponents: { "Form.Item": Form.Item },
 };
 export default formMeta;
 
 //
-const confirmPasswordRules: CustomRule[] = [
-	{ type: "string", required: true, min: 3, max: 8 },
-	({ getFieldValue }) => ({
-		asyncValidator: (rule, value) => {
-			if (value !== getFieldValue("password")) {
-				return Promise.reject("Confirm password is different from Password!");
-			}
+// const confirmPasswordRules: CustomRule[] = [
+// 	{ type: "string", required: true, min: 3, max: 8 },
+// 	({ getFieldValue }) => ({
+// 		asyncValidator: (rule, value) => {
+// 			if (value !== getFieldValue("password")) {
+// 				return Promise.reject("Confirm password is different from Password!");
+// 			}
 
-			return Promise.resolve();
-		},
-	}),
-];
+// 			return Promise.resolve();
+// 		},
+// 	}),
+// ];
 
 //
 export const FormWithDefault: ComponentStory<typeof Form> = (args) => {
-	let formRef = useRef<IFormRef>(null);
-
 	return (
 		<div className="w-[800px]">
-			<Form
-				ref={formRef}
-				{...args}
-				// onFinish={(values) => {}}
-				// onFinishFailed={(values, errors) => {}}
-			>
-				<Form.Item
-					label="username:"
-					name="username"
-					rules={[{ type: "email", required: true }]}
-				>
+			<Form {...args}>
+				<Form.Item label="Username:" name="username">
 					<Input />
 				</Form.Item>
-				<Form.Item
-					label="password:"
-					name="password"
-					valueName="value"
-					valueChangeEventName="onChange"
-					getValueFromEvent={(e) => e.target.value}
-					rules={[{ type: "string", required: true, min: 3, max: 8 }]}
-				>
+				<Form.Item label="Password:" name="password">
+					<Input type="password" />
+				</Form.Item>
+			</Form>
+		</div>
+	);
+};
+FormWithDefault.storyName = "label & name";
+
+//
+export const FormWithLayout: ComponentStory<typeof Form> = (args) => {
+	return (
+		<div className="w-[800px]">
+			<Form>
+				<Form.Item label="Username:" name="username">
+					<Input />
+				</Form.Item>
+				<Form.Item label="Password:" name="password">
 					<Input type="password" />
 				</Form.Item>
 
@@ -67,6 +67,31 @@ export const FormWithDefault: ComponentStory<typeof Form> = (args) => {
 					</Form.Item>
 					<span className="text-base">Remember me</span>
 				</div>
+			</Form>
+		</div>
+	);
+};
+FormWithLayout.storyName = "layout without label ";
+
+//
+export const FormWithRules: ComponentStory<typeof Form> = (args) => {
+	return (
+		<div className="w-[800px]">
+			<Form {...args}>
+				<Form.Item
+					label="Username:"
+					name="username"
+					rules={[{ type: "email", required: true }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Password:"
+					name="password"
+					rules={[{ type: "string", required: true, min: 3, max: 8 }]}
+				>
+					<Input type="password" />
+				</Form.Item>
 				<Form.Item name="submitButton">
 					<Button btnType="primary">Login</Button>
 				</Form.Item>
@@ -74,7 +99,7 @@ export const FormWithDefault: ComponentStory<typeof Form> = (args) => {
 		</div>
 	);
 };
-FormWithDefault.storyName = "default";
+FormWithRules.storyName = "Item rules";
 
 //
 export const FormWithReset: ComponentStory<typeof Form> = (args) => {
@@ -88,14 +113,14 @@ export const FormWithReset: ComponentStory<typeof Form> = (args) => {
 				onFinishFailed={(values, errors) => {}}
 			>
 				<Form.Item
-					label="username:"
+					label="Username:"
 					name="username"
 					rules={[{ type: "email", required: true }]}
 				>
 					<Input />
 				</Form.Item>
 				<Form.Item
-					label="password:"
+					label="Password:"
 					name="password"
 					valueName="value"
 					valueChangeEventName="onChange"
@@ -105,12 +130,12 @@ export const FormWithReset: ComponentStory<typeof Form> = (args) => {
 					<Input type="password" />
 				</Form.Item>
 				<Form.Item
-					label="confirm password:"
+					label="confirm Password:"
 					name="confirmPassword"
 					valueName="value"
 					valueChangeEventName="onChange"
 					getValueFromEvent={(e) => e.target.value}
-					rules={confirmPasswordRules}
+					// rules={confirmPasswordRules}
 				>
 					<Input type="password" />
 				</Form.Item>
@@ -145,7 +170,7 @@ export const FormWithReset: ComponentStory<typeof Form> = (args) => {
 						onClick={() => {
 							// console.log(formRef);
 							// console.log(
-							// 	"username:",
+							// 	"Username:",
 							// 	formRef.current?.getFieldValue("username")
 							// 	// formRef.current?.getFieldsValue()
 							// );
