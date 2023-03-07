@@ -1,9 +1,9 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useRef } from "react";
 import Form from ".";
+
 import Button from "../Button";
 import Input from "../Input";
-// import Form from "./";
 import { IFormRef } from "./form";
 
 const formMeta: ComponentMeta<typeof Form> = {
@@ -92,7 +92,8 @@ export const FormWithRules: ComponentStory<typeof Form> = (args) => {
 				>
 					<Input type="password" />
 				</Form.Item>
-				<Form.Item name="submitButton">
+				{/* TODO: FieldsState Bug!!! */}
+				<Form.Item>
 					<Button btnType="primary">Login</Button>
 				</Form.Item>
 			</Form>
@@ -100,6 +101,68 @@ export const FormWithRules: ComponentStory<typeof Form> = (args) => {
 	);
 };
 FormWithRules.storyName = "Item rules";
+//
+export const FormWithInitialValues: ComponentStory<typeof Form> = (args) => {
+	return (
+		<div className="w-[800px]">
+			<Form
+				initialValues={{
+					username: "andy@gmail.com",
+					password: "123456",
+					// confirmPassword: "111",
+					// agreement: true,
+				}}
+			>
+				<Form.Item
+					label="Username:"
+					name="username"
+					rules={[{ type: "email", required: true }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Password:"
+					name="password"
+					rules={[{ type: "string", required: true, min: 3, max: 8 }]}
+				>
+					<Input type="password" />
+				</Form.Item>
+				<Form.Item name="submitButton">
+					<Button btnType="primary">Login</Button>
+				</Form.Item>
+			</Form>
+		</div>
+	);
+};
+FormWithInitialValues.storyName = "initialValues";
+
+//
+export const FormWithFormEvents: ComponentStory<typeof Form> = (args) => {
+	return (
+		<div className="w-[800px]">
+			<Form {...args}>
+				<Form.Item
+					label="Username:"
+					name="username"
+					rules={[{ type: "email", required: true }]}
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Password:"
+					name="password"
+					rules={[{ type: "string", required: true, min: 3, max: 8 }]}
+				>
+					<Input type="password" />
+				</Form.Item>
+				<Form.Item name="submitButton">
+					<Button btnType="primary">Login</Button>
+				</Form.Item>
+			</Form>
+		</div>
+	);
+};
+FormWithFormEvents.storyName = "onFinish & onFinishFailed";
 
 //
 export const FormWithReset: ComponentStory<typeof Form> = (args) => {

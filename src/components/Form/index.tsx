@@ -8,7 +8,7 @@ export type CompoundedFormType = InternalFormType & {
 	Item: FC<ItemProps>;
 };
 
-const Form = InternalForm as CompoundedFormType;
+export const Form = InternalForm as CompoundedFormType;
 Form.Item = Item;
 
 export default Form;

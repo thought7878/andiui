@@ -45,65 +45,67 @@ export type IFormRef = Omit<
 export const FormContext = createContext<IFormContext>({} as IFormContext);
 
 //
-const InternalForm = forwardRef<IFormRef, InternalFormProps>((props, ref) => {
-	const { children, initialValues, onFinish, onFinishFailed } = props;
-	// const formRef = useRef(null);
-	// states
-	const {
-		validateField,
-		formState,
-		fieldsState,
-		dispatch,
-		validateAllFields,
-		getFieldValue,
-		setFieldValue,
-		getFieldsValue,
-		resetFields,
-	} = useStore(initialValues);
-	const passedFormContext: IFormContext = {
-		dispatch,
-		fieldsState,
-		initialValues,
-		validateField,
-	};
-
-	// expose api
-	useImperativeHandle(ref, () => {
-		return {
+export const InternalForm = forwardRef<IFormRef, InternalFormProps>(
+	(props, ref) => {
+		const { children, initialValues, onFinish, onFinishFailed } = props;
+		// const formRef = useRef(null);
+		// states
+		const {
+			validateField,
+			formState,
+			fieldsState,
+			dispatch,
+			validateAllFields,
 			getFieldValue,
 			setFieldValue,
 			getFieldsValue,
 			resetFields,
+		} = useStore(initialValues);
+		const passedFormContext: IFormContext = {
+			dispatch,
+			fieldsState,
+			initialValues,
+			validateField,
 		};
-	}); //TODO: []问题
 
-	//
-	async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
-		e.stopPropagation();
-		const { isValid, errors, values } = await validateAllFields();
-		if (isValid && onFinish) {
-			onFinish(values);
-		} else if (!isValid && onFinishFailed) {
-			onFinishFailed(values, errors);
+		// expose api
+		useImperativeHandle(ref, () => {
+			return {
+				getFieldValue,
+				setFieldValue,
+				getFieldsValue,
+				resetFields,
+			};
+		}); //TODO: []问题
+
+		//
+		async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+			e.preventDefault();
+			e.stopPropagation();
+			const { isValid, errors, values } = await validateAllFields();
+			if (isValid && onFinish) {
+				onFinish(values);
+			} else if (!isValid && onFinishFailed) {
+				onFinishFailed(values, errors);
+			}
 		}
-	}
 
-	//
-	function renderChildren(): ReactNode {
-		if (typeof children === "function") {
-			return children(formState);
+		//
+		function renderChildren(): ReactNode {
+			if (typeof children === "function") {
+				return children(formState);
+			}
+			return children;
 		}
-		return children;
-	}
 
-	return (
-		<form onSubmit={handleSubmit}>
-			<FormContext.Provider value={passedFormContext}>
-				{renderChildren()}
-			</FormContext.Provider>
-		</form>
-	);
-});
+		return (
+			<form onSubmit={handleSubmit}>
+				<FormContext.Provider value={passedFormContext}>
+					{renderChildren()}
+				</FormContext.Provider>
+			</form>
+		);
+	}
+);
 
 export default InternalForm;

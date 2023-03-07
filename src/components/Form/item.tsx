@@ -8,7 +8,7 @@ export type SomeRequired<T, K extends keyof T> = Required<Pick<T, K>> &
 
 export interface ItemProps {
 	/**element's name. For example: username/password */
-	name: string;
+	name?: string;
 	// defaultValue?: string | boolean; //string/boolean
 	/**label text */
 	label?: string;
@@ -46,20 +46,22 @@ export const Item: FC<ItemProps> = (props) => {
 
 	// mounted ,update form store's FieldsState
 	useEffect(() => {
-		const defaultValue = initialValues && initialValues[name];
-		// TODO: 应该排除掉非数据的，如：Button
-		dispatch({
-			type: "addField",
-			name,
-			value: {
-				label,
+		// 应该排除掉非数据的，如：Button
+		if (name) {
+			const defaultValue = initialValues && initialValues[name];
+			dispatch({
+				type: "addField",
 				name,
-				value: defaultValue || "",
-				rules,
-				errors: [],
-				isValid: true,
-			},
-		});
+				value: {
+					label,
+					name,
+					value: defaultValue || "",
+					rules,
+					errors: [],
+					isValid: true,
+				},
+			});
+		}
 	}, []);
 
 	//value 改变了，更新store中自己的value
