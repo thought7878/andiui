@@ -118,8 +118,4 @@ export const InternalForm = forwardRef<IFormRef, InternalFormProps>(
 	}
 );
 
-InternalForm.defaultProps = {
-	initialValues: {},
-};
-
 export default InternalForm;

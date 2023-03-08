@@ -121,6 +121,7 @@ export const Item: FC<ItemProps> = (props) => {
 
 	// ======== Verify whether the child element is valid ========
 	function verifyChildren(children: ReactNode) {
+		// TODO: 应该允许多个children
 		// 获取children数组的第一个元素
 		const childList = React.Children.toArray(children);
 		// 判断children类型，没有children/大于一个/不是有效的Element，警告
