@@ -16,9 +16,18 @@ export interface InternalFormProps {
 	children?: ReactNode | RenderChildren;
 	/**The initial value of the form */
 	initialValues?: Record<string, any>;
-	/**the callback function,after the overall verification of the form is valid */
+	/**
+	 * the callback function,after the overall verification of the form is valid
+	 * @param values : form data
+	 * @returns void
+	 */
 	onFinish?: (values: Record<string, any>) => void;
-	/**the callback function,after the overall verification of the form is not valid */
+	/**
+	 *the callback function,after the overall verification of the form is not valid
+	 * @param values : name:value object
+	 * @param errors : invalid errors
+	 * @returns
+	 */
 	onFinishFailed?: (
 		values: Record<string, any>,
 		errors: Record<string, ValidateError[]>
@@ -107,5 +116,9 @@ export const InternalForm = forwardRef<IFormRef, InternalFormProps>(
 		);
 	}
 );
+
+InternalForm.defaultProps = {
+	initialValues: {},
+};
 
 export default InternalForm;

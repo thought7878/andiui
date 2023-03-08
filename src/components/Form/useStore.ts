@@ -8,7 +8,6 @@ export type CustomRuleFunc = (obj: {
 export type CustomRule = RuleItem | CustomRuleFunc;
 
 export interface FieldState {
-	// TODO: FieldsState Bug!!!
 	name: string; //input/radio name
 	value: string;
 	rules: CustomRule[];

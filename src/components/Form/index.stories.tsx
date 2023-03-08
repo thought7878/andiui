@@ -32,6 +32,7 @@ export const FormWithDefault: ComponentStory<typeof Form> = (args) => {
 	return (
 		<div className="w-[800px]">
 			<Form {...args}>
+				{/* TODO:不显示Form.Item */}
 				<Form.Item label="Username:" name="username">
 					<Input />
 				</Form.Item>
@@ -71,7 +72,7 @@ export const FormWithLayout: ComponentStory<typeof Form> = (args) => {
 		</div>
 	);
 };
-FormWithLayout.storyName = "layout without label ";
+FormWithLayout.storyName = "layout without label";
 
 //
 export const FormWithRules: ComponentStory<typeof Form> = (args) => {
@@ -92,7 +93,6 @@ export const FormWithRules: ComponentStory<typeof Form> = (args) => {
 				>
 					<Input type="password" />
 				</Form.Item>
-				{/* TODO: FieldsState Bug!!! */}
 				<Form.Item>
 					<Button btnType="primary">Login</Button>
 				</Form.Item>
@@ -101,6 +101,40 @@ export const FormWithRules: ComponentStory<typeof Form> = (args) => {
 	);
 };
 FormWithRules.storyName = "Item rules";
+
+//
+export const FormWithValueName: ComponentStory<typeof Form> = (args) => {
+	return (
+		<div className="w-[800px]">
+			<Form {...args}>
+				<Form.Item label="Username:" name="username">
+					<Input />
+				</Form.Item>
+				<Form.Item label="Password:" name="password">
+					<Input type="password" />
+				</Form.Item>
+
+				<div className="flex pl-[30%]">
+					<Form.Item
+						name="remember"
+						valueName="checked"
+						valueChangeEventName="onChange"
+						getValueFromEvent={(e) => e.target.checked}
+					>
+						<input type="checkbox" className="mr-1" />
+					</Form.Item>
+					<span className="text-base">Remember me</span>
+				</div>
+
+				<Form.Item>
+					<Button btnType="primary">Login</Button>
+				</Form.Item>
+			</Form>
+		</div>
+	);
+};
+FormWithValueName.storyName = "valueName & getValueFromEvent";
+
 //
 export const FormWithInitialValues: ComponentStory<typeof Form> = (args) => {
 	return (

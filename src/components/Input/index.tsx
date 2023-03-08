@@ -77,6 +77,7 @@ export const Input: React.FC<InputProps> = (props) => {
 
 Input.defaultProps = {
 	disabled: false,
+	value: "",
 };
 
 export default Input;
