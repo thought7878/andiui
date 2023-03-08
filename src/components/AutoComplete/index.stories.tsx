@@ -4,7 +4,7 @@ import AutoComplete from "./";
 const autoCompleteMeta: ComponentMeta<typeof AutoComplete> = {
 	title: "AutoComplete",
 	component: AutoComplete,
-	argTypes: { onSelect: { action: "selected value" } },
+	// argTypes: { onSelect: { action: "selected value" } },
 };
 export default autoCompleteMeta;
 

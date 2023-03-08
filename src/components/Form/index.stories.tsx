@@ -64,7 +64,7 @@ export const FormWithLayout: ComponentStory<typeof Form> = (args) => {
 				<Form.Item label="Password:" name="password">
 					<Input type="password" />
 				</Form.Item>
-				//////////////// layout without label:START ////////////////
+				{/* //////////////// layout without label:START //////////////// */}
 				<div className="flex pl-[30%]">
 					<Form.Item
 						name="remember"
@@ -76,7 +76,7 @@ export const FormWithLayout: ComponentStory<typeof Form> = (args) => {
 					</Form.Item>
 					<span className="text-base">Remember me</span>
 				</div>
-				//////////////// layout without label:END ////////////////
+				{/* //////////////// layout without label:END //////////////// */}
 			</Form>
 		</div>
 	);
@@ -383,9 +383,12 @@ export const FormWithReset: ComponentStory<typeof Form> = (args) => {
 							console.log(formRef);
 							console.log(
 								"Username:",
+								//////////////// getFieldValue ////////////////
 								formRef.current?.getFieldValue("username")
 							);
+							//////////////// getFieldsValue ////////////////
 							console.log("FieldsValue:", formRef.current?.getFieldsValue());
+							//////////////// resetFields ////////////////
 							formRef.current?.resetFields();
 						}}
 					>

@@ -53,7 +53,15 @@ export type IFormRef = Omit<
 //
 export const FormContext = createContext<IFormContext>({} as IFormContext);
 
-//
+/**
+ * Form component
+ *
+ * ```js
+ * // import like this
+ * import { Form } from 'aui'
+ * ```
+ *
+ */
 export const InternalForm = forwardRef<IFormRef, InternalFormProps>(
 	(props, ref) => {
 		const { children, initialValues, onFinish, onFinishFailed } = props;
