@@ -1,10 +1,26 @@
 {
   "name": "aui",
   "version": "0.1.0",
-  "private": true,
-  "main": "build/index.js",
-  "module": "build/index.js",
-  "types": "build/index.d.ts",
+  "private": false,
+  "description": "A component library based on React and Tailwind",
+  "author": "calm andy",
+  "license": "MIT",
+  "homepage": "https://github.com/thought7878/aui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thought7878/aui"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "React",
+    "Tailwind",
+    "component library"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
@@ -75,7 +91,7 @@
     "test": "node scripts/test.js",
     "coverage": "node scripts/test.js --coverage",
     "build-ts": "tsc -p tsconfig.build.json",
-    "build-css": "postcss src/index.css --dir build",
+    "build-css": "postcss src/index.css --dir dist",
     "postcss:watch": "postcss src/index.css --dir dist --watch",
     "plop": "plop",
     "build-aui": "webpack --config webpack.my.config.js",
