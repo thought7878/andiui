@@ -40,9 +40,36 @@ export const Item: FC<ItemProps> = (props) => {
 			return e.target?.value;
 		},
 	} = props as SomeRequired<ItemProps, "getValueFromEvent" | "valueName">;
-
+	//
 	const { dispatch, fieldsState, initialValues, validateField } =
 		useContext(FormContext);
+	//
+	let newChildren = children;
+	let errors = null;
+	let hasError = null;
+	let value: any = null;
+	let isRequired = false;
+	// 如果是有效的表单元素，即有name，才获取store中的value/errors/required，才增加额外的valueChangeEventName等
+	if (name) {
+		// 获取自己的fieldState
+		const fieldState = fieldsState[name];
+		value = fieldState?.value;
+		// error
+		errors = fieldState?.errors;
+		hasError = errors && errors.length > 0;
+		//
+		isRequired = rules?.some(
+			(rule) => typeof rule !== "function" && rule.required
+		);
+		// Clone Element, Add additional attribute
+		newChildren = addAdditionalProps();
+	}
+
+	//没有label的，右对齐
+	let noLabelClass = "";
+	if (!label) {
+		noLabelClass = "flex-row-reverse";
+	}
 
 	// ======== mounted ========
 	useEffect(() => {
@@ -66,23 +93,31 @@ export const Item: FC<ItemProps> = (props) => {
 		verifyChildren(children);
 	}, []);
 
-	// 获取自己的fieldState
-	const fieldState = name ? fieldsState[name] : null;
-	const value = fieldState?.value;
-	const isRequired = rules?.some(
-		(rule) => typeof rule !== "function" && rule.required
+	// ======== Render ========
+	return (
+		<div className={`mb-5 flex  items-center ${noLabelClass}`}>
+			{label && (
+				<label
+					htmlFor=""
+					title={label}
+					className="shrink-0 basis-[30%] pr-3 text-right"
+				>
+					{isRequired && (
+						<span className="mr-1 align-middle text-danger">*</span>
+					)}
+					{label}
+				</label>
+			)}
+			<div className="relative basis-[70%]">
+				{newChildren}
+				{hasError && (
+					<div className="absolute bottom-[-1.25rem] left-0 min-w-[500px] text-sm text-danger">
+						{errors && errors[0].message}
+					</div>
+				)}
+			</div>
+		</div>
 	);
-	// error
-	const errors = fieldState?.errors;
-	const hasError = errors && errors.length > 0;
-	// Clone Element, Add additional attribute
-	const newChild = name ? addAdditionalProps() : children;
-
-	//没有label的，右对齐
-	let noLabelClass = "";
-	if (!label) {
-		noLabelClass = "flex-row-reverse";
-	}
 
 	// ======== Verify whether the child element is valid ========
 	function verifyChildren(children: ReactNode) {
@@ -110,11 +145,11 @@ export const Item: FC<ItemProps> = (props) => {
 		// Clone Element，新element包含旧的所有属性和新的属性
 		const childList = React.Children.toArray(children);
 		const originChild = childList[0] as React.ReactElement;
-		const newChild = React.cloneElement(originChild, {
+		const newChildren = React.cloneElement(originChild, {
 			...originChild.props,
 			...controlledProps,
 		});
-		return newChild;
+		return newChildren;
 	}
 	// ======== value changed, update value in store ========
 	function handleValueChange(e: any) {
@@ -122,32 +157,6 @@ export const Item: FC<ItemProps> = (props) => {
 		const value = getValueFromEvent(e);
 		dispatch({ type: "updateValue", name, value });
 	}
-
-	// ======== Render ========
-	return (
-		<div className={`mb-5 flex  items-center ${noLabelClass}`}>
-			{label && (
-				<label
-					htmlFor=""
-					title={label}
-					className="shrink-0 basis-[30%] pr-3 text-right"
-				>
-					{isRequired && (
-						<span className="mr-1 align-middle text-danger">*</span>
-					)}
-					{label}
-				</label>
-			)}
-			<div className="relative basis-[70%]">
-				{newChild}
-				{hasError && (
-					<div className="absolute bottom-[-1.25rem] left-0 min-w-[500px] text-sm text-danger">
-						{errors[0].message}
-					</div>
-				)}
-			</div>
-		</div>
-	);
 };
 
 Item.defaultProps = {

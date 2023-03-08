@@ -7,9 +7,15 @@ import Input from "../Input";
 import { IFormRef } from "./form";
 
 const formMeta: ComponentMeta<typeof Form> = {
-	title: "Form 组",
+	title: "Form 0.8",
 	component: Form,
 	subcomponents: { "Form.Item": Form.Item },
+	argTypes: {
+		// getFieldValue,
+		// setFieldValue,
+		// getFieldsValue,
+		// resetFields,
+	},
 };
 export default formMeta;
 
@@ -100,13 +106,13 @@ export const FormWithRules: ComponentStory<typeof Form> = (args) => {
 		</div>
 	);
 };
-FormWithRules.storyName = "Item rules";
+FormWithRules.storyName = "rules";
 
 //
 export const FormWithValueName: ComponentStory<typeof Form> = (args) => {
 	return (
 		<div className="w-[800px]">
-			<Form {...args}>
+			<Form>
 				<Form.Item label="Username:" name="username">
 					<Input />
 				</Form.Item>
@@ -197,6 +203,38 @@ export const FormWithFormEvents: ComponentStory<typeof Form> = (args) => {
 	);
 };
 FormWithFormEvents.storyName = "onFinish & onFinishFailed";
+
+//
+export const FormWithValidateEventName: ComponentStory<typeof Form> = (
+	args
+) => {
+	return (
+		<div className="w-[800px]">
+			<Form {...args}>
+				<Form.Item
+					label="Username:"
+					name="username"
+					rules={[{ type: "email", required: true }]}
+					validateEventName="onKeyUp"
+				>
+					<Input />
+				</Form.Item>
+				<Form.Item
+					label="Password:"
+					name="password"
+					rules={[{ type: "string", required: true, min: 3, max: 8 }]}
+					validateEventName="onKeyUp"
+				>
+					<Input type="password" />
+				</Form.Item>
+				<Form.Item name="submitButton">
+					<Button btnType="primary">Login</Button>
+				</Form.Item>
+			</Form>
+		</div>
+	);
+};
+FormWithValidateEventName.storyName = "validateEventName";
 
 //
 export const FormWithReset: ComponentStory<typeof Form> = (args) => {

@@ -14,13 +14,13 @@ const menuMeta: ComponentMeta<typeof Menu> = {
 		},
 	},
 	parameters: {
-		// docs: { page: mdx },
-		backgrounds: {
+		docs: { page: null },
+		/* 		backgrounds: {
 			values: [
 				{ name: "blue", value: "#3b82f6" },
 				{ name: "green", value: "#22c55e" },
 			],
-		},
+		}, */
 	},
 };
 export default menuMeta;

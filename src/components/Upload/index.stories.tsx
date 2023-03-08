@@ -5,7 +5,7 @@ import Icon from "../Icon";
 import Upload from "./";
 
 const uploadMeta: ComponentMeta<typeof Upload> = {
-	title: "Upload2",
+	title: "Upload 0.8",
 	component: Upload,
 	args: {
 		// onBeforeUpload: () => {
