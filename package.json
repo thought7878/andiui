@@ -79,6 +79,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "coverage": "node scripts/test.js --coverage",
+    "build-andiui": "npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "postcss src/index.css --dir dist",
     "postcss:watch": "postcss src/index.css --dir dist --watch",

@@ -28,7 +28,7 @@ export interface ItemProps {
 
 export const Item: FC<ItemProps> = (props) => {
 	const {
-		name = "",
+		name,
 		label = "",
 		children = "",
 		valueName = "value",
@@ -47,13 +47,13 @@ export const Item: FC<ItemProps> = (props) => {
 	let newChildren = children;
 	let errors = null;
 	let hasError = null;
-	let value: any = null;
+	let value: any = "";
 	let isRequired = false;
 	// 如果是有效的表单元素，即有name，才获取store中的value/errors/required，才增加额外的valueChangeEventName等
 	if (name) {
 		// 获取自己的fieldState
 		const fieldState = fieldsState[name];
-		value = fieldState?.value;
+		value = fieldState?.value || "";
 		// error
 		errors = fieldState?.errors;
 		hasError = errors && errors.length > 0;
@@ -141,7 +141,7 @@ export const Item: FC<ItemProps> = (props) => {
 		controlledProps[valueName] = value;
 		controlledProps[valueChangeEventName] = handleValueChange;
 		controlledProps[validateEventName] = () => {
-			validateField(name);
+			validateField(name!);
 		};
 		// Clone Element，新element包含旧的所有属性和新的属性
 		const childList = React.Children.toArray(children);
@@ -156,12 +156,11 @@ export const Item: FC<ItemProps> = (props) => {
 	function handleValueChange(e: any) {
 		//value 改变了，更新store中自己的value
 		const value = getValueFromEvent(e);
-		dispatch({ type: "updateValue", name, value });
+		dispatch({ type: "updateValue", name: name!, value });
 	}
 };
 
 Item.defaultProps = {
-	name: "",
 	label: "",
 	children: "",
 	valueName: "value",
