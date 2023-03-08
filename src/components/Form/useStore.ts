@@ -2,11 +2,14 @@ import Schema, { RuleItem, ValidateError } from "async-validator";
 import { each, mapValues } from "lodash-es";
 import { useReducer, useState } from "react";
 
+//////////////// types ////////////////
 export type CustomRuleFunc = (obj: {
 	[getFieldValue: string]: (name: string) => string;
 }) => RuleItem; //{ getFieldValue }
+//
 export type CustomRule = RuleItem | CustomRuleFunc;
 
+//
 export interface FieldState {
 	name: string; //input/radio name
 	value: string;
@@ -33,7 +36,7 @@ export interface ValidateErrorType extends Error {
 	fields: Record<string, ValidateError[]>;
 }
 
-//
+//////////////// reducer ////////////////
 function fieldsReducer(state: FieldsState, action: FieldsAction): FieldsState {
 	switch (action.type) {
 		case "addField":
@@ -54,7 +57,7 @@ function fieldsReducer(state: FieldsState, action: FieldsAction): FieldsState {
 	}
 }
 
-//
+//////////////// store ////////////////
 export default function useStore(
 	initialValues: Record<string, any> | undefined
 ) {
