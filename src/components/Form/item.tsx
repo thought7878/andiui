@@ -67,7 +67,7 @@ export const Item: FC<ItemProps> = (props) => {
 	}, []);
 
 	// 获取自己的fieldState
-	const fieldState = fieldsState[name];
+	const fieldState = name ? fieldsState[name] : null;
 	const value = fieldState?.value;
 	const isRequired = rules?.some(
 		(rule) => typeof rule !== "function" && rule.required
@@ -76,7 +76,7 @@ export const Item: FC<ItemProps> = (props) => {
 	const errors = fieldState?.errors;
 	const hasError = errors && errors.length > 0;
 	// Clone Element, Add additional attribute
-	const newChild = addAdditionalProps();
+	const newChild = name ? addAdditionalProps() : children;
 
 	//没有label的，右对齐
 	let noLabelClass = "";
